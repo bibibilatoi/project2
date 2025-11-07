@@ -1,0 +1,314 @@
+/*
+
+filename: styles.css
+
+authors: Vu Hoang Long, Trinh Thai Anh Tuan, Dang Thien An, Duong Tri Duc
+
+created: 27-9-2025
+
+last modified: 12-10-2025
+
+description: the css file for all pages
+
+*/
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+BASIC STYLING
+
+*****************************************
+*****************************************
+*/
+
+/* Reset everything to default state  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --block-basic-color: #5E747F;
+  --block-special-color:#668a9c;
+  --block-hover-color: #478aac;
+  --text-basic-color: #E5E5E5;
+  --text-selected-color: #1EF963;
+  --text-warning-color: #D61229;
+  --text-heading-color: #FFD700;
+  --bg-main-color:#000000;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  background-color: var(--bg-main-color);
+  color: var(--text-basic-color);
+}
+
+p, li, figcaption {
+  font-size: 20px;
+}
+
+h1, h2, h3, h4 {
+  color:var(--text-heading-color)
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 40px;
+}
+h3 {
+  font-size: 32px;
+}
+h4 {
+  font-size: 24px;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display: block;
+}
+
+a {
+  color: var(--text-selected-color);
+}
+a:visited {
+  color: var(--block-hover-color);
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+#logo p {
+  display: block;
+  padding-left: 1rem;
+  font-size: 32px;
+  color: var(--text-basic-color);
+}
+
+
+#banner {
+  position: relative;
+  background-image: url("./images/space_banner.jpg");
+  background-size: cover; /* Ensures the image covers the entire header area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  height: 60vh; /* Sets the banner height */
+  animation: bannerFade 1.2s ease-out forwards;
+  border: 1px solid var(--text-basic-color)
+}
+@keyframes bannerFade {
+  from { opacity: 0; background-position: center top; }
+  to   { opacity: 1; background-position: center center; }
+}
+
+
+#banner p {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 32px;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+
+}
+
+
+
+
+
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+NAVIGATION MENU CSS
+
+*****************************************
+*****************************************
+*/
+
+#nav-menu {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+#nav-menu input {
+  display: none;
+}
+#nav-menu label {
+  display: block;
+  background-color: #0000005f;
+  backdrop-filter: blur(7px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  transition-delay: 0.1s;
+  padding: 0.5rem;
+
+}
+
+#nav-menu ul {
+  list-style: none;
+
+  background-color: #0000005f;
+  backdrop-filter: blur(7px);
+
+
+
+  /* Start hidden */
+  max-height: 0;
+  overflow: hidden;
+  
+  
+  transition: max-height 0.3s ease-in-out; 
+  transition-delay: 0.1s;
+  z-index: 11;
+}
+
+
+/* show the menu when hovering over p, 
+keep showing the menu if hovering ul */
+#nav-menu:hover ul, 
+#nav-menu-toggle:checked ~ ul {
+    max-height: 500px;
+}
+
+
+#nav-menu:hover label, 
+#nav-menu-toggle:checked ~ label{
+  background-color: #0000005f;
+  backdrop-filter: blur(5px);
+  color: gold;
+  font-weight: bold;
+}
+#nav-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
+}
+#nav-menu a {
+  display: block;
+  padding: 1rem 0;
+  
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+
+  transition: transform 0.3s ease, color 0.3s ease-in-out;
+}
+#nav-menu a:last-child {
+  border-bottom: none;
+}
+
+
+#nav-menu a:hover:not(#current-page) {
+  transform: translateY(-5px);
+  background-color: #23b1d1;
+  color:gold;
+  font-weight: bold;
+
+}
+
+#nav-menu #current-page{
+  background-color: var(--block-hover-color);
+  color: var(--text-selected-color);
+  cursor: default;
+}
+
+
+
+
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+   FOOTER CSS
+
+*****************************************
+*****************************************
+*/
+
+
+
+footer{
+  border-top: 1px solid var(--text-basic-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+footer p {
+  font-size: 16px;
+}
+#contact-info a{
+  display: block;
+  color: var(--text-selected-color)
+}
+#contact-info a:visited {
+  color: var(--block-hover-color);
+}
+
+
+/* Animated gradient background */
+@keyframes gradientShiftSpace {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+#apply-body main, #about-body main{
+  min-height: 100vh;
+
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

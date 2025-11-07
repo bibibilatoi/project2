@@ -8,4 +8,3 @@
     <link href="styles/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2">
     <title>Home Page</title>
-</head>
