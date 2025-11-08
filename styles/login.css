@@ -1,0 +1,91 @@
+
+.go-back {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between arrow and text */
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #222;
+  transition: background-color 0.2s ease;
+}
+
+.go-back:hover {
+  background-color: #e5e5e5;
+}
+
+.arrow {
+  font-size: 18px;
+}
+#login_body {
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #333;
+}
+#login_container{
+    display: flex;
+    justify-content: flex-end;
+}
+#kc-page-title{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#Welcome_text-Welcome{
+    font-size: 27px;
+}
+#Welcome_text-Pleaselogintoyouraccount{
+    font-size: 17px;
+    font-weight: lighter;
+}
+#main_content{
+    margin-top: 75px;
+    margin-left: 60px;
+    margin-right: 40px;
+    width: 400px;
+}
+#all{
+    display: flex;
+}
+#login_form_box{
+}
+#login_login{
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login_input {
+    width: 100%;
+    padding: 12px;
+    background: #e9e7e7;
+    border-radius: 6px;
+    border: none;
+    
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.login_button{
+    width: 100%;
+    padding: 12px;
+    background: rgba(229, 230, 230, 0.4);
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color:#c5c4c4;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+button:hover{
+    background: rgba(28, 99, 242, 0.267);
+}
+#Manager_img{
+    flex: none;
+    float:left;
+}
