@@ -16,6 +16,22 @@ function showError($error){
 ?>
 <?php include 'header.inc'; ?>
     <link href="styles/login.css" rel="stylesheet">
+    <style>
+        .error-message {
+            color: #ff4d4d;             /* Bright red for visibility */
+            background-color: #ffe6e6;  /* Light red background */
+            border: 1px solid #ff9999;  /* Subtle border */
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+    </style>
 </head>
 <body id="login_body">
     <div id="all">
