@@ -1,0 +1,157 @@
+/* 
+*****************************************
+*****************************************
+
+Apply Page CSS
+
+*****************************************
+*****************************************
+*/
+
+/* Animated gradient background */
+@keyframes gradientShiftSpace {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+#apply-body main, #about-body main{
+  min-height: 100vh;
+
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
+}
+
+
+
+
+#jobApplicationForm
+{
+  background-color: rgba(255, 255, 255, 0.174);
+  backdrop-filter: blur(5px);
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid var(--text-basic-color);
+  border-radius: 8px;
+  max-width: 700px;
+
+
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#jobApplicationForm label {
+  margin-top: 2rem;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: var(--text-heading-color);
+}
+#jobApplicationForm label:first-child {
+  margin-top: 0;
+}
+
+#jobApplicationForm fieldset label{
+  margin: 0.5rem;
+}
+
+#h1-apply 
+{
+  text-align: center;
+  color: var(--text-heading-color);
+  margin-bottom: 20px;
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+#otherSkills
+{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--text-basic-color);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] 
+{
+  margin-right: 6px;
+  accent-color: var(--text-selected-color);
+}
+
+
+#otherSkills
+{
+  resize: vertical;
+  min-height: 80px;
+} 
+
+
+
+#jobApplicationForm fieldset {
+  color: var(--text-heading-color);
+  font-weight: bold;
+  padding-left: 0.5rem;
+}
+#jobApplicationForm fieldset label {
+  color: var(--text-basic-color);
+  display: inline-block;
+}
+
+.fieldset-container {
+  padding-left: 1rem;
+}
+
+#jobApplicationForm .fieldset-container input:checked + label {
+  color:var(--text-selected-color);
+}
+
+
+
+
+#apply-button, input[type="submit"] 
+{
+  display: block;
+  width: 100%;
+  background-color: #1976d2;
+  color:inherit;
+  border: none;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+#apply-button:hover, input[type="submit"]:hover 
+{
+  background-color: #23b1d1;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #23b1d1;
+  
+}

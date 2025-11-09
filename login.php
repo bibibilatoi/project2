@@ -14,50 +14,44 @@ function showError($error){
 
 
 ?>
-<?php include 'header.inc'; ?>
-    <link href="styles/login.css" rel="stylesheet">
-    <style>
-        .error-message {
-            color: #ff4d4d;             /* Bright red for visibility */
-            background-color: #ffe6e6;  /* Light red background */
-            border: 1px solid #ff9999;  /* Subtle border */
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            text-align: center;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-    </style>
-</head>
+<?php include 'head.inc'; ?>
+<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+<link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+<!DOCTYPE html>
+<html lang="en">
 <body id="login_body">
     <div id="all">
-        <div>
-            <img id="Manager_img" src="styles/images/Managers.jpg" alt="Manager" style="height: 800px;%" >
-        </div>
-        <div id="main_content">
-            <div id="goBackVisibility" class="base-margin-bottom show">
-                <button class="go-back">
-                    <span class="arrow">←</span>
-                    Go back
-                </button>
-            </div>
-            <div class="login-pf-header">          
-                <div id="kc-page-title">        
-                    <h1 id="Welcome_text-Welcome">Welcome!</h1>
-                    <h3 id="Welcome_text-Pleaselogintoyouraccount">Please login to your account.</h3>
+        <div class="background"></div>
+        <div class="container">
+            <div class="content">
+                <h2 class="logo"><i class='bxr  bx-rocket' ></i> SpeedX</h2>
+                <div class="text-sci">
+                    <h2>Welcome!<br><span>To login management page</span></h2>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class='bxl  bx-facebook'></i> </a>
+                    <a href="#"><i class='bxl  bx-linkedin'></i> </a>
+                    <a href="#"><i class='bxl  bx-instagram'></i> </a>
+                    <a href="#"><i class='bxl  bx-youtube' ></i> </a>
                 </div>
             </div>
-            <div id="login_container">
-                <div id ="login_form_box" id="login_form">
+
+            <div class="login_container">
+                <div class ="login_form_box" id="login_form">
                     <form action="manage_process.php" method="post">
-                        <h2 id="login_login">Login</h2>
+                        <h2>Login</h2>
                         <?= showError($errors['login']); ?>
-                        <input class="login_input" type ="text" name="username" placeholder="Username" required>
-                        <input class="login_input" type ="password" name="password" placeholder="Password" required>
+                        <div class="input_box">
+                            <span class="icon"><i class='bx  bx-user'></i> </span>
+                            <input class="login_input" type ="text" name="username" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"required>
+                            <label>Username</label>
+                        </div>
+                        <div class="input_box">
+                            <span class="icon"><i class='bx  bx-lock'></i></span>
+                            <input class="login_input" type ="password" name="password" required>
+                            <label>Password</label>
+                        </div>
+
                         <button class="login_button" type="submit" name="login">Login</button>
                     </form>
                 </div>

@@ -251,6 +251,7 @@ footer{
   border-top: 1px solid var(--text-basic-color);
   display: flex;
   flex-direction: column;
+  clear: both;
   align-items: center;
   text-align: center;
   margin: 1rem 0;
@@ -280,7 +281,7 @@ footer p {
 
 
 
-#apply-body main, #about-body main, #login_body{
+#apply-body main, #about-body main{
   min-height: 100vh;
 
   /*Background is a space-ish color gradient (static)*/

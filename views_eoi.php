@@ -41,50 +41,52 @@ if ($action == "list_all") {
 }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <title>EOI Results</title>
-</head>
+<html lang="en"></html>
+<?php include 'head.inc'; ?>
 <body>
-    <h1>EOI Query Results</h1>
-    <a href="manage.php">← Back to Manage Page</a>
-    <?php if ($result && mysqli_num_rows($result) > 0): ?>
-    <table>
-        <tr>
-            <th>EOI number</th>
-            <th>Job Ref</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Street address</th>
-            <th>Surburb/town</th>
-            <th>State</th>
-            <th>Postcode</th>
-            <th>Email</th>
-            <th>Phone number</th>
-            <th>Skills</th>
-            <th>Other skills</th>
-            <th>Status</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-        <tr>
-            <td><?= htmlspecialchars($row['EOI_number']) ?></td>
-            <td><?= htmlspecialchars($row['Job_Reference_number']) ?></td>
-            <td><?= htmlspecialchars($row['First_name']) ?></td>
-            <td><?= htmlspecialchars($row['Last_name']) ?></td>
-            <td><?= htmlspecialchars($row['Street_address']) ?></td>
-            <td><?= htmlspecialchars($row['Suburb_town']) ?></td>
-            <td><?= htmlspecialchars($row['State']) ?></td>
-            <td><?= htmlspecialchars($row['Postcode']) ?></td>
-            <td><?= htmlspecialchars($row['Email_address']) ?></td>
-            <td><?= htmlspecialchars($row['Phone_number']) ?></td>
-            <td><?= htmlspecialchars($row['Skills']) ?></td>
-            <td><?= htmlspecialchars($row['Other_skills']) ?></td>
-            <td><?= htmlspecialchars($row['Status']) ?></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-    <?php else: ?>
-        <p>No records found.</p>
-    <?php endif; ?>
+    <div class="background"></div>
+    <div class="container">
+        <a id="back_to_Manage_Page_icon"href="manage.php">← Back to Manage Page</a>
+        <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
+        <?php if ($result && mysqli_num_rows($result) > 0): ?>
+        <table>
+            <tr>
+                <th>EOI number</th>
+                <th>Job Ref</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Street address</th>
+                <th>Surburb/town</th>
+                <th>State</th>
+                <th>Postcode</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Skills</th>
+                <th>Other skills</th>
+                <th>Status</th>
+            </tr>
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+            <tr>
+                <td><?= htmlspecialchars($row['EOI_number']) ?></td>
+                <td><?= htmlspecialchars($row['Job_Reference_number']) ?></td>
+                <td><?= htmlspecialchars($row['First_name']) ?></td>
+                <td><?= htmlspecialchars($row['Last_name']) ?></td>
+                <td><?= htmlspecialchars($row['Street_address']) ?></td>
+                <td><?= htmlspecialchars($row['Suburb_town']) ?></td>
+                <td><?= htmlspecialchars($row['State']) ?></td>
+                <td><?= htmlspecialchars($row['Postcode']) ?></td>
+                <td><?= htmlspecialchars($row['Email_address']) ?></td>
+                <td><?= htmlspecialchars($row['Phone_number']) ?></td>
+                <td><?= htmlspecialchars($row['Skills']) ?></td>
+                <td><?= htmlspecialchars($row['Other_skills']) ?></td>
+                <td><?= htmlspecialchars($row['Status']) ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </table>
+        <?php else: ?>
+            <p>No records found.</p>
+        <?php endif; ?>
+    </div>
+    
 </body>
 </html>
