@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2025 at 01:41 AM
+-- Generation Time: Nov 09, 2025 at 05:25 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project part 2`
+-- Database: `project2_db`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,8 @@ CREATE TABLE `managers` (
 --
 
 INSERT INTO `managers` (`username`, `password`, `email`) VALUES
-('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com');
+('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com'),
+('long', '123', 'long@gmail.com');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

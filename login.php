@@ -14,56 +14,56 @@ function showError($error){
 
 
 ?>
-<?php include 'header.inc'; ?>
-    <link href="styles/login.css" rel="stylesheet">
-    <style>
-        .error-message {
-            color: #ff4d4d;             /* Bright red for visibility */
-            background-color: #ffe6e6;  /* Light red background */
-            border: 1px solid #ff9999;  /* Subtle border */
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            text-align: center;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
-            animation: fadeIn 0.5s ease-in-out;
-        }
 
-    </style>
-</head>
-<body id="login_body">
-    <div id="all">
-        <div>
-            <img id="Manager_img" src="styles/images/Managers.jpg" alt="Manager" style="height: 800px;%" >
-        </div>
-        <div id="main_content">
-            <div id="goBackVisibility" class="base-margin-bottom show">
-                <button class="go-back">
-                    <span class="arrow">←</span>
-                    Go back
-                </button>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Do you want to work in a company that not only pays you well but also helps you grow. Well, welcome to SpeedX - the best IT and tech company in the universe">
+        <meta name="keywords" content="HTML5, tags">
+        <meta name="author" content="a group of students">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2">
+
+        <link href="styles/common_styles.css" rel="stylesheet">
+        <link href="styles/login_styles.css" rel="stylesheet">
+
+        <title>Login</title>
+    </head>
+    <body id="login_body">
+        <div id="all">
+            <div>
+                <img id="Manager_img" src="styles/images/Managers.jpg" alt="Manager" style="height: 800px;%" >
             </div>
-            <div class="login-pf-header">          
-                <div id="kc-page-title">        
-                    <h1 id="Welcome_text-Welcome">Welcome!</h1>
-                    <h3 id="Welcome_text-Pleaselogintoyouraccount">Please login to your account.</h3>
+            <div id="main_content">
+                <div id="goBackVisibility" class="base-margin-bottom show">
+                    <button class="go-back">
+                        <span class="arrow">←</span>
+                        Go back
+                    </button>
+                </div>
+                <div class="login-pf-header">          
+                    <div id="kc-page-title">        
+                        <h1 id="Welcome_text-Welcome">Welcome!</h1>
+                        <h3 id="Welcome_text-Pleaselogintoyouraccount">Please login to your account.</h3>
+                    </div>
+                </div>
+                <div id="login_container">
+                    <div id ="login_form_box" id="login_form">
+                        <form action="manage_process.php" method="post">
+                            <h2 id="login_login">Login</h2>
+                            <?= showError($errors['login']); ?>
+                            <input class="login_input" type ="text" name="username" placeholder="Username" required>
+                            <input class="login_input" type ="password" name="password" placeholder="Password" required>
+                            <button class="login_button" type="submit" name="login">Login</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div id="login_container">
-                <div id ="login_form_box" id="login_form">
-                    <form action="manage_process.php" method="post">
-                        <h2 id="login_login">Login</h2>
-                        <?= showError($errors['login']); ?>
-                        <input class="login_input" type ="text" name="username" placeholder="Username" required>
-                        <input class="login_input" type ="password" name="password" placeholder="Password" required>
-                        <button class="login_button" type="submit" name="login">Login</button>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
-    
-</body>
+        
+    </body>
 </html>

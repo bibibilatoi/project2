@@ -1,0 +1,334 @@
+/* 
+*****************************************
+*****************************************
+
+JOBS PAGE CSS  - MAIN AND SECTIONS
+
+*****************************************
+*****************************************
+*/
+
+.jobs-main {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: var(--text-basic-color);
+  overflow-wrap: break-word;
+  line-height: 1.5;
+
+}
+#forewords {
+  clear: both;
+  padding-bottom: 2rem;
+}
+#forewords h1 {
+  text-align: center;
+}
+#currently-hiring h2 {
+  color:var(--text-heading-color);
+}
+#forewords p {
+  text-align: center;
+}
+#currently-hiring ol{
+  margin-left: 2rem;
+}
+
+#forewords {
+  margin-top: 2rem;
+}
+#currently-hiring {
+  margin-top: 6rem;
+}
+/* apply button css in the jobs.php  */
+.go-apply-btn {
+  background-color: #1976d2;
+  border: none;
+  clear: both;
+  text-align: center;
+  padding: 0.8rem 1.2rem;
+  width: fit-content;
+  border-radius: 6px;
+  margin: 2rem auto;
+  transition: all 0.3s ease;
+
+}
+
+.go-apply-btn a {
+  text-decoration: none;
+  color: var(--text-basic-color);
+  font-weight: bold;
+}
+
+
+.go-apply-btn:hover{
+  background: #23b1d1;
+  color: var(--bg-main-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #23b1d1;
+}
+.go-apply-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* aside css in the jobs.php  */
+
+.jobs-aside {
+  width: 25%;
+  margin:2rem;
+  padding: 0.5rem;
+  background-color: var(--block-basic-color);
+  border-radius: 8px;
+  border: 3px solid var(--text-heading-color);
+  float: right;
+
+}
+
+.jobs-aside h2 {
+  margin-bottom: 1rem;
+  color: var(--text-heading-color);
+  overflow-wrap: break-word;
+  
+}
+.jobs-aside li {
+  list-style: none;
+  overflow-wrap: break-word;
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+}
+
+
+
+.jobs-benefits {
+  margin: 2rem 0 1rem 2rem;
+}
+
+
+
+/* 
+--------------------------------------------
+ job dropdown menu css in the jobs.php  
+ --------------------------------------------
+*/
+
+
+.blink-arrow {
+  color: var(--text-selected-color);
+  animation: blinking 2s linear infinite;
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* hide the checkbox icon/button  */
+#toggle-jobs-menu {
+  width: fit-content;
+  display: none;
+}
+/* styling the Jobs button  */
+.jobs-menu-label {
+  cursor: pointer;
+  clear:both;
+  display: block;
+  width: fit-content;
+  padding: 0.4rem 1rem;
+  margin-top: 3rem;
+
+  border: 1px solid var(--text-basic-color); 
+  border-radius: 6px;
+
+  font-size: 24px;
+  color:var(--text-basic-color);
+
+}
+.jobs-menu-label:hover {
+  color: var(--text-heading-color);
+  background-color: var(--block-basic-color);
+}
+
+
+/* making the bottom corners of the Jobs button straight if the Jobs button is clicked  */
+#toggle-jobs-menu:checked + .jobs-menu-label {
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  background-color: var(--block-basic-color);
+
+}
+
+
+/* hide all the checkbox/radio icons/buttons of the job menu  */
+.job-menu input{
+  display: none;
+}
+
+.job-menu label{
+  display: block;
+}
+
+.job-menu  li {
+  list-style-type: none;
+  border: 1px solid var(--text-basic-color);
+  border-bottom: none;
+}
+.job-menu li:last-child {
+  border-bottom: 1px solid var(--text-basic-color);
+}
+/*1. hide the list of departments  */
+.job-menu {
+  display: none;
+}
+
+/*2. show the list of departments if the Jobs button is clicked */
+#toggle-jobs-menu:checked ~ .job-menu {
+  display: block;
+  border: none;
+  border-radius: 0 0 4px 4px;
+}
+
+
+/* the dropdown_animation */
+@keyframes dropdown_animation {
+  from {
+    opacity: 0;  
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+/* making the list of departments and job positions show up more smoothly */
+.job-menu li, .job-positions {
+  animation: dropdown_animation 0.4s ease forwards;
+}
+
+
+/*1. hide the list of job positions  */
+.job-listing-container {
+  display: none;
+}
+
+
+/*2. show the list of job positions if the department is clicked */
+input[name="department-select"]:checked ~ .department-content .job-listing-container {
+  display: block;
+  border-left: 1px solid var(--text-basic-color);
+}
+
+/* make the display from normal blocks to grid so to have a better layout (when the department is clicked) */
+input[name="department-select"]:checked ~ .department-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 0;
+  background-color: var(--block-basic-color);
+
+}
+
+/* some basic styling of the job positions */
+/* some basic styling of the job positions */
+
+/* adding border-top and padding to separate the departments */
+.department-content label {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 24px;
+}
+
+.department-content label:hover {
+  transform: translateX(6px);
+  color: var(--text-heading-color);
+}
+
+
+/* cancle the hovering animation for department lables after it is clicked */
+input[name="department-select"]:checked ~ .department-content label:first-child {
+  background-color: var(--block-basic-color);
+  transform: translateX(0px);
+  color: var(--text-heading-color);
+  cursor: default;
+}
+
+
+/* remove the border-top of the first item */
+.job-menu li:first-child .department-content {
+  border-top: none;
+
+}
+
+
+/*1. hide the description/content of the job position  */
+.job-descriptions {
+  display: none;
+}
+/*2. show the description/content if the job position is clicked */
+.job-positions input:checked + label + .job-descriptions {
+  display: block;
+  background-color: var(--block-special-color);
+  margin: 0.5rem;
+}
+
+
+/* adding border-top and padding to separate job positions */
+.job-positions {
+  border-top: 1px solid var(--text-basic-color);
+  padding: 0.5rem 0;
+}
+/* remove the border-top of the first item */
+.job-listing-container .job-positions:first-child {
+  border-top: none;
+}
+.job-descriptions {
+  padding-left: 1.5rem;
+}
+.job-descriptions li, .job-descriptions li:last-child {
+  border: none;
+}
+.job-descriptions h4{
+  color:gold;
+}
+
+
+/* hovering animation for the jobs department */
+.job-positions label {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.job-positions label:hover {
+  transform: translateX(6px);
+  color: var(--text-selected-color);
+}
+
+
+/* cancle the hovering animation for department lables after it is clicked */
+.job-positions input:checked ~ label {
+  color: var(--text-selected-color);
+}
+
+
+/* styling the not hiring text */
+.job-descriptions h4.not-hiring {
+  color: var(--text-warning-color);
+  font-size: 20px;
+}
+
+
+.job-basic-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; 
+  font-weight: bold;
+}
+.job-basic-info dt {
+  color:var(--text-heading-color)
+}

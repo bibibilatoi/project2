@@ -1,0 +1,84 @@
+.List_manage{
+    background-color: #1b1b1a;       /* deep gray background */
+    color: #f8fcfc;                  /* soft white text */
+    padding: 30px;
+    margin: 10px auto;
+    width: 60%;
+    border-radius: 8px;              /* rounded corners */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    size: 50px;
+}
+.Manage_Buttons{
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color:#c5c4c4;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+.Manage_Buttons:hover{
+    background: rgba(28, 99, 242, 0.267);
+}
+.select_typing_fields{
+    width: 100%;
+    padding: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    color: black;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color:#c5c4c4;
+    transition: 0.5s;
+}
+.select_typing_name::placeholder{
+    color: #d7cdcdff;        
+    opacity: 1;         /* ensures consistent visibility across browsers */
+    font-style: italic;
+}
+.select_typing_name:focus {
+    border-color: #1c63f2;
+    box-shadow: 0 0 8px rgba(28, 99, 242, 0.4);
+    background-color: rgba(30, 30, 30, 0.9);
+}
+.select_typing_name{
+    width: 100%;
+    padding: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    color: black;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color:#c5c4c4;
+    transition: 0.5s;
+}
+.select_typing_fields option {
+    background-color: #1b1b1a;
+    color: #f0f0f0;
+    padding: 8px;
+}
+.select_typing_fields optgroup {
+    color: #a4fc0cff;
+    font-weight: bold;
+    background-color: #111;
+}
+#eoi_num_select{
+    margin-bottom: 10px;
+}
