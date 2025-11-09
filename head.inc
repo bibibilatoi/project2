@@ -10,6 +10,7 @@ $page_css = [
     'about.php'   => 'about_styles.css',
     'login.php'   => 'login_styles.css',
     'manage.php' => 'manage_styles.css',
+    'views_eoi.php' => 'views_eoi.css',
 
 ];
 
@@ -22,6 +23,7 @@ $page_titles = [
 
     'login.php'   => 'Login',
     'manage.php' => 'Manager Page',
+    'views_eoi.php' => 'EOIS Views',
 ];
 ?>
 
