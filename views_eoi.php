@@ -41,13 +41,11 @@ if ($action == "list_all") {
 }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <title>EOI Results</title>
-</head>
+<html lang="en"></html>
+<?php include 'head.inc'; ?>
 <body>
-    <h1>EOI Query Results</h1>
-    <a href="manage.php">← Back to Manage Page</a>
+    <a id="back_to_Manage_Page_icon"href="manage.php">← Back to Manage Page</a>
+    <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
     <?php if ($result && mysqli_num_rows($result) > 0): ?>
     <table>
         <tr>
