@@ -251,6 +251,7 @@ footer{
   border-top: 1px solid var(--text-basic-color);
   display: flex;
   flex-direction: column;
+  clear: both;
   align-items: center;
   text-align: center;
   margin: 1rem 0;

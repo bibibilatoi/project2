@@ -1,0 +1,139 @@
+/*
+*****************************************
+Index PAGE CSS - MAIN AND SECTIONS
+*****************************************
+*/
+
+/* Base body */
+#index-body {
+    background-color: #000000;
+    color: #fff;
+    font-family: sans-serif;
+    line-height: 1.6;
+
+}
+
+
+
+/* Intro */
+#index-intro {
+    text-align: center;
+    padding: 4rem 2rem; 
+}
+
+#index-intro p {
+    margin-top: 1.5rem;
+}
+
+/* Section headings */
+.section-heading, #index-achievements h1, #index-our-people h1, #index-our-brilliant-minds h1, #Why-work-with-us h1 {
+    text-align: center;
+    margin: 3rem 0 2rem; /* top 3rem, bottom 2rem */
+}
+
+/* Achievements */
+#index-achievements {
+    text-align: center;
+}
+
+.achievement-2060, .achievement-2075, .achievement-2110 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 1rem; /* consistent vertical padding */
+}
+
+.achievement-2075 {
+    flex-direction: row-reverse;
+}
+
+.achievement-text, .achievement-figure {
+    flex: 1 1 300px;
+    max-width: 500px;
+}
+
+/* Add small horizontal padding for text */
+.achievement-text {
+    padding: 0 1rem;
+}
+
+/* Aspiration paragraph */
+#index-aspiration {
+    text-align: center;
+    font-weight: bold;
+    margin: 4rem 2rem; 
+}
+
+/* Our People */
+#index-our-people p {
+    text-align: center;
+    margin: 1.5rem 2rem;
+}
+
+/* Our Brilliant Minds */
+#index-our-brilliant-minds {
+    text-align: center;
+    padding: 2rem;
+}
+
+#index-our-brilliant-minds-behind {
+    margin: 2rem 0;
+}
+
+.engineer-profile {
+    margin: 7rem 0 2rem;
+    text-align: center;
+}
+
+.engineer-figure figcaption {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Together section */
+#index-our-brilliant-minds-together {
+    margin: 7rem 0;
+    text-align: center;
+}
+
+/* Why Work With Us */
+#Why-work-with-us ul {
+    list-style-type: none;
+    font-style: italic;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.work-with-us-item {
+    margin: 1.5rem 0;
+}
+
+.work-with-us-item--left {
+    text-align: left;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid #fff;
+}
+
+.work-with-us-item--right {
+    text-align: right;
+    margin-right: 1rem;
+    padding-right: 0.5rem;
+    border-right: 3px solid #fff;
+    border-left: none;
+}
+
+#Why-work-with-us figure {
+    margin: 4rem 0;
+    text-align: center;
+}
+#workplace-img-container {
+    display: flex;
+    flex-direction: column;     /* stack image and caption vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically, if container has height */
+    height: auto;    
+}
