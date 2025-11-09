@@ -5,12 +5,10 @@ Index PAGE CSS - MAIN AND SECTIONS
 */
 
 /* Base body */
-#index-body {
+#index-main {
     background-color: #000000;
     color: #fff;
-    font-family: sans-serif;
     line-height: 1.6;
-
 }
 
 

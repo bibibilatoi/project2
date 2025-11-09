@@ -1,6 +1,7 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
 $pages = [
+  'login.php' => 'Login',
   'index.php' => 'Home Page',
   'jobs.php' => 'Jobs Positions',
   'apply.php' => 'Applications',
@@ -8,8 +9,6 @@ $pages = [
 ];
 ?>
 <nav id="nav-menu">
-  <input type="checkbox" id="nav-menu-toggle">
-  <label for="nav-menu-toggle">Menu</label>
   <ul>
   <?php foreach ($pages as $file => $name) : ?>
       <li>
@@ -24,6 +23,6 @@ $pages = [
           ?>
       </li>
   <?php endforeach; ?>
-    <li><a href="mailto:info@speedx.com.au"><strong>Contact us:</strong> info@speedx.com.au</a></li>
+	<li><a href="mailto:info@speedx.com.au"><strong>Contact us:</strong> info@speedx.com.au</a></li>
   </ul>
 </nav>
