@@ -124,10 +124,50 @@ a:visited {
     color: var(--bg-main-color);
 }
 
+
+/* Fade-in animation keyframes */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply animation to each list item */
+#nav-menu li {
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Stagger the delay for cascading effect */
+#nav-menu li:nth-child(1) { animation-delay: 0.1s; }
+#nav-menu li:nth-child(2) { animation-delay: 0.25s; }
+#nav-menu li:nth-child(3) { animation-delay: 0.4s; }
+#nav-menu li:nth-child(4) { animation-delay: 0.55s; }
+#nav-menu li:nth-child(5) { animation-delay: 0.7s; }
+#nav-menu li:nth-child(6) { animation-delay: 0.85s; }
+
+
+
 #nav-menu #current-page {
+  background: none;
+  color: var(--text-basic-color);
+  animation: activateCurrent 0.4s 1.2s forwards ease-in-out;
+}
+
+@keyframes activateCurrent {
+  to {
     background-color: var(--text-basic-color);
     color: var(--bg-main-color);
+  }
 }
+
+
+
 
 #banner {
   position: relative;
