@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php include("head.inc") ?>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Do you want to work in a company that not only pays you well but also helps you grow. Well, welcome to SpeedX - the best IT and tech company in the universe">
+        <meta name="keywords" content="HTML5, tags">
+        <meta name="author" content="a group of students">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2">
+
+        <link href="styles/common_styles.css" rel="stylesheet">
+        <link href="styles/jobs_styles.css" rel="stylesheet">
+
+        <title>Job Positions</title>
+    </head>
     <body class="jobs-body">
-        <header>
-            <?php include("nav.inc") ?>
-            <div id="logo">
-              <img  src="images/speedx_logo.png" height="80" width="80" alt="speedX logo" >
-              <p>SpeedX</p>
-            </div>
-            
-            <section id="banner">
-                <p>
-                  SpeedX - Bridging innovation and the infinite 
-                </p>
-            </section>
-        </header>
+        <?php include("header.inc") ?>
+
     
 
         <main class="jobs-main">

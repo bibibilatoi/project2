@@ -9,16 +9,28 @@ $errors = [
 session_unset();
 
 function showError($error){
-    return !empty($error) ? "<p class='error-message'>$error</p>" : '';
+    return !empty($error) ? "<p class='error_message'>$error</p>" : '';
 }
 
 
 ?>
-<?php include 'head.inc'; ?>
-<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
-<link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+
+
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Do you want to work in a company that not only pays you well but also helps you grow. Well, welcome to SpeedX - the best IT and tech company in the universe">
+        <meta name="keywords" content="HTML5, tags">
+        <meta name="author" content="a group of students">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2">
+
+        <link href="styles/common_styles.css" rel="stylesheet">
+        <link href="styles/login_styles.css" rel="stylesheet">
+        <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+        <link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+        <title>Home Page</title>
+    </head>
 <body id="login_body">
     <div id="all">
         <div class="background"></div>
@@ -40,7 +52,6 @@ function showError($error){
                 <div class ="login_form_box" id="login_form">
                     <form action="manage_process.php" method="post">
                         <h2>Login</h2>
-                        <?= showError($errors['login']); ?>
                         <div class="input_box">
                             <span class="icon"><i class='bx  bx-user'></i> </span>
                             <input class="login_input" type ="text" name="username" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"required>
@@ -51,6 +62,7 @@ function showError($error){
                             <input class="login_input" type ="password" name="password" required>
                             <label>Password</label>
                         </div>
+                        <?= showError($errors['login']); ?>
 
                         <button class="login_button" type="submit" name="login">Login</button>
                     </form>

@@ -1,0 +1,32 @@
+#back_to_Manage_Page_icon{
+    padding: 12px;
+    margin: 20px;
+    background: rgb(207, 207, 207);
+    color:black;
+    border-radius: 6px;
+}
+
+#EOI_Query_Results_title{
+    text-align: center;
+    margin: 30px;
+    padding: 30px;
+}
+.background{
+    width: 100%;
+    height: 100vh;
+    background: url("./images/universe_background.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.container{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 550px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}

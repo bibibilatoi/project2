@@ -80,20 +80,54 @@ a:visited {
   color: var(--block-hover-color);
 }
 
-#logo {
-  display: flex;
-  align-items: center;
-  padding-top: 3rem;
-  padding-left: 2rem;
-  padding-bottom: 1rem;
-}
-#logo p {
-  display: block;
-  padding-left: 1rem;
-  font-size: 32px;
-  color: var(--text-basic-color);
+#topbar-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* logo left, menu right */
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: var(--bg-main-color);
+    color: var(--text-basic-color);
 }
 
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo p {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#nav-menu ul {
+    list-style: none;
+	display:flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1.5rem;
+}
+
+#nav-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--text-basic-color);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
+    border-radius: 4px;
+
+}
+
+#nav-menu a:not(#current-page):hover {
+    background-color: var(--text-basic-color);
+    color: var(--bg-main-color);
+}
+
+#nav-menu #current-page {
+    background-color: var(--text-basic-color);
+    color: var(--bg-main-color);
+}
 
 #banner {
   position: relative;
@@ -103,7 +137,6 @@ a:visited {
   background-repeat: no-repeat;
   height: 60vh; /* Sets the banner height */
   animation: bannerFade 1.2s ease-out forwards;
-  border: 1px solid var(--text-basic-color)
 }
 @keyframes bannerFade {
   from { opacity: 0; background-position: center top; }
@@ -119,116 +152,6 @@ a:visited {
   text-shadow: 2px 2px 5px rgb(0, 0, 0);
 
 }
-
-
-
-
-
-
-
-
-
-
-/* 
-*****************************************
-*****************************************
-
-NAVIGATION MENU CSS
-
-*****************************************
-*****************************************
-*/
-
-#nav-menu {
-  position: fixed;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-}
-#nav-menu input {
-  display: none;
-}
-#nav-menu label {
-  display: block;
-  background-color: #0000005f;
-  backdrop-filter: blur(7px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-  transition-delay: 0.1s;
-  padding: 0.5rem;
-
-}
-
-#nav-menu ul {
-  list-style: none;
-
-  background-color: #0000005f;
-  backdrop-filter: blur(7px);
-
-
-
-  /* Start hidden */
-  max-height: 0;
-  overflow: hidden;
-  
-  
-  transition: max-height 0.3s ease-in-out; 
-  transition-delay: 0.1s;
-  z-index: 11;
-}
-
-
-/* show the menu when hovering over p, 
-keep showing the menu if hovering ul */
-#nav-menu:hover ul, 
-#nav-menu-toggle:checked ~ ul {
-    max-height: 500px;
-}
-
-
-#nav-menu:hover label, 
-#nav-menu-toggle:checked ~ label{
-  background-color: #0000005f;
-  backdrop-filter: blur(5px);
-  color: gold;
-  font-weight: bold;
-}
-#nav-menu li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
-}
-#nav-menu a {
-  display: block;
-  padding: 1rem 0;
-  
-  color: inherit;
-  font-weight: bold;
-  text-decoration: none;
-
-  transition: transform 0.3s ease, color 0.3s ease-in-out;
-}
-#nav-menu a:last-child {
-  border-bottom: none;
-}
-
-
-#nav-menu a:hover:not(#current-page) {
-  transform: translateY(-5px);
-  background-color: #23b1d1;
-  color:gold;
-  font-weight: bold;
-
-}
-
-#nav-menu #current-page{
-  background-color: var(--block-hover-color);
-  color: var(--text-selected-color);
-  cursor: default;
-}
-
-
-
 
 
 
