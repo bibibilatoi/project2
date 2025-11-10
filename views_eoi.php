@@ -52,11 +52,12 @@ if ($action == "list_all") {
         <link href="styles/common_styles.css" rel="stylesheet">
         <link href="styles/views_eoi_styles.css" rel="stylesheet">
         <title>Home Page</title>
+        <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
     </head>
 <body>
     <div class="background"></div>
     <div class="container">
-        <a id="back_to_Manage_Page_icon"href="manage.php">← Back to Manage Page</a>
+        <a id="back_to_Manage_Page_icon"href="manage.php"><i class='bx  bx-reply-stroke'></i> Back to Manage Page</a>
         <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
         <?php if ($result && mysqli_num_rows($result) > 0): ?>
         <table>

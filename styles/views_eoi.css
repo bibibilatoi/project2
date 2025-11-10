@@ -1,9 +1,7 @@
 #back_to_Manage_Page_icon{
-    padding: 12px;
-    margin: 20px;
-    background: rgb(207, 207, 207);
-    color:black;
-    border-radius: 6px;
+    background: transparent;
+    border: white;
+    border-radius: 4px;
 }
 
 #EOI_Query_Results_title{
@@ -30,4 +28,5 @@
     background-position: center;
     border-radius: 10px;
 }
+
 
