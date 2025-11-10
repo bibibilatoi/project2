@@ -1,6 +1,13 @@
+<?php
+session_start();
+if(!isset($_SESSION["username"])){
+    header("Location: login.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="description" content="Do you want to work in a company that not only pays you well but also helps you grow. Well, welcome to SpeedX - the best IT and tech company in the universe">
@@ -10,12 +17,12 @@
 
         <link href="styles/common_styles.css" rel="stylesheet">
         <link href="styles/manage_styles.css" rel="stylesheet">
-
-        <title>Manage Page</title>
+        <title>Management Page</title>
     </head>
-
-    <body>
-        <!--List all eois -->
+<body>
+    <!--List all eois -->
+    <div class="background"></div>
+    <div class="container">
         <form action = "views_eoi.php" method="post" class = "List_manage">
             <h3>List All EOIs</h3>
             <button name="action" value="list_all" class="Manage_Buttons">List All</button>
@@ -100,6 +107,10 @@
             </select>
             <button name="action" value="change_status" class="Manage_Buttons">Update Status</button>
         </form>
+        <!--Log out-->
+        <button class="select_typing_name" id="logout_button"onclick="window.location.href='logout.php'">Logout</button>
+    </div>
+    
 
-    </body>
+</body>
 </html>

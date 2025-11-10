@@ -1,5 +1,49 @@
+.background{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: url('images/universe_background.jpg') no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: blur(8px); /* adjust blur strength */
+    z-index: -1; /* keep behind content */
+}
+.container{
+    position: relative;
+    color: white;
+    text-align: center;
+    animation: slideIn 1.5s ease-out;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 .List_manage{
     background-color: #1b1b1a;       /* deep gray background */
+    color: #f8fcfc;                  /* soft white text */
+    padding: 20px;
+    margin: 30px auto;
+    width: 60%;
+    border-radius: 8px;              /* rounded corners */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.List_manage{
+    background-color: #000000;     /* deep gray background */
+    background: none;
+    filter: saturate(10px);
     color: #f8fcfc;                  /* soft white text */
     padding: 30px;
     margin: 10px auto;
@@ -81,4 +125,13 @@
 }
 #eoi_num_select{
     margin-bottom: 10px;
+}
+#logout_button{
+    text-align: center;
+    width: 300px;
+    color:white
+}
+#logout_button:hover{
+    text-decoration: underline;
+    background: rgba(28, 99, 242, 0.267);
 }
