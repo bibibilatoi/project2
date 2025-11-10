@@ -60,8 +60,8 @@ if (count($errors) > 0) {
 
 // Database connection
 $host = "localhost";
-$user = "root";  // change if needed
-$pwd = "";       // change if needed
+$user = "root";  
+$pwd = "";       
 $dbname = "jobs";
 
 $conn = @mysqli_connect($host, $user, $pwd, $dbname);
@@ -71,7 +71,7 @@ if (!$conn) {
     exit();
 }
 
-// Create table if not exists
+// Create table 
 $createTable = "CREATE TABLE IF NOT EXISTS eoi (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
     jobRef VARCHAR(5),
