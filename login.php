@@ -63,8 +63,10 @@ function showError($error){
                             <label>Password</label>
                         </div>
                         <?= showError($errors['login']); ?>
-
-                        <button class="login_button" type="submit" name="login">Login</button>
+                        <div class="buttons">
+                            <button class="back_button" onclick="window.location.href='index.php'" name="back"><i class='bx  bx-reply-stroke'></i></button>
+                            <button class="login_button" type="submit" name="login">Login</button>
+                        </div>
                     </form>
                 </div>
             </div>
