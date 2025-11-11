@@ -1,5 +1,5 @@
 <?php
-
+require_once "settings.php";
 
 // Stop direct access
 if (!isset($_POST["firstname"])) {
@@ -58,18 +58,6 @@ if (count($errors) > 0) {
     exit();
 }
 
-// Database connection
-$host = "localhost";
-$user = "root";  
-$pwd = "";       
-$dbname = "jobs";
-
-$conn = @mysqli_connect($host, $user, $pwd, $dbname);
-
-if (!$conn) {
-    echo "<p>Database connection failed.</p>";
-    exit();
-}
 
 // Create table 
 $createTable = "CREATE TABLE IF NOT EXISTS eoi (
@@ -99,7 +87,7 @@ if (is_array($skills)) {
 }
 
 // Insert data
-$query = "INSERT INTO eoi (jobRef, firstName, lastName, dob, gender, street, suburb, state, postcode, email, phone, skills, otherSkills)
+$query = "INSERT INTO eoi (Job_Reference_number, First_name, Last_name, Date_of_birth, Gender, Street_address, Suburb_town, State, Postcode, Email_address, Phone_number, Skills, Other_skills)
 VALUES ('$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$street', '$suburb', '$state', '$postcode', '$email', '$phone', '$skillsList', '$otherSkills')";
 
 $result = mysqli_query($conn, $query);
