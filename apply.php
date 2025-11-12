@@ -18,8 +18,8 @@
 
         
         <main class="jobs-main">
-                <h1 id="h1-apply">Job Application Form</h1>
-                <form id="jobApplicationForm" method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+                <h1 id="h1-apply">Job Application Form ssss</h1>
+                <form id="jobApplicationForm" method="post" action="process_eoi.php">
                     
                     <label  for="jobRef">Job Reference Number:</label>
                     <select id="jobRef" name="jobRef" required>
@@ -109,7 +109,7 @@
                     <fieldset>
                         <legend>Required Technical Skills</legend>
                         <div class="fieldset-container">
-                            <input type="checkbox" id="Pg" name="skills" value="Programming" required>
+                            <input type="checkbox" id="Pg" name="skills" value="Programming">
                             <label  for="Pg">Programming</label>
                         </div>
 
