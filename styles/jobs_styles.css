@@ -347,3 +347,32 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 .job-positions .is-hiring {
   color: var(--text-selected-color);
 }
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+  RESPONSIVE DESIGN
+
+*****************************************
+*****************************************
+*/
+
+
+@media (max-width: 700px) {
+	.jobs-aside {
+		width: 100%;
+		float: none;
+		margin: 2rem 0;
+	}
+
+	.jobs-benefits {
+		margin: 2rem 0 1rem 2rem;
+	}
+
+
+}
