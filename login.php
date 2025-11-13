@@ -64,6 +64,7 @@ function showError($error){
                             <label>Password</label>
                         </div>
 
+                        <a class="back_button" href="index.php">&larr;</a>
                         <button class="login_button" type="submit" name="login">Login</button>
                     </form>
                 </div>

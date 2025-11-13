@@ -248,7 +248,7 @@ input[name="department-select"]:checked ~ .department-content {
 
 .department-content label:hover {
   transform: translateX(6px);
-  color: var(--text-heading-color);
+  color: var(--text-selected-color);
 }
 
 
@@ -256,7 +256,7 @@ input[name="department-select"]:checked ~ .department-content {
 input[name="department-select"]:checked ~ .department-content label:first-child {
   background-color: var(--block-basic-color);
   transform: translateX(0px);
-  color: var(--text-heading-color);
+  color: var(--text-selected-color);
   cursor: default;
 }
 
@@ -300,19 +300,26 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 
 
+
+.job-descriptions li {
+  list-style-type: disc;
+  margin-left: 2rem;
+}
+
+
 /* hovering animation for the jobs department */
 .job-positions label {
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .job-positions label:hover {
   transform: translateX(6px);
-  color: var(--text-selected-color);
+  color: var(--text-heading-color);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
-  color: var(--text-selected-color);
+  color: var(--text-heading-color);
 }
 
 
@@ -330,5 +337,42 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   font-weight: bold;
 }
 .job-basic-info dt {
-  color:var(--text-heading-color)
+  color:var(--text-heading-color);
+}
+
+
+.department-content .dept-hiring {
+  color:var(--text-heading-color);
+}
+.job-positions .is-hiring {
+  color: var(--text-selected-color);
+}
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+  RESPONSIVE DESIGN
+
+*****************************************
+*****************************************
+*/
+
+
+@media (max-width: 700px) {
+	.jobs-aside {
+		width: 100%;
+		float: none;
+		margin: 2rem 0;
+	}
+
+	.jobs-benefits {
+		margin: 2rem 0 1rem 2rem;
+	}
+
+
 }
