@@ -257,7 +257,7 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   background-color: var(--block-basic-color);
   transform: translateX(0px);
   color: var(--text-selected-color);
-  cursor: default;
+  cursor: pointer;
 }
 
 
@@ -313,13 +313,13 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 .job-positions label:hover {
   transform: translateX(6px);
-  color: var(--text-heading-color);
+  color: var(--text-selected-color);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
-  color: var(--text-heading-color);
+  color: var(--text-selected-color);
 }
 
 
@@ -345,7 +345,7 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   color:var(--text-heading-color);
 }
 .job-positions .is-hiring {
-  color: var(--text-selected-color);
+  color: var(--text-heading-color);
 }
 
 

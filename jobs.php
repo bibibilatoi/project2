@@ -1,7 +1,7 @@
 <?php
 require_once 'settings.php';
 
-$sql = "SELECT * FROM jobs ORDER BY department, reference_no";
+$sql = "SELECT * FROM jobs ORDER BY department, reference_number";
 $result = $conn->query($sql);
 
 $departments = [];
@@ -130,7 +130,7 @@ foreach ($departments as $deptName => $jobs) {
 
                             <div class="job-listing-container">
                             <?php foreach ($jobs as $job): 
-                                $jobId = "job-" . strtolower(str_replace(' ', '-', $job['reference_no']));
+                                $jobId = "job-" . strtolower(str_replace(' ', '-', $job['reference_number']));
                             ?>
                                 <section class="job-positions">
                                     <input type="checkbox" id="<?= $jobId ?>" name="<?= $jobId ?>-checkbox">
@@ -139,7 +139,7 @@ foreach ($departments as $deptName => $jobs) {
                                     </label>
                                     <div class="job-descriptions">
                                         <dl class="job-basic-info">
-                                            <dt>Reference Number:</dt><dd><?= htmlspecialchars($job['reference_no']) ?></dd>
+                                            <dt>Reference Number:</dt><dd><?= htmlspecialchars($job['reference_number']) ?></dd>
                                             <dt>Reports To:</dt><dd><?= htmlspecialchars($job['reports_to']) ?></dd>
                                             <dt>Salary Range:</dt><dd><?= htmlspecialchars($job['salary_range']) ?></dd>
                                         </dl>

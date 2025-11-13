@@ -17,7 +17,7 @@ if(isset($_POST['login'])){
             exit();
         }
     }
-    $_SESSION['login_error'] = 'Incorrect username or password';
+    $_SESSION['login_error'] = 'Incorrect username or password!';
     header("Location: login.php");
     exit();
 }

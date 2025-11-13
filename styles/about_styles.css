@@ -7,8 +7,26 @@ ABOUT PAGE CSS  - MAIN AND SECTIONS
 *****************************************
 *****************************************
 */
-
-
+#topbar-container{
+  position: relative;
+  color: white;
+  text-align: center;
+  animation: slideIn 1.5s ease-out;
+}
+.background{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: url("./images/universe_background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.container{
+    position: relative;
+    color: white;
+    text-align: center;
+    animation: slideIn 1.5s ease-out;
+}
 #Our-tutor{
   padding: 2rem 0;
   text-align: center;
@@ -135,4 +153,10 @@ ABOUT PAGE CSS  - MAIN AND SECTIONS
   color: var(--text-warning-color);
   margin: 4rem 0 1rem 0;
   text-align: center;
+}
+.footer {
+  position: relative;
+  color: white;
+  text-align: center;
+  animation: slideIn 1.5s ease-out;
 }

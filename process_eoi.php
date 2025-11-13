@@ -1,115 +1,73 @@
 <?php
-require_once("settings.php");
-session_start();
+// process_eoi.php
+include 'settings.php';
 
-// Prevent direct access
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: apply.php");
-    exit();
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-// Function to clean input
-function clean_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+    // 1. Collect main EOI data
+    $reference_number = mysqli_real_escape_string($conn, $_POST['reference_number']);
+    $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+    $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
+    $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    $street = mysqli_real_escape_string($conn, $_POST['street']);
+    $suburb = mysqli_real_escape_string($conn, $_POST['suburb']);
+    $state = mysqli_real_escape_string($conn, $_POST['state']);
+    $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+    $other_skills = mysqli_real_escape_string($conn, $_POST['other_skills'] ?? '');
 
-// Get and clean data safely
-$jobRef = clean_input($_POST["jobRef"] ?? "");
-$firstName = clean_input($_POST["firstname"] ?? "");
-$lastName = clean_input($_POST["lastName"] ?? "");
-$dob = clean_input($_POST["dob"] ?? "");
-$gender = clean_input($_POST["gender"] ?? "");
-$street = clean_input($_POST["street"] ?? "");
-$suburb = clean_input($_POST["suburb"] ?? "");
-$state = clean_input($_POST["state"] ?? "");
-$postcode = clean_input($_POST["postcode"] ?? "");
-$email = clean_input($_POST["email"] ?? "");
-$phone = clean_input($_POST["phone"] ?? "");
-$skills = $_POST["skills"] ?? [];
-$otherSkills = clean_input($_POST["otherSkills"] ?? "");
+    $address = $street . ', ' . $suburb . ', ' . $state . '. Postcode:' . $postcode;
 
-$errors = [];
+    // 2. Insert into eoi table
+    $insert_eoi = "INSERT INTO eoi (reference_number, first_name, last_name, date_of_birth, gender, email, phone, other_skills)
+                   VALUES ('$reference_number', '$first_name', '$last_name', '$date_of_birth', '$gender', '$email', '$phone', '$other_skills')";
 
-// Basic validation
-if ($jobRef == "") $errors[] = "Please select a job reference.";
-if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/u", $firstName)) $errors[] = "Invalid first name.";
-if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/u", $lastName)) $errors[] = "Invalid last name.";
-if (!preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $dob)) $errors[] = "Date of birth must be in dd/mm/yyyy format.";
-if (empty($gender)) $errors[] = "Please select gender.";
-if (strlen($street) > 40) $errors[] = "Street address too long.";
-if (strlen($suburb) > 40) $errors[] = "Suburb too long.";
-if (!in_array($state, ["VIC","NSW","QLD","NT","WA","SA","TAS","ACT"])) $errors[] = "Please select a valid state.";
-if (!preg_match("/^\d{4}$/", $postcode)) $errors[] = "Postcode must be 4 digits.";
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid email format.";
-if (!preg_match("/^[0-9 ]{8,12}$/", $phone)) $errors[] = "Phone must be 8–12 digits.";
-if (empty($skills)) $errors[] = "Please select at least one technical skill.";
+    if (mysqli_query($conn, $insert_eoi)) {
+        $eoi_number = mysqli_insert_id($conn);
 
-// If errors exist, display them
-if (count($errors) > 0) {
-    echo "<h2>Form Error</h2><ul>";
-    foreach ($errors as $e) echo "<li>$e</li>";
-    echo "</ul><p><a href='apply.php'>Go back</a></p>";
-    exit();
-}
+        // 3. Insert selected skills (array of skill_ids)
+        if (!empty($_POST['skills'])) {
+            foreach ($_POST['skills'] as $skill_id) {
+                $skill_id = mysqli_real_escape_string($conn, $skill_id);
+                mysqli_query($conn, "INSERT INTO eoi_skills (eoi_number, skill_id) VALUES ('$eoi_number', '$skill_id')");
+            }
+        }
 
-if (!$conn) {
-    echo "<p>Database connection failed.</p>";
-    exit();
-}
+        echo "<h2>Thank you! Your application has been submitted.</h2>";
 
-// Create table if not exists
-$createTable = "CREATE TABLE IF NOT EXISTS eoi (
-    EOInumber INT AUTO_INCREMENT PRIMARY KEY,
-    jobRef VARCHAR(5),
-    firstName VARCHAR(20),
-    lastName VARCHAR(20),
-    dob VARCHAR(10),
-    gender VARCHAR(10),
-    street VARCHAR(40),
-    suburb VARCHAR(40),
-    state VARCHAR(10),
-    postcode VARCHAR(4),
-    email VARCHAR(50),
-    phone VARCHAR(20),
-    skills VARCHAR(255),
-    otherSkills TEXT,
-    status VARCHAR(20) DEFAULT 'New'
-)";
-mysqli_query($conn, $createTable);
+        // 4. Display submitted data
+        echo "<table border='1' cellpadding='5'>";
+        echo "<tr><th>EOI Number</th><td>" . htmlspecialchars($eoi_number) . "</td></tr>";
+        echo "<tr><th>Job Reference</th><td>" . htmlspecialchars($reference_number) . "</td></tr>";
+        echo "<tr><th>Name</th><td>" . htmlspecialchars($first_name) . " " . htmlspecialchars($last_name) . "</td></tr>";
+        echo "<tr><th>Date of Birth</th><td>" . htmlspecialchars($date_of_birth) . "</td></tr>";
+        echo "<tr><th>Gender</th><td>" . htmlspecialchars($gender) . "</td></tr>";
+        echo "<tr><th>Address</th><td>" . htmlspecialchars($address) . "</td></tr>";
+        echo "<tr><th>Email</th><td>" . htmlspecialchars($email) . "</td></tr>";
+        echo "<tr><th>Phone</th><td>" . htmlspecialchars($phone) . "</td></tr>";
+        echo "<tr><th>Other Skills / Notes</th><td>" . nl2br(htmlspecialchars($other_skills)) . "</td></tr>";
 
-// Prepare skill list
-$skillsList = is_array($skills) ? implode(", ", $skills) : $skills;
+        // 5. Fetch and display skill names
+        if (!empty($_POST['skills'])) {
+            $skill_ids = implode(",", array_map('intval', $_POST['skills']));
+            $skill_query = "SELECT skill_name FROM skills WHERE skill_id IN ($skill_ids)";
+            $skill_result = mysqli_query($conn, $skill_query);
 
-// Use prepared statement to prevent SQL injection
-$stmt = $conn->prepare("INSERT INTO eoi 
-(jobRef, firstName, lastName, dob, gender, street, suburb, state, postcode, email, phone, skills, otherSkills)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param(
-    "sssssssssssss",
-    $jobRef, $firstName, $lastName, $dob, $gender, $street, $suburb,
-    $state, $postcode, $email, $phone, $skillsList, $otherSkills
-);
+            echo "<tr><th>Selected Skills</th><td><ul>";
+            while ($s = mysqli_fetch_assoc($skill_result)) {
+                echo "<li>" . htmlspecialchars($s['skill_name']) . "</li>";
+            }
+            echo "</ul></td></tr>";
+        }
 
-if ($stmt->execute()) {
-    $eoiNumber = $stmt->insert_id;
+        echo "</table>";
 
-    echo "<h2>Thank you for your application!</h2>";
-    echo "<p>Your EOI number is <strong>$eoiNumber</strong></p>";
-
-    // Display summary table
-    echo "<table border='1' cellpadding='5'>";
-    foreach ($_POST as $key => $value) {
-        if (is_array($value)) $value = implode(", ", $value);
-        echo "<tr><th>" . htmlspecialchars($key) . "</th><td>" . htmlspecialchars($value) . "</td></tr>";
+    } else {
+        echo "<p>Error submitting EOI: " . mysqli_error($conn) . "</p>";
     }
-    echo "</table>";
-} else {
-    echo "<p>There was a problem saving your application.</p>";
 }
 
-$stmt->close();
 mysqli_close($conn);
 ?>

@@ -1,26 +1,39 @@
-#back_to_Manage_Page_icon{
+/* --- Back to Manage Page button --- */
+#back_to_Manage_Page_icon {
     padding: 12px;
     margin: 20px;
-    background: rgb(207, 207, 207);
-    color:black;
     border-radius: 6px;
+    border: 1px solid white;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: inline-block;
+}
+#back_to_Manage_Page_icon a {
+    top: -4px;
+    text-decoration: none;
 }
 
-#EOI_Query_Results_title{
+/* --- EOI Query Results Title --- */
+#EOI_Query_Results_title {
     text-align: center;
+    color: white;
     margin: 30px;
     padding: 30px;
 }
-.background{
+
+/* --- Background --- */
+.background {
     width: 100%;
     height: 100vh;
     background: url("./images/universe_background.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    
 }
-.container{
-    position:absolute;
+
+/* --- Container --- */
+.container {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,4 +42,48 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+    padding: 20px; /* optional padding inside container */
+    overflow: auto; /* allow scrolling if table is too large */
+}
+
+/* --- Table Styling --- */
+table {
+    width: 100%;
+    border-collapse: collapse; /* merge borders nicely */
+    margin-top: 20px;
+    table-layout: fixed; /* evenly distribute column widths */
+    word-wrap: break-word; /* wrap long text */
+}
+
+table th, table td {
+    border: 1px solid #ffffff88; /* subtle white border */
+    padding: 10px 15px; /* spacing inside cells */
+    text-align: left;
+    color: white;
+}
+
+table th {
+    background-color: rgba(0,0,0,0.5); /* semi-transparent header */
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.05); /* striped rows */
+}
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
+    table th, table td {
+        padding: 8px 10px;
+    }
+}
+
+/* Optional: make table horizontally scrollable on very small screens */
+@media screen and (max-width: 900px) {
+    .container {
+        overflow-x: auto;
+    }
 }

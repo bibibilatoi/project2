@@ -30,8 +30,8 @@ if(!isset($_SESSION["username"])){
         <!--List EOIs by Job Reference -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
             <h3>List EOIs by Job Reference</h3>
-            <label for="job_ref">Select Job Reference:</label>
-            <select class="select_typing_fields" name="job_ref" id="job_ref" required>
+            <label for="reference_number">Select Job Reference:</label>
+            <select class="select_typing_fields" name="reference_number" id="reference_number" required>
                 <option value="">-- Select a Job Reference --</option>
                 <optgroup label="Propulsion and Aerospace Engineering">
                     <option value="PA01">PA01 - Head of Propulsion Engineering</option>
@@ -61,16 +61,16 @@ if(!isset($_SESSION["username"])){
         <form action = "views_eoi.php" method="post" class = "List_manage">
             <h3>List EOIs by Applicant Name</h3>
             <div class="select_typing_fields">
-                <input class="select_typing_name" type="text" name="First_name" placeholder="First Name">
-                <input class="select_typing_name" type="text" name="Last_name" placeholder="Last Name">
+                <input class="select_typing_name" type="text" name="first_name" placeholder="First Name">
+                <input class="select_typing_name" type="text" name="last_name" placeholder="Last Name">
             </div>
             <button name="action" value="list_by_name" class="Manage_Buttons">Search</button>
         </form>
         <!--Delete EOIs by Job Reference -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
             <h3>Delete EOIs by Job Reference</h3>
-            <label for="job_ref">Select Job Reference:</label>
-            <select name="job_ref" id="job_ref" class = "select_typing_fields" required>
+            <label for="reference_number">Select Job Reference:</label>
+            <select name="reference_number" id="reference_number" class = "select_typing_fields" required>
                 <option value="">-- Select a Job Reference --</option>
                 <optgroup label="Propulsion and Aerospace Engineering">
                     <option value="PA01">PA01 - Head of Propulsion Engineering</option>
