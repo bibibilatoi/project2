@@ -93,6 +93,8 @@ if ($action == "list_all") {
                 <th>Job Ref</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Date of birth</th>
+                <th>Gender</th>
                 <th>Street address</th>
                 <th>Suburb/Town</th>
                 <th>State</th>
