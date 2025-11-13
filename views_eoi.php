@@ -1,7 +1,7 @@
 <?php
 require_once "settings.php";
 
-$action = $_GET['action'] ?? "";
+$action = $_POST['action'] ?? $_GET['action'] ?? "";
 $result = null;
 if ($action == "list_all") {
     $query = "SELECT * FROM eoi";
@@ -13,8 +13,8 @@ if ($action == "list_all") {
     $result = mysqli_query($conn, $query);
 
 } elseif ($action == "list_by_name") {
-    $first = mysqli_real_escape_string($conn, $_POST['first_name'] ?? '');
-    $last  = mysqli_real_escape_string($conn, $_POST['last_name'] ?? '');
+    $first = mysqli_real_escape_string($conn, $_POST['First_name'] ?? '');
+    $last  = mysqli_real_escape_string($conn, $_POST['Last_name'] ?? '');
     $query = "SELECT * FROM eoi WHERE 
                 (First_name LIKE '%$first%' OR '$first' = '') 
                 AND (Last_name LIKE '%$last%' OR '$last' = '')";
@@ -65,6 +65,8 @@ if ($action == "list_all") {
                 <th>Job Ref</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Date of birth</th>
+                <th>Gender</th>
                 <th>Street address</th>
                 <th>Surburb/town</th>
                 <th>State</th>
@@ -81,6 +83,8 @@ if ($action == "list_all") {
                 <td><?= htmlspecialchars($row['Job_Reference_number']) ?></td>
                 <td><?= htmlspecialchars($row['First_name']) ?></td>
                 <td><?= htmlspecialchars($row['Last_name']) ?></td>
+                <td><?= htmlspecialchars($row['Date_of_birth']) ?></td>
+                <td><?= htmlspecialchars($row['Gender']) ?></td>
                 <td><?= htmlspecialchars($row['Street_address']) ?></td>
                 <td><?= htmlspecialchars($row['Suburb_town']) ?></td>
                 <td><?= htmlspecialchars($row['State']) ?></td>

@@ -18,7 +18,7 @@
 
         
         <main class="jobs-main">
-                <h1 id="h1-apply">Job Application Form ssss</h1>
+                <h1 id="h1-apply">Job Application Form</h1>
                 <form id="jobApplicationForm" method="post" action="process_eoi.php">
                     
                     <label  for="jobRef">Job Reference Number:</label>
