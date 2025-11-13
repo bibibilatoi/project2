@@ -309,6 +309,4 @@ mysqli_close($conn);
 
 
 //--- ACKNOWLEDGEMENTS: The patterns are created by AI ---
-
-
 ?>
