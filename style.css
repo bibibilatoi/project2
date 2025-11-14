@@ -1,0 +1,1041 @@
+/*
+
+filename: styles.css
+
+authors: Vu Hoang Long, Trinh Thai Anh Tuan, Dang Thien An, Duong Tri Duc
+
+created: 27-9-2025
+
+last modified: 12-10-2025
+
+description: the css file for all pages
+
+*/
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+BASIC STYLING
+
+*****************************************
+*****************************************
+*/
+
+/* Reset everything to default state  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --block-basic-color: #5E747F;
+  --block-special-color:#668a9c;
+  --block-hover-color: #478aac;
+  --text-basic-color: #E5E5E5;
+  --text-selected-color: #1EF963;
+  --text-warning-color: #D61229;
+  --text-heading-color: #FFD700;
+  --bg-main-color:#000000;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  background-color: var(--bg-main-color);
+  color: var(--text-basic-color);
+}
+
+p, li, figcaption {
+  font-size: 20px;
+}
+
+h1, h2, h3, h4 {
+  color:var(--text-heading-color)
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 40px;
+}
+h3 {
+  font-size: 32px;
+}
+h4 {
+  font-size: 24px;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display: block;
+}
+
+a {
+  color: var(--text-selected-color);
+}
+a:visited {
+  color: var(--block-hover-color);
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+#logo p {
+  display: block;
+  padding-left: 1rem;
+  font-size: 32px;
+  color: var(--text-basic-color);
+}
+
+
+#banner {
+  position: relative;
+  background-image: url("./images/space_banner.jpg");
+  background-size: cover; /* Ensures the image covers the entire header area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  height: 60vh; /* Sets the banner height */
+  animation: bannerFade 1.2s ease-out forwards;
+  border: 1px solid var(--text-basic-color)
+}
+@keyframes bannerFade {
+  from { opacity: 0; background-position: center top; }
+  to   { opacity: 1; background-position: center center; }
+}
+
+
+#banner p {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 32px;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+
+}
+
+
+
+
+
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+NAVIGATION MENU CSS
+
+*****************************************
+*****************************************
+*/
+
+#nav-menu {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+#nav-menu input {
+  display: none;
+}
+#nav-menu label {
+  display: block;
+  background-color: #0000005f;
+  backdrop-filter: blur(7px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  transition-delay: 0.1s;
+  padding: 0.5rem;
+  font-size: 24px;
+}
+
+#nav-menu ul {
+  list-style: none;
+
+  background-color: #0000005f;
+  backdrop-filter: blur(7px);
+
+
+
+  /* Start hidden */
+  max-height: 0;
+  overflow: hidden;
+  
+  
+  transition: max-height 0.3s ease-in-out; 
+  transition-delay: 0.1s;
+  z-index: 11;
+}
+
+
+/* show the menu when hovering over p, 
+keep showing the menu if hovering ul */
+#nav-menu:hover ul, 
+#nav-menu-toggle:checked ~ ul {
+    max-height: 500px;
+}
+
+
+#nav-menu:hover label, 
+#nav-menu-toggle:checked ~ label{
+  background-color: #0000005f;
+  backdrop-filter: blur(5px);
+  color: gold;
+  font-weight: bold;
+}
+#nav-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.689);
+}
+#nav-menu a {
+  display: block;
+  padding: 1rem 0;
+  
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+
+  transition: transform 0.3s ease, color 0.3s ease-in-out;
+}
+#nav-menu a:last-child {
+  border-bottom: none;
+}
+
+
+#nav-menu a:hover:not(#current-page) {
+  transform: translateY(-5px);
+  background-color: #23b1d1;
+  color:gold;
+  font-weight: bold;
+
+}
+
+#nav-menu #current-page{
+  background-color: var(--block-hover-color);
+  color: var(--text-selected-color);
+  cursor: default;
+}
+
+
+
+
+
+
+/*
+*****************************************
+Index PAGE CSS - MAIN AND SECTIONS
+*****************************************
+*/
+
+/* Base body */
+#index-body {
+    background-color: #000000;
+    color: #fff;
+    font-family: sans-serif;
+    line-height: 1.6;
+
+}
+
+
+
+/* Intro */
+#index-intro {
+    text-align: center;
+    padding: 4rem 2rem; 
+}
+
+#index-intro p {
+    margin-top: 1.5rem;
+}
+
+/* Section headings */
+.section-heading, #index-achievements h1, #index-our-people h1, #index-our-brilliant-minds h1, #Why-work-with-us h1 {
+    text-align: center;
+    margin: 3rem 0 2rem; /* top 3rem, bottom 2rem */
+}
+
+/* Achievements */
+#index-achievements {
+    text-align: center;
+}
+
+.achievement-2060, .achievement-2075, .achievement-2110 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 1rem; /* consistent vertical padding */
+}
+
+.achievement-2075 {
+    flex-direction: row-reverse;
+}
+
+.achievement-text, .achievement-figure {
+    flex: 1 1 300px;
+    max-width: 500px;
+}
+
+/* Add small horizontal padding for text */
+.achievement-text {
+    padding: 0 1rem;
+}
+
+/* Aspiration paragraph */
+#index-aspiration {
+    text-align: center;
+    font-weight: bold;
+    margin: 4rem 2rem; 
+}
+
+/* Our People */
+#index-our-people p {
+    text-align: center;
+    margin: 1.5rem 2rem;
+}
+
+/* Our Brilliant Minds */
+#index-our-brilliant-minds {
+    text-align: center;
+    padding: 2rem;
+}
+
+#index-our-brilliant-minds-behind {
+    margin: 2rem 0;
+}
+
+.engineer-profile {
+    margin: 7rem 0 2rem;
+    text-align: center;
+}
+
+.engineer-figure figcaption {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Together section */
+#index-our-brilliant-minds-together {
+    margin: 7rem 0;
+    text-align: center;
+}
+
+/* Why Work With Us */
+#Why-work-with-us ul {
+    list-style-type: none;
+    font-style: italic;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.work-with-us-item {
+    margin: 1.5rem 0;
+}
+
+.work-with-us-item--left {
+    text-align: left;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid #fff;
+}
+
+.work-with-us-item--right {
+    text-align: right;
+    margin-right: 1rem;
+    padding-right: 0.5rem;
+    border-right: 3px solid #fff;
+    border-left: none;
+}
+
+#Why-work-with-us figure {
+    margin: 4rem 0;
+    text-align: center;
+}
+#workplace-img-container {
+    display: flex;
+    flex-direction: column;     /* stack image and caption vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically, if container has height */
+    height: auto;    
+}
+
+
+/* 
+*****************************************
+*****************************************
+
+   FOOTER CSS
+
+*****************************************
+*****************************************
+*/
+
+
+
+footer{
+  border-top: 1px solid var(--text-basic-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+footer p {
+  font-size: 16px;
+}
+#contact-info a{
+  display: block;
+  color: var(--text-selected-color)
+}
+#contact-info a:visited {
+  color: var(--block-hover-color);
+}
+
+
+/* 
+*****************************************
+*****************************************
+
+JOBS PAGE CSS  - MAIN AND SECTIONS
+
+*****************************************
+*****************************************
+*/
+
+.jobs-main {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: var(--text-basic-color);
+  overflow-wrap: break-word;
+  line-height: 1.5;
+
+}
+#forewords {
+  clear: both;
+  padding-bottom: 2rem;
+}
+#forewords h1 {
+  text-align: center;
+}
+#currently-hiring h2 {
+  color:var(--text-heading-color);
+}
+#forewords p {
+  text-align: center;
+}
+#currently-hiring ol{
+  margin-left: 2rem;
+}
+
+#forewords {
+  margin-top: 2rem;
+}
+#currently-hiring {
+  margin-top: 6rem;
+}
+/* apply button css in the jobs.html  */
+.go-apply-btn {
+  background-color: #1976d2;
+  border: none;
+  text-align: center;
+  padding: 0.8rem 1.2rem;
+  width: fit-content;
+  border-radius: 6px;
+  margin: 2rem auto;
+  transition: all 0.3s ease;
+
+}
+
+.go-apply-btn a {
+  text-decoration: none;
+  color: var(--text-basic-color);
+  font-weight: bold;
+}
+
+
+.go-apply-btn:hover{
+  background: #23b1d1;
+  color: var(--bg-main-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #23b1d1;
+}
+.go-apply-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* aside css in the jobs.html  */
+
+.jobs-aside {
+  width: 25%;
+  margin:1rem;
+  padding: 0.5rem;
+  background-color: var(--block-basic-color);
+  border-radius: 8px;
+  border: 3px solid var(--text-heading-color);
+  float: right;
+
+}
+
+.jobs-aside h2 {
+  margin-bottom: 1rem;
+  color: var(--text-heading-color);
+  overflow-wrap: break-word;
+  
+}
+.jobs-aside li {
+  list-style: none;
+  overflow-wrap: break-word;
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+}
+
+
+
+
+
+
+
+/* 
+--------------------------------------------
+ job dropdown menu css in the jobs.html  
+ --------------------------------------------
+*/
+
+
+.blink-arrow {
+  color: var(--text-selected-color);
+  animation: blinking 2s linear infinite;
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* hide the checkbox icon/button  */
+#toggle-jobs-menu {
+  width: fit-content;
+  display: none;
+}
+/* styling the Jobs button  */
+.jobs-menu-label {
+  cursor: pointer;
+  clear:both;
+  display: block;
+  width: fit-content;
+  padding: 0.4rem 1rem;
+  margin-top: 3rem;
+
+  border: 1px solid var(--text-basic-color); 
+  border-radius: 6px;
+
+  font-size: 24px;
+  color:var(--text-basic-color);
+
+}
+.jobs-menu-label:hover {
+  color: var(--text-heading-color);
+  background-color: var(--block-basic-color);
+}
+
+
+/* making the bottom corners of the Jobs button straight if the Jobs button is clicked  */
+#toggle-jobs-menu:checked + .jobs-menu-label {
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  background-color: var(--block-basic-color);
+
+}
+
+
+/* hide all the checkbox/radio icons/buttons of the job menu  */
+.job-menu input{
+  display: none;
+}
+
+.job-menu label{
+  display: block;
+}
+
+.job-menu  li {
+  list-style-type: none;
+  border: 1px solid var(--text-basic-color);
+  border-bottom: none;
+}
+.job-menu li:last-child {
+  border-bottom: 1px solid var(--text-basic-color);
+}
+/*1. hide the list of departments  */
+.job-menu {
+  display: none;
+}
+
+/*2. show the list of departments if the Jobs button is clicked */
+#toggle-jobs-menu:checked ~ .job-menu {
+  display: block;
+  border: none;
+  border-radius: 0 0 4px 4px;
+}
+
+
+/* the dropdown_animation */
+@keyframes dropdown_animation {
+  from {
+    opacity: 0;  
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+/* making the list of departments and job positions show up more smoothly */
+.job-menu li, .job-positions {
+  animation: dropdown_animation 0.4s ease forwards;
+}
+
+
+/*1. hide the list of job positions  */
+.job-listing-container {
+  display: none;
+}
+
+
+/*2. show the list of job positions if the department is clicked */
+input[name="department-select"]:checked ~ .department-content .job-listing-container {
+  display: block;
+  border-left: 1px solid var(--text-basic-color);
+}
+
+/* make the display from normal blocks to grid so to have a better layout (when the department is clicked) */
+input[name="department-select"]:checked ~ .department-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 0;
+  background-color: var(--block-basic-color);
+
+}
+
+/* some basic styling of the job positions */
+/* some basic styling of the job positions */
+
+/* adding border-top and padding to separate the departments */
+.department-content label {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 24px;
+}
+
+.department-content label:hover {
+  transform: translateX(6px);
+  color: var(--text-heading-color);
+}
+
+
+/* cancle the hovering animation for department lables after it is clicked */
+input[name="department-select"]:checked ~ .department-content label:first-child {
+  background-color: var(--block-basic-color);
+  transform: translateX(0px);
+  color: var(--text-heading-color);
+  cursor: default;
+}
+
+
+/* remove the border-top of the first item */
+.job-menu li:first-child .department-content {
+  border-top: none;
+
+}
+
+
+/*1. hide the description/content of the job position  */
+.job-descriptions {
+  display: none;
+}
+/*2. show the description/content if the job position is clicked */
+.job-positions input:checked + label + .job-descriptions {
+  display: block;
+  background-color: var(--block-special-color);
+  margin: 0.5rem;
+}
+
+
+/* adding border-top and padding to separate job positions */
+.job-positions {
+  border-top: 1px solid var(--text-basic-color);
+  padding: 0.5rem 0;
+}
+/* remove the border-top of the first item */
+.job-listing-container .job-positions:first-child {
+  border-top: none;
+}
+.job-descriptions {
+  padding-left: 1.5rem;
+}
+.job-descriptions li, .job-descriptions li:last-child {
+  border: none;
+}
+.job-descriptions h4{
+  color:gold;
+}
+
+
+/* hovering animation for the jobs department */
+.job-positions label {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.job-positions label:hover {
+  transform: translateX(6px);
+  color: var(--text-selected-color);
+}
+
+
+/* cancle the hovering animation for department lables after it is clicked */
+.job-positions input:checked ~ label {
+  color: var(--text-selected-color);
+}
+
+
+/* styling the not hiring text */
+.job-descriptions h4.not-hiring {
+  color: var(--text-warning-color);
+  font-size: 20px;
+}
+
+
+.job-basic-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; 
+  font-weight: bold;
+}
+.job-basic-info dt {
+  color:var(--text-heading-color)
+}
+/* 
+*****************************************
+*****************************************
+
+Apply Page CSS
+
+*****************************************
+*****************************************
+*/
+
+/* Animated gradient background */
+@keyframes gradientShiftSpace {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+#apply-body main, #about-body main{
+  min-height: 100vh;
+
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
+}
+
+
+
+
+#jobApplicationForm
+{
+  background-color: rgba(255, 255, 255, 0.174);
+  backdrop-filter: blur(5px);
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid var(--text-basic-color);
+  border-radius: 8px;
+  max-width: 700px;
+
+
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#jobApplicationForm label {
+  margin-top: 2rem;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: var(--text-heading-color);
+}
+#jobApplicationForm label:first-child {
+  margin-top: 0;
+}
+
+#jobApplicationForm fieldset label{
+  margin: 0.5rem;
+}
+
+#h1-apply 
+{
+  text-align: center;
+  color: var(--text-heading-color);
+  margin-bottom: 20px;
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+#otherSkills
+{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--text-basic-color);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] 
+{
+  margin-right: 6px;
+  accent-color: var(--text-selected-color);
+}
+
+
+#otherSkills
+{
+  resize: vertical;
+  min-height: 80px;
+} 
+
+
+
+#jobApplicationForm fieldset {
+  color: var(--text-heading-color);
+  font-weight: bold;
+  padding-left: 0.5rem;
+}
+#jobApplicationForm fieldset label {
+  color: var(--text-basic-color);
+  display: inline-block;
+}
+
+.fieldset-container {
+  padding-left: 1rem;
+}
+
+#jobApplicationForm .fieldset-container input:checked + label {
+  color:var(--text-selected-color);
+}
+
+
+
+
+#apply-button, input[type="submit"] 
+{
+  display: block;
+  width: 100%;
+  background-color: #1976d2;
+  color:inherit;
+  border: none;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+#apply-button:hover, input[type="submit"]:hover 
+{
+  background-color: #23b1d1;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px #23b1d1;
+  
+}
+
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+ABOUT PAGE CSS  - MAIN AND SECTIONS
+
+*****************************************
+*****************************************
+*/
+
+
+#Our-tutor{
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--text-warning-color);
+  font-size: 24px;
+}
+
+#our-class {
+  padding-top: 1rem;
+  text-align: center;
+  color:var(--text-heading-color)
+}
+
+#about-student-section {
+  background-color: rgba(255, 255, 255, 0.174);
+  padding-bottom: 2rem;
+
+}
+.about-student-id > ul { 
+  padding: 0 20px;
+  padding-top: 2rem;
+
+  font-size: 32px;
+  color: var(--text-heading-color);
+  list-style-type: none;
+
+  display: flex;
+  justify-content: space-between; /* spread them apart */
+}
+
+
+/*The title "Members contribution"*/
+#about-Group7-member-contribution{
+  margin: 4rem 0 1rem 0;
+  text-align: center;  
+  font-size: 24px;
+  color: var(--text-warning-color);
+}
+
+
+
+#Members-contributions{
+  background-color: rgba(255, 255, 255, 0.174);
+  padding: 1rem 0.5rem;
+
+}
+#Members-contributions dt{      /*The content of the members contribution*/
+  font-size: 20px;
+  color:var(--text-heading-color);
+}
+#Members-contributions dt::before{
+  content: "■";           /* Unicode square character */
+  display: inline-block;
+  margin-right: 8px;      /* Space between square and the <dl> */
+  margin-left: 50px;
+}
+#Members-contributions dd::before{
+  content: "-";           /* Unicode square character */
+  display: inline-block;
+  margin-right: 8px;      /* Space between square and the <dl> */
+  margin-left: 20px;
+}
+
+
+
+#about-figure-group-img{
+  float: right;       /*image on the right side*/
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#group-image{
+  border: 4px solid var(--block-basic-color); /* border shorthand: width style color */
+  max-width: 300px;
+  height: auto;
+}
+#about-figure-group-img figcaption {
+  align-self: center;
+}
+
+
+
+
+.about-table, .about-table th, .about-table td{
+  margin:auto;
+  border: 0.5px var(--bg-main-color) solid;
+  background-color: rgba(255, 255, 255, 0.174);
+  backdrop-filter: blur(5px);
+  text-align: center;            /* styling our interests' table*/
+  padding:25px ;
+  border-collapse: collapse;
+}
+
+
+.about-table {
+  width: 100%;
+  table-layout: fixed; /* columns evenly spaced */
+  word-wrap: break-word;
+  margin-bottom: 1rem;
+}
+.about-table th{
+  font-weight: bold;             /*bold headings*/
+  background-color: #478aac74; /*diff color for headings*/
+  color: var(--text-heading-color);
+}
+
+.about-table td:hover{
+    background-color: rgba(255, 255, 255, 0.544);  /* make the hover effect on table cells (not headings) */
+  cursor: pointer;
+}
+
+.about-table tr td:first-child {
+  color: var(--text-heading-color);
+}
+
+.diagonal-cell {
+  width: 100px; /* creat a diagonal line in the (0,0) cell*/
+  height: 100px;
+  background: linear-gradient(to left bottom, transparent 49%, var(--bg-main-color) 50%, transparent 51%);
+}
+.about-table caption{
+  font-size: 24px;        /* our team's interests*/
+  font-weight: bold;
+  color: var(--text-warning-color);
+  margin: 4rem 0 1rem 0;
+  text-align: center;
+}
+
