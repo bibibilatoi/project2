@@ -70,6 +70,7 @@
 }
 .error-message{
   margin-top: 12px;
+  color: #ff6b6b;
 }
 .login_container .login_form_box{
     display:flex;

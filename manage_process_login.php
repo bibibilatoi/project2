@@ -33,6 +33,7 @@ if(isset($_POST['login'])){
         if (password_verify($password, $user['password'])) {
             $_SESSION['login_attempts'] = 0;
             $_SESSION['last_attempt_time'] = time();
+            session_regenerate_id(true);
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
 
