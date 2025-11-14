@@ -71,8 +71,8 @@
 .error-message{
     width: 340px;
     color: #ff6b6b; /* red-ish for errors */
-    margin-top: 10px;
-    margin-bottom: 25px; 
+    font-size: 14px;
+    margin: 10px; /* space from input */
     vertical-align: middle; /* align with input field */
     display: inline-block; 
  

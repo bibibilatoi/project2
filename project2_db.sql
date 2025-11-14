@@ -95,7 +95,13 @@ CREATE TABLE `eoi` (
 --
 
 INSERT INTO `eoi` (`eoi_number`, `reference_number`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street`, `suburb`, `state`, `postcode`, `email`, `phone`, `other_skills`, `status`) VALUES
-(25, 'AI01', 'Trinh', 'Tuan', '2025-11-26', 'Male', '234234234', 'qweqweqwe', 'qweqweqwe', '1234', 'trinhthaianhtuan@gmail.com', '0982293856', '123erwesdf', 'Final');
+(1, 'AI01', 'Alice', 'Nguyen', '1998-04-12', 'Female', '123 Space Ave', 'Melbourne', 'VIC', '3000', 'alice@example.com', '0412345678', 'AI hobby projects', 'New'),
+(2, 'MO04', 'Bob', 'Tran', '1990-09-05', 'Male', '99 Orbit Rd', 'Sydney', 'NSW', '2000', 'bob@example.com', '0422334455', 'Security research', 'New'),
+(3, 'AI01', 'john', 'smith', '2023-11-16', 'Female', 'adsbbasd', 'abdas', 'VIC', '1112', 'a@gmail.com', '11111121', 'None', 'New'),
+(4, 'MO04', 'a', 'b', NULL, NULL, NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', NULL, 'New'),
+(5, 'MO04', 'a', 'b', NULL, NULL, NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', NULL, 'New'),
+(6, 'MO04', 'a', 'b', '2025-11-19', 'Male', NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', 'abcdefg', 'New'),
+(7, 'MO04', 'a', 'b', '2025-11-19', 'Male', NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', 'abcdefg', 'New');
 
 -- --------------------------------------------------------
 
@@ -176,9 +182,14 @@ CREATE TABLE `managers` (
 --
 
 INSERT INTO `managers` (`username`, `password`, `email`) VALUES
+<<<<<<< HEAD
 ('ABC', '$2y$10$HNRFOl69REtervonKj0/nuE.CTzThXlvWOWOFqsx.V51FC41crlju', 'anhtuan@gmail.com'),
 ('Admin', '$2y$10$e9qIillhDPEiMOUo0nGBC.taIGT/.oEDuReD4Dc9C1CHBs9byVSJW', 'trinhthaianhtuan@gmail.com'),
 ('NeverGonnaGiveYouUp', '$2y$10$.bmxdXQyEdF457w4WQDKFObBfHWJe14hjEtLbmp7lYEa5cZJv9KTS', 'steepmolecules@gmail.com');
+=======
+('long', '123', 'long@gmail.com'),
+('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com');
+>>>>>>> origin/main
 
 -- --------------------------------------------------------
 
@@ -224,7 +235,10 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`skill_id`, `skill_name`) VALUES
+<<<<<<< HEAD
 (21, '3'),
+=======
+>>>>>>> origin/main
 (3, 'C++'),
 (6, 'Cloud Computing'),
 (9, 'Cybersecurity'),
@@ -252,7 +266,18 @@ CREATE TABLE `user_skills` (
 --
 
 INSERT INTO `user_skills` (`eoi_number`, `skill_id`) VALUES
+<<<<<<< HEAD
 (25, 3);
+=======
+(1, 1),
+(1, 5),
+(1, 7),
+(2, 9),
+(2, 10),
+(3, 1),
+(3, 6),
+(3, 9);
+>>>>>>> origin/main
 
 --
 -- Indexes for dumped tables
@@ -340,7 +365,11 @@ ALTER TABLE `basic_qualifications`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
+<<<<<<< HEAD
   MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+=======
+  MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> origin/main
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -364,7 +393,11 @@ ALTER TABLE `preferred_skills`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
+<<<<<<< HEAD
   MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+>>>>>>> origin/main
 
 --
 -- Constraints for dumped tables

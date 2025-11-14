@@ -13,7 +13,7 @@
         <title>About Us</title>
     </head>
 	<body id ="about-body">
-		
+		<div class="background"></div>
 		<header>
 
 			<div id="logo">
@@ -22,7 +22,6 @@
 			</div>
 			<?php include("nav.inc") ?>
 		</header>
-		<div class="background"></div>
 		<div class="container">
 			<main>
 				<h2 id="Our-tutor">Our tutor: Vu Ngoc Binh</h2> <!--Our tutor's name-->
