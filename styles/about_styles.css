@@ -17,16 +17,12 @@ ABOUT PAGE CSS  - MAIN AND SECTIONS
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: url("./images/universe_background.jpg");
+  background: url("./images/universe_background.jpg") no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -1;
 }
-.container{
-    position: relative;
-    color: white;
-    text-align: center;
-    animation: slideIn 1.5s ease-out;
-}
+
 #Our-tutor{
   padding: 2rem 0;
   text-align: center;
@@ -45,10 +41,19 @@ ABOUT PAGE CSS  - MAIN AND SECTIONS
   padding-bottom: 2rem;
 
 }
+.student_information{
+  display: flex;
+  justify-content: center;
+}
+.ID{
+  margin-left: 20px;
+}
+.about-student-id{
+  list-style-type: none;
+}
 .about-student-id > ul { 
   padding: 0 20px;
   padding-top: 2rem;
-
   font-size: 32px;
   color: var(--text-heading-color);
   list-style-type: none;
@@ -76,18 +81,6 @@ ABOUT PAGE CSS  - MAIN AND SECTIONS
 #Members-contributions dt{      /*The content of the members contribution*/
   font-size: 20px;
   color:var(--text-heading-color);
-}
-#Members-contributions dt::before{
-  content: "■";           /* Unicode square character */
-  display: inline-block;
-  margin-right: 8px;      /* Space between square and the <dl> */
-  margin-left: 50px;
-}
-#Members-contributions dd::before{
-  content: "-";           /* Unicode square character */
-  display: inline-block;
-  margin-right: 8px;      /* Space between square and the <dl> */
-  margin-left: 20px;
 }
 
 
