@@ -74,20 +74,20 @@ if (isset($_POST['state'])) {
 
 //- Postcode
 if (isset($_POST['postcode'])) {
-    $postcode = cleanStuff($POST['postcode']);
+    $postcode = cleanStuff($_POST['postcode']);
 } else {
     $postcode = "";
 }
 
 //- Email
-if (isset($POST['email'])) {
-    $email = cleanStuff($POST['email']);
+if (isset($_POST['email'])) {
+    $email = cleanStuff($_POST['email']);
 } else {
     $email = "";
 }
 
 //- Phone
-if (isset($POST['phone'])) {
+if (isset($_POST['phone'])) {
     $phone = cleanStuff($_POST['phone']);
 } else {
     $phone = "";
@@ -208,7 +208,7 @@ if (empty($postcode)) {
 if (empty($email)) {
     echo "Email address is missing";
     $numerror++;
-} else if (!preg_match("/^[a-z0-9.-%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/" ,$email )) {      //checking if email input match the pattern
+} else if (!preg_match("/^[a-z0-9.-%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/" , $email)) {      //checking if email input match the pattern
     echo "Invalid email format";
     $numerror++;
 } else {
@@ -280,6 +280,7 @@ $create_table = "CREATE TABLE IF NOT EXISTS eoi (
 
 $skillsStr = is_array($skills) ? implode(', ', $skills) : $skills; //to combine skills checkboxes into string
 
+mysqli_query($conn, $create_table)
 
 ///--- BUILD AND RUN INSERT QUERY ---
 
