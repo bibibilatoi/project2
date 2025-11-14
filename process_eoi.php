@@ -25,84 +25,84 @@ if (isset($_POST['jobRef'])) {    //-- if there is value input of 'jobRef' and i
 
 //- FirstName
 if (isset($_POST['firstName'])) {
-    $fname = cleanStuff($_POST['firstName'])
+    $fname = cleanStuff($_POST['firstName']);
 } else {
     $fname = "";
 }
 
 //- LastName
 if (isset($_POST['lastName'])) {
-    $lname = cleanStuff($_POST['lastName'])
+    $lname = cleanStuff($_POST['lastName']);
 } else {
     $lname = "";
 }
 
 //- Dob
 if (isset($_POST['dob'])) {
-    $dob = cleanStuff($_POST['dob'])
+    $dob = cleanStuff($_POST['dob']);
 } else {
     $dob = "";
 }
 
 //- Gender
 if (isset($_POST['gender'])) {
-    $gender = cleanStuff($_POST['gender'])
+    $gender = cleanStuff($_POST['gender']);
 } else {
     $gender = "";
 }
 
 //- Street
 if (isset($_POST['street'])) {
-    $street = cleanStuff($_POST['street'])
+    $street = cleanStuff($_POST['street']);
 } else {
     $street = "";
 }
 
 //- Suburb
 if (isset($_POST['suburb'])) {
-    $suburb = cleanStuff($_POST['suburb'])
+    $suburb = cleanStuff($_POST['suburb']);
 } else {
     $suburb = "";
 }
 
 //- State
 if (isset($_POST['state'])) {
-    $state = cleanStuff($_POST['state'])
+    $state = cleanStuff($_POST['state']);
 } else {
     $state = "";
 }
 
 //- Postcode
 if (isset($_POST['postcode'])) {
-    $postcode = cleanStuff($POST['postcode'])
+    $postcode = cleanStuff($POST['postcode']);
 } else {
     $postcode = "";
 }
 
 //- Email
 if (isset($POST['email'])) {
-    $email = cleanStuff($POST['email'])
+    $email = cleanStuff($POST['email']);
 } else {
     $email = "";
 }
 
 //- Phone
 if (isset($POST['phone'])) {
-    $phone = cleanStuff($_POST['phone'])
+    $phone = cleanStuff($_POST['phone']);
 } else {
     $phone = "";
 }
 
 //- Skills
 if (isset($_POST['skills'])) {
-    $skills = cleanStuff($_POST['skills'])
+    $skills = cleanStuff($_POST['skills']);
 } else {
     $skills = [];  // this might come as an array
 }
 
 //- OtherSkills
 if (isset($_POST['otherSkills'])) {        // optional text area
-    $other = cleanStuff($_POST['otherSkills'])
+    $other = cleanStuff($_POST['otherSkills']);
 } else {
     $other = "";  
 }
@@ -120,7 +120,7 @@ if (empty($job_ref)) {
     echo " Job reference is missing!";
     $numerror++;
 } else {
-    echo "Job reference is valid."
+    echo "Job reference is valid.";
 }
 
 //-- checkng first name
@@ -228,7 +228,7 @@ if (empty($phone)) {
 
 //-- checking skills
 if (empty($skills)) {
-    echo "No skills are selected"
+    echo "No skills are selected";
     $numerror++;
 } else {
     echo "Skills are selected";
@@ -300,7 +300,7 @@ if ($formresult) {
     echo "<p> Thank you, <strong>$fname</strong>! Your EOI number is <b>$Id</b></p>";
     echo "<p> We will hopefully be in touch with you soon</p>";
 } else {
-    echo "<p> Something had went wrong"
+    echo "<p> Something had went wrong";
 }
 
 
