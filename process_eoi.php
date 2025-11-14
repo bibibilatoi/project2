@@ -93,12 +93,6 @@ if (isset($_POST['phone'])) {
     $phone = "";
 }
 
-//- Skills
-if (isset($_POST['skills'])) {
-    $skills = array_map('cleanStuff', $_POST['skills']);
-} else {
-    $skills = [];  // this might come as an array
-}
 
 //- OtherSkills
 if (isset($_POST['otherSkills'])) {        // optional text area
@@ -208,7 +202,7 @@ if (empty($postcode)) {
 if (empty($email)) {
     echo "Email address is missing";
     $numerror++;
-} else if (!preg_match("/^[a-z0-9.-%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i" , $email)) {      //checking if email input match the pattern
+} else if (!preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i" , $email)) {      //checking if email input match the pattern
     echo "Invalid email format";
     $numerror++;
 } else {
