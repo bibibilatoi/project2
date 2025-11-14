@@ -111,10 +111,10 @@ if (isset($_POST['otherSkills'])) {        // optional text area
 $numerror = 0;
 
 if (empty($job_ref)) {
-    echo " Job reference is missing!";
+    echo " Job reference is missing!<br>";
     $numerror++;
 } else {
-    echo "Job reference is valid.";
+    echo "Job reference is valid.<br>";
 }
 
 //-- checkng first name
@@ -122,41 +122,41 @@ if (empty($fname)) {
     echo "First name is missing!";
     $numerror++;
 } else if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/", $fname )) {   // If the fname value doesnt match the pattern and length, echo the following
-    echo "Invalid first name format";
+    echo "Invalid first name format<br>";
     $numerror++;
 } else {
-    echo "Valid first name format";
+    echo "Valid first name format<br>";
 }
 
 //-- checking last name
 if (empty($lname)) {
-    echo "Last name is missing!";
+    echo "Last name is missing!<br>";
     $numerror++;
 } else if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/", $lname)) {  //similar
-    echo "Invalid last name format";
+    echo "Invalid last name format<br>";
     $numerror++;
 } else {
-    echo "Valid last name format";
+    echo "Valid last name format<br>";
 }
 
 //-- checking dob
 
 if (empty($dob)) {
-    echo "Please enter your date of birth";
+    echo "Please enter your date of birth<br>";
     $numerror++;
 } else if (!preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $dob)) {
-    echo "Invalid DOB format";
+    echo "Invalid DOB format<br>";
     $numerror++;
 } else {
-    echo "Valid DOB format";
+    echo "Valid DOB format<br>";
 }
 
 //-- checking gender
 if (empty($gender)) {
-    echo "Gender is not selected";
+    echo "Gender is not selected<br>";
     $numerror++;
 } else {
-    echo "Gender is selected";
+    echo "Gender is selected<br>";
 }
 
 //-- checking street (by length)
@@ -189,43 +189,43 @@ if (empty($state)) {
 
 //-- checking postcode
 if (empty($postcode)) {
-    echo "No postcode is entered";
+    echo "No postcode is entered<br>";
     $numerror++;
 } else if (!preg_match("/^\d{4}$/", $postcode)) {         //to check if the post code value entered match the pattern
-    echo "Invalid postcode number";
+    echo "Invalid postcode number<br>";
     $numerror++;
 } else {
-    echo "Valid postcode number";
+    echo "Valid postcode number<br>";
 }
 
 //-- Checking email
 if (empty($email)) {
-    echo "Email address is missing";
+    echo "Email address is missing<br>";
     $numerror++;
 } else if (!preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i" , $email)) {      //checking if email input match the pattern
     echo "Invalid email format";
     $numerror++;
 } else {
-    echo "Valid email format";
+    echo "Valid email format<br>";
 }
 
 //-- Checking phone 
 if (empty($phone)) {
-    echo "Phone number is missing";
+    echo "Phone number is missing<br>";
     $numerror++;
 } else if (!preg_match("/^[0-9 ]{8,12}$/", $phone)) {   //similar to above
     echo "Invalid phone number format";
     $numerror++;
 } else {
-    echo "Valid phone number format";
+    echo "Valid phone number format<br>";
 }
 
 //-- checking skills
 if (empty($skills)) {
-    echo "No skills are selected";
+    echo "No skills are selected<br>";
     $numerror++;
 } else {
-    echo "Skills are selected";
+    echo "Skills are selected<br>";
 }
 
 
