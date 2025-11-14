@@ -68,7 +68,7 @@ if(!isset($_SESSION["username"])){
         </form>
         <!--Delete EOIs by Job Reference -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3>Delete EOIs by Job Reference</h3>
+            <h3 id="Delete_Job_h3">Delete EOIs by Job Reference</h3>
             <label for="reference_number">Select Job Reference:</label>
             <select name="reference_number" id="reference_number" class = "select_typing_fields" required>
                 <option value="">-- Select a Job Reference --</option>
@@ -94,7 +94,7 @@ if(!isset($_SESSION["username"])){
                     <option value="BC03">BC03 - Director of Human Resources</option>
                 </optgroup>
             </select>
-            <button name="action" value="delete_by_job" style="color:red;" class="Manage_Buttons">Delete</button>
+            <button name="action" value="delete_by_job" class="Manage_Buttons" id="Delete_Button">Delete</button>
         </form>
         <!--Change EOI status -->
         <form action = "views_eoi.php" method="post" class = "List_manage">

@@ -227,7 +227,7 @@ footer p {
 
 
 
-#apply-body main, #about-body main, #login_body{
+#apply-body main{
   min-height: 100vh;
 
   /*Background is a space-ish color gradient (static)*/
