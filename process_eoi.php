@@ -95,7 +95,7 @@ if (isset($_POST['phone'])) {
 
 //- Skills
 if (isset($_POST['skills'])) {
-    $skills = cleanStuff($_POST['skills']);
+    $skills = array_map('cleanStuff', $_POST['skills']);
 } else {
     $skills = [];  // this might come as an array
 }
@@ -127,8 +127,8 @@ if (empty($job_ref)) {
 if (empty($fname)) {
     echo "First name is missing!";
     $numerror++;
-} else if (!preg_match("/[A-Za-zÀ-ỹà-ỹ\s]{1,20}/", $fname )) {   // If the fname value doesnt match the pattern and length, echo the following
-    echo "Invalid last name format";
+} else if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/", $fname )) {   // If the fname value doesnt match the pattern and length, echo the following
+    echo "Invalid first name format";
     $numerror++;
 } else {
     echo "Valid first name format";
@@ -208,7 +208,7 @@ if (empty($postcode)) {
 if (empty($email)) {
     echo "Email address is missing";
     $numerror++;
-} else if (!preg_match("/^[a-z0-9.-%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/" , $email)) {      //checking if email input match the pattern
+} else if (!preg_match("/^[a-z0-9.-%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i" , $email)) {      //checking if email input match the pattern
     echo "Invalid email format";
     $numerror++;
 } else {
@@ -280,7 +280,7 @@ $create_table = "CREATE TABLE IF NOT EXISTS eoi (
 
 $skillsStr = is_array($skills) ? implode(', ', $skills) : $skills; //to combine skills checkboxes into string
 
-mysqli_query($conn, $create_table)
+mysqli_query($conn, $create_table);
 
 ///--- BUILD AND RUN INSERT QUERY ---
 
