@@ -52,11 +52,16 @@ $skills_result = $conn->query($skills_query);
             <input type="date" id="dob" name="date_of_birth" required>
 
             <!-- Gender -->
-            <fieldset>
+            <fieldset id="gender-field">
                 <legend>Gender</legend>
-                <label><input type="radio" name="gender" value="Male" required> Male</label>
-                <label><input type="radio" name="gender" value="Female"> Female</label>
-                <label><input type="radio" name="gender" value="Other"> Other</label>
+                <input type="radio" name="gender" value="Male"  id="male" required>
+                <label for="male"> Male</label>
+                
+                <input type="radio" name="gender" value="Female"  id="female">
+                <label for="female">Female</label>
+
+                <input type="radio" name="gender" value="Other"  id="other"> 
+                <label for="other">Other</label>
             </fieldset>
 
             <!-- Address -->

@@ -65,10 +65,13 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 */
 
 
-
-.main-buttons {
+#apply-btn {
+  width: 100%;
   display: flex;
+  justify-content: center;
 }
+
+
 /* hide the checkbox icon/button  */
 #toggle-jobs-menu {
   width: fit-content;
@@ -86,24 +89,26 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
   font-size: 24px;
 
   padding: .5rem;
-  margin-left: 2rem;
   margin-top: 5rem;
   color:var(--text-primary);
   background-color: var(--blue-primary);
 
 }
-.jobs-menu-button:hover {
+.jobs-menu-button {
+  margin-left: 2rem;
+
+}
+.jobs-menu-button:hover, .go-apply-btn:hover {
   background-color: var(--blue-secondary);
+  color:var(--text-primary);
 }
 
 
 /* making the bottom corners of the Jobs button straight if the Jobs button is clicked  */
-#toggle-jobs-menu:checked + .jobs-menu-button {
+#toggle-jobs-menu:checked + .jobs-menu-button{
   border-radius: 6px 6px 0 0;
   border-bottom: none;
   background-color: var(--blue-primary);
-
-
 
 }
 
@@ -192,13 +197,13 @@ input[name="department-select"]:checked ~ .department-content {
 
 .department-content label:hover {
   transform: translateX(6px);
-  color: var(--green);
+  color: var(--blue-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 input[name="department-select"]:checked ~ .department-content label:first-child {
-  color: var(--green);
+  color: var(--blue-primary);
   transform: translateX(0px);
   cursor: pointer;
 }
@@ -273,13 +278,13 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 .job-positions label:hover {
   transform: translateX(6px);
-  color:var(--green);
+  color:var(--blue-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
-  color: var(--green);
+  color: var(--blue-primary);
   margin-left:0.5rem;
 }
 
@@ -312,10 +317,10 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 
 
 .department-content .dept-hiring {
-  color:var(--text-heading-color);
+  color:var(--blue-primary);
 }
 .job-positions .is-hiring {
-  color: var(--text-heading-color);
+  color: var(--blue-primary);
 }
 
 

@@ -100,10 +100,9 @@ foreach ($departments as $deptName => $jobs) {
 
 
         <input type="checkbox" id="toggle-jobs-menu" checked>
-        <div class="main-buttons">
-            <label for="toggle-jobs-menu" class="jobs-menu-button">Jobs</label>
-            <a  class="go-apply-btn" href="apply.php">Go to apply page</a>
-        </div>
+
+        <label for="toggle-jobs-menu" class="jobs-menu-button">Jobs</label>
+
 
         <section class="job-menu">
             <ul>
@@ -192,6 +191,9 @@ foreach ($departments as $deptName => $jobs) {
                 <?php endforeach; ?>
             </ul>
         </section>
+        <div id="apply-btn">
+            <a  class="go-apply-btn" href="apply.php">Go to apply page</a>
+        </div>
         
 
         <section id="bottom-section">

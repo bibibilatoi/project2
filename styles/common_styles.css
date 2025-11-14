@@ -40,8 +40,8 @@ BASIC STYLING
   --text-primary: hsl(0, 0%, 90%);
   --text-secondary: hsl(0, 0%, 70%);
 
-  --blue-primary: hsl(233, 70%, 40%);
-  --blue-secondary: hsl(233, 70%, 60%);
+  --blue-primary: hsl(233, 70%, 60%);
+  --blue-secondary: hsl(233, 70%, 70%);
 
 
   --green: hsl(139, 95%, 55%);
@@ -66,6 +66,16 @@ img{
   height:auto;
   display: block;
 }
+
+a {
+  color:var(--blue-primary);
+}
+a:hover, a:active {
+  color:var(--blue-primary);
+}
+
+
+
 
 /* --- Logo --- */
 header {
@@ -115,7 +125,7 @@ header {
 }
 
 #nav-menu a:not(#current-page):hover {
-  background-color: var(--blue-secondary);
+  background-color: var(--blue-primary);
 }
 
 /* --- Animations --- */
@@ -193,25 +203,42 @@ footer{
   align-items: center;
   text-align: center;
   margin: 1rem 0;
-  gap: 1rem;
   color: var(--text-secondary);
+
+  line-height: 1.5rem;
+}
+footer a {
+  text-decoration: none;
+  display: block;
+  color: var(--blue-primary);
+  font-weight: bold;
 }
 footer strong {
 	color: var(--text-primary);
 }
-footer p:first-of-type, p:last-of-type {
-	color: var(--text-primary);
+footer > strong{
+  margin-top:1.5rem;
+  margin-bottom: 0;
+  
 }
+
+
 footer p {
-  padding-top: 1rem;
   font-size: 16px;
+  color: var(--text-secondary);
 }
-#contact-info a{
+
+
+#footer-logo {
   display: block;
-  color: var(--text-selected-color)
+  margin-bottom: 2rem;
 }
-#contact-info a:visited {
-  color: var(--block-hover-color);
+#footer-logo p {
+  margin-top: 0.5rem;
+}
+
+#contact-info {
+  margin-bottom: 2rem;
 }
 
 
@@ -227,23 +254,7 @@ footer p {
 
 
 
-#apply-body main, #about-body main, #login_body{
-  min-height: 100vh;
 
-  /*Background is a space-ish color gradient (static)*/
-  /*the color gradient go from left to right (90deg) */
-
-  /*the color #02010a get repeated so that the jump looks seemsless*/
-
-  background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
-  );
-  background-size: 800% 800%;
-  /* Animate from right to left */
-  animation: gradientShiftSpace 10s linear infinite;
-
-
-}
 
 
 
