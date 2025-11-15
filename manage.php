@@ -4,6 +4,13 @@ if(!isset($_SESSION["username"])){
     header("Location: login.php");
     exit();
 }
+
+
+require_once "settings.php";
+// Fetch EOI list for dropdown
+$eoi_query = "SELECT eoi_number, first_name, last_name, status FROM eoi ORDER BY eoi_number ASC";
+$eoi_result = mysqli_query($conn, $eoi_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -97,14 +104,30 @@ if(!isset($_SESSION["username"])){
             <button name="action" value="delete_by_job" class="Manage_Buttons" id="Delete_Button">Delete</button>
         </form>
         <!--Change EOI status -->
-        <form action = "views_eoi.php" method="post" class = "List_manage">
+        <form action="views_eoi.php" method="post" class="List_manage">
             <h3>Change EOI Status</h3>
-            <input class="select_typing_name" id="EOI_num_select" class="select_typing_fields" type="number" name="eoi_number" placeholder="EOI Number" required>
+
+            <select class="select_typing_fields" name="eoi_number" id="EOI_num_select" required>
+                <option value="">Select Applicant</option>
+
+                <?php
+                while ($row = mysqli_fetch_assoc($eoi_result)) {
+                    $id = $row["eoi_number"];
+                    $name = $row["first_name"] . " " . $row["last_name"];
+                    $status = $row["status"];
+
+                    echo "<option value='{$id}'>#{$id} – {$name} – ({$status})</option>";
+                }
+                ?>
+            </select>
+
+            <!-- Status options -->
             <select class="select_typing_fields" name="status">
                 <option value="New">New</option>
                 <option value="Current">Current</option>
                 <option value="Final">Final</option>
             </select>
+
             <button name="action" value="change_status" class="Manage_Buttons">Update Status</button>
         </form>
         <!--Log out-->
