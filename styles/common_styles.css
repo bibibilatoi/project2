@@ -1,0 +1,294 @@
+/*
+
+filename: styles.css
+
+authors: Vu Hoang Long, Trinh Thai Anh Tuan, Dang Thien An, Duong Tri Duc
+
+created: 27-9-2025
+
+last modified: 12-10-2025
+
+description: the css file for all pages
+
+*/
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+BASIC STYLING
+
+*****************************************
+*****************************************
+*/
+
+/* Reset everything to default state  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --block-basic-color: #5E747F;
+  --block-special-color:#668a9c;
+  --block-hover-color: #478aac;
+  --text-basic-color: #E5E5E5;
+  --text-selected-color: #1EF963;
+  --text-warning-color: #D61229;
+  --text-heading-color: #FFD700;
+  --bg-main-color:#000000;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  background-color: var(--bg-main-color);
+  color: var(--text-basic-color);
+}
+
+p, li, figcaption {
+  font-size: 20px;
+}
+
+h1, h2, h3, h4 {
+  color:var(--text-heading-color)
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 40px;
+}
+h3 {
+  font-size: 32px;
+}
+h4 {
+  font-size: 24px;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display: block;
+}
+
+a {
+  color: var(--text-selected-color);
+}
+a:visited {
+  color: var(--block-hover-color);
+}
+
+
+/* --- Logo --- */
+#logo {
+    display: flex;
+    align-items: center;
+	padding: 1rem 0 0 1rem;
+}
+
+#logo p {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* --- Navigation Menu --- */
+#nav-menu {
+	width: 100%;
+	padding: 1rem 0;
+}
+
+#nav-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+	justify-content: center;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+#nav-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--text-basic-color);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
+    border-radius: 4px;
+}
+
+#nav-menu a:not(#current-page):hover {
+    background-color: var(--text-basic-color);
+    color: var(--bg-main-color);
+}
+
+/* --- Animations --- */
+@keyframes slideIn { from {opacity:0; transform:translateX(-20px);} to {opacity:1; transform:translateX(0);} }
+@keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+
+
+
+#nav-menu li { opacity:0; animation: slideIn 0.5s ease-out forwards; }
+
+#nav-menu li:nth-child(1) { animation-delay:0.1s; }
+#nav-menu li:nth-child(2) { animation-delay:0.25s; }
+#nav-menu li:nth-child(3) { animation-delay:0.4s; }
+#nav-menu li:nth-child(4) { animation-delay:0.55s; }
+#nav-menu li:nth-child(5) { animation-delay:0.7s; }
+#nav-menu li:nth-child(6) { animation-delay:0.85s; }
+
+
+#nav-menu #current-page {
+    background: var(--text-basic-color);
+    color: var(--bg-main-color);
+    animation: activateCurrent 0.4s 1.2s forwards ease-in-out;
+}
+
+@keyframes activateCurrent { to { background-color: var(--text-basic-color); color: var(--bg-main-color); } }
+
+
+
+
+
+#banner {
+  position: relative;
+  background-image: url("./images/space_banner.jpg");
+  background-size: cover; /* Ensures the image covers the entire header area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  height: 60vh; /* Sets the banner height */
+  animation: bannerFade 1.2s ease-out forwards;
+}
+@keyframes bannerFade {
+  from { opacity: 0; background-position: center top; }
+  to   { opacity: 1; background-position: center center; }
+}
+
+
+#banner p {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 32px;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+
+}
+
+
+
+
+
+
+/* 
+*****************************************
+*****************************************
+
+   FOOTER CSS
+
+*****************************************
+*****************************************
+*/
+
+
+
+footer{
+  border-top: 1px solid var(--text-basic-color);
+  display: flex;
+  flex-direction: column;
+  clear: both;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+footer p {
+  font-size: 16px;
+}
+#contact-info a{
+  display: block;
+  color: var(--text-selected-color)
+}
+#contact-info a:visited {
+  color: var(--block-hover-color);
+}
+
+
+/* Animated gradient background */
+@keyframes gradientShiftSpace {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+#apply-body main{
+  min-height: 100vh;
+
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
+}
+
+
+
+/* 
+*****************************************
+*****************************************
+
+  RESPONSIVE DESIGN
+
+*****************************************
+*****************************************
+*/
+
+
+@media (max-width: 700px) {
+	#logo p {
+    	font-size: 1rem;
+	}
+
+
+
+
+	/*menu items stack on top of each others */
+	#nav-menu ul {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	#nav-menu li {
+		font-size: 15px;
+		width: 100%;
+		text-align: center;
+	}
+
+	#nav-menu li { opacity:0; animation: slideDown 0.5s ease-out forwards; }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

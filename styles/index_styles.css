@@ -1,0 +1,380 @@
+/*
+*****************************************
+Index PAGE CSS - MODERN REDESIGN
+*****************************************
+*/
+
+/* Main container with blur background */
+#index-main {
+    position: relative;
+    min-height: 100vh;
+    color: #fff;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+/* Background blur effect similar to login */
+#index-main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url("./images/universe_background.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: -2;
+}
+
+/* Dark overlay for better text readability */
+#index-main::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Container for sections with glassmorphism */
+.glass-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Intro Section */
+#index-intro {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+#index-intro h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    }
+}
+
+#index-intro p {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Section headings */
+.section-heading, 
+#index-achievements h1, 
+#index-our-people h1, 
+#index-our-brilliant-minds h1, 
+#Why-work-with-us h1 {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Achievements */
+#index-achievements {
+    text-align: center;
+}
+
+.achievement-2060, 
+.achievement-2075, 
+.achievement-2110 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.achievement-2060:hover,
+.achievement-2075:hover,
+.achievement-2110:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.achievement-2075 {
+    flex-direction: row-reverse;
+}
+
+.achievement-text, 
+.achievement-figure {
+    flex: 1 1 300px;
+    max-width: 500px;
+}
+
+.achievement-text {
+    padding: 0 1rem;
+    font-size: 1.1rem;
+}
+
+.achievement-figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.achievement-figure img {
+    transition: transform 0.5s ease;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-figure:hover img {
+    transform: scale(1.05);
+}
+
+.achievement-figure figcaption {
+    margin-top: 1rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Aspiration paragraph */
+#index-aspiration {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 4rem auto;
+    padding: 2rem;
+    max-width: 900px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(30, 249, 99, 0.1));
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    font-style: italic;
+}
+
+/* Our People */
+#index-our-people {
+    padding: 2rem;
+}
+
+#index-our-people p {
+    text-align: center;
+    margin: 1.5rem auto;
+    max-width: 800px;
+    font-size: 1.1rem;
+}
+
+/* Our Brilliant Minds */
+#index-our-brilliant-minds {
+    padding: 2rem;
+}
+
+#index-our-brilliant-minds-behind {
+    margin: 2rem auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+.engineer-profile {
+    margin: 4rem auto 2rem;
+    max-width: 800px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #FFD700;
+    border-radius: 10px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.engineer-profile:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.engineer-profile strong {
+    color: #FFD700;
+    font-size: 1.3rem;
+}
+
+.engineer-figure {
+    margin: 2rem auto;
+    max-width: 700px;
+    text-align: center;
+}
+
+.engineer-figure img {
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+.engineer-figure:hover img {
+    transform: scale(1.03) rotate(1deg);
+}
+
+.engineer-figure figcaption {
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#index-our-brilliant-minds-together {
+    margin: 4rem auto;
+    max-width: 900px;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 2rem;
+    background: rgba(30, 249, 99, 0.1);
+    border-radius: 15px;
+}
+
+/* Why Work With Us */
+#Why-work-with-us {
+    padding: 2rem;
+}
+
+#Why-work-with-us ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 3rem auto;
+    max-width: 900px;
+}
+
+.work-with-us-item {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    font-style: italic;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.work-with-us-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.work-with-us-item--left {
+    text-align: left;
+    border-left: 4px solid #1EF963;
+}
+
+.work-with-us-item--right {
+    text-align: right;
+    border-right: 4px solid #FFD700;
+}
+
+#workplace-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem auto;
+    max-width: 800px;
+}
+
+#workplace-img-container img {
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+}
+
+#workplace-img-container:hover img {
+    transform: scale(1.05);
+}
+
+#workplace-img-container figcaption {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #FFD700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .glass-container {
+        padding: 2rem 1rem;
+        margin: 1rem;
+    }
+
+    #index-intro h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-heading,
+    #index-achievements h1,
+    #index-our-people h1,
+    #index-our-brilliant-minds h1,
+    #Why-work-with-us h1 {
+        font-size: 2rem;
+    }
+
+    .achievement-2060,
+    .achievement-2075,
+    .achievement-2110 {
+        flex-direction: column;
+    }
+
+    .achievement-2075 {
+        flex-direction: column;
+    }
+
+    .work-with-us-item--left,
+    .work-with-us-item--right {
+        text-align: center;
+        border-left: none;
+        border-right: none;
+        border-bottom: 3px solid #1EF963;
+    }
+
+    .engineer-profile {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #index-main {
+        padding: 1rem 0.5rem;
+    }
+
+    #index-intro h1 {
+        font-size: 2rem;
+    }
+
+    .glass-container {
+        padding: 1.5rem 1rem;
+    }
+}

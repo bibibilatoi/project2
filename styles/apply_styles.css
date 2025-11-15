@@ -1,0 +1,402 @@
+/* 
+*****************************************
+APPLY PAGE CSS - MODERN REDESIGN
+*****************************************
+*/
+
+/* Main container with blur background */
+#apply-body main {
+  position: relative;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+}
+
+/* Background blur effect */
+#apply-body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url("./images/universe_background.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  z-index: -2;
+}
+
+/* Dark overlay with animated gradient */
+#apply-body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    135deg, 
+    rgba(2, 1, 10, 0.7), 
+    rgba(10, 5, 52, 0.7), 
+    rgba(16, 7, 95, 0.7), 
+    rgba(10, 5, 52, 0.7),
+    rgba(2, 1, 10, 0.7)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main heading */
+#h1-apply {
+  text-align: center;
+  color: var(--text-heading-color);
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+  to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+}
+
+/* Form container with glassmorphism */
+#jobApplicationForm {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  max-width: 800px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Border glow effect on hover */
+#jobApplicationForm::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    rgba(30, 249, 99, 0.4),
+    rgba(255, 215, 0, 0.4),
+    rgba(30, 249, 99, 0.4)
+  );
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#jobApplicationForm:hover::before {
+  opacity: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form labels */
+#jobApplicationForm label {
+  margin-top: 1.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-heading-color);
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+#jobApplicationForm label:first-child {
+  margin-top: 0;
+}
+
+#jobApplicationForm label:hover {
+  color: var(--text-selected-color);
+  transform: translateX(5px);
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+#otherSkills {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-basic-color);
+  font-family: 'Exo 2', sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus,
+#otherSkills:focus {
+  outline: none;
+  border-color: var(--text-selected-color);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(30, 249, 99, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Select dropdown arrow */
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  appearance: none;
+}
+
+select option {
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--text-basic-color);
+}
+
+/* Textarea */
+#otherSkills {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Fieldsets */
+#jobApplicationForm fieldset {
+  color: var(--text-heading-color);
+  font-weight: bold;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  background: rgba(255, 215, 0, 0.05);
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+#jobApplicationForm fieldset:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+}
+
+#jobApplicationForm fieldset legend {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+#jobApplicationForm fieldset label {
+  color: var(--text-basic-color);
+  display: inline-block;
+  margin: 0.8rem 1.5rem 0.8rem 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#jobApplicationForm fieldset label:hover {
+  color: var(--text-selected-color);
+  transform: translateX(3px);
+}
+
+/* Radio buttons and checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--text-selected-color);
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+  transform: scale(1.2);
+}
+
+/* Checkbox container */
+.fieldset-container {
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.fieldset-container:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+#jobApplicationForm .fieldset-container input:checked + label {
+  color: var(--text-selected-color);
+  font-weight: bold;
+}
+
+#jobApplicationForm .fieldset-container input:checked {
+  animation: checkPulse 0.3s ease;
+}
+
+@keyframes checkPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* Submit button */
+#apply-button,
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #1976d2, #23b1d1);
+  color: var(--text-basic-color);
+  border: none;
+  padding: 1rem 2rem;
+  margin-top: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 25px rgba(25, 118, 210, 0.5);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#apply-button::before,
+input[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+#apply-button:hover::before,
+input[type="submit"]:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+#apply-button:hover,
+input[type="submit"]:hover {
+  background: linear-gradient(135deg, #23b1d1, #1976d2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(35, 177, 209, 0.7);
+}
+
+#apply-button:active,
+input[type="submit"]:active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(35, 177, 209, 0.5);
+}
+
+/* Input validation styling */
+input:valid:not(:placeholder-shown),
+select:valid,
+textarea:valid {
+  border-color: rgba(30, 249, 99, 0.5);
+}
+
+input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: rgba(214, 18, 41, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #apply-body main {
+    padding: 2rem 0.5rem;
+  }
+
+  #h1-apply {
+    font-size: 2.2rem;
+  }
+
+  #jobApplicationForm {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  #jobApplicationForm label {
+    font-size: 1rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select,
+  #otherSkills {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+
+  #jobApplicationForm fieldset label {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  #apply-button,
+  input[type="submit"] {
+    font-size: 1.1rem;
+    padding: 0.9rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #h1-apply {
+    font-size: 1.8rem;
+  }
+
+  #jobApplicationForm {
+    padding: 1.5rem 1rem;
+  }
+
+  #jobApplicationForm fieldset {
+    padding: 1rem;
+  }
+}
