@@ -12,7 +12,8 @@
   /*the color #02010a get repeated so that the jump looks seemsless*/
 
   background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+    90deg,
+    #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
   );
   background-size: 800% 800%;
   /* Animate from right to left */

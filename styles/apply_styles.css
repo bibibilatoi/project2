@@ -8,15 +8,7 @@ Apply Page CSS
 *****************************************
 */
 
-/* Animated gradient background */
-@keyframes gradientShiftSpace {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 #apply-body main{
   min-height: 100vh;
 
@@ -26,7 +18,8 @@ Apply Page CSS
   /*the color #02010a get repeated so that the jump looks seemsless*/
 
   background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+    90deg,
+    #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
   );
   background-size: 800% 800%;
   /* Animate from right to left */
@@ -35,24 +28,6 @@ Apply Page CSS
 
 }
 
-
-#apply-body main, #about-body main{
-  min-height: 100vh;
-
-  /*Background is a space-ish color gradient (static)*/
-  /*the color gradient go from left to right (90deg) */
-
-  /*the color #02010a get repeated so that the jump looks seemsless*/
-
-  background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
-  );
-  background-size: 800% 800%;
-  /* Animate from right to left */
-  animation: gradientShiftSpace 10s linear infinite;
-
-
-}
 
 
 
@@ -115,7 +90,7 @@ select,
 input[type="radio"],
 input[type="checkbox"] 
 {
-  accent-color: var(--blue-secondary);
+  accent-color: var(--accent-secondary);
 }
 
 
@@ -142,13 +117,13 @@ input[type="checkbox"]
 }
 
 #jobApplicationForm .fieldset-container input:checked + label {
-  color:var(--blue-secondary);
+  color:var(--accent-secondary);
 }
 #gender-field input, label {
   margin-left: 0.5rem;
 }
 #gender-field input:checked + label{
-  color:var(--blue-secondary);
+  color:var(--accent-secondary);
 
 }
 
@@ -157,7 +132,7 @@ input[type="checkbox"]
 {
   display: block;
   width: 100%;
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
   color:inherit;
   border: none;
   padding: 0.5rem;
@@ -170,8 +145,8 @@ input[type="checkbox"]
 
 #apply-button:hover, input[type="submit"]:hover 
 {
-  background-color: var(--blue-secondary);
+  background-color: var(--accent-secondary);
   transform: translateY(-2px);
-  box-shadow: 0 0 10px var(--blue-secondary);
+  box-shadow: 0 0 10px var(--accent-secondary);
   
 }

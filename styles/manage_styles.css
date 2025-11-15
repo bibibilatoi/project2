@@ -13,18 +13,9 @@
 .container{
     position: relative;
     text-align: center;
-    animation: slideIn 1.5s ease-out;
+    animation: pageSlideIn 1.5s ease-out;
 }
-@keyframes slideIn {
-    from {
-        transform: translateY(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+
 
 .List_manage{
     background-color: rgba(0, 0, 0, 0.301);             
@@ -55,7 +46,7 @@
     width: 100%;
     padding: 12px;
     margin-top: 12px;
-    background-color: var(--blue-primary);
+    background-color: var(--accent-primary);
     border-radius: 6px;
     border: none;
     cursor: pointer;
@@ -66,8 +57,8 @@
     transition: 0.5s;
 }
 .Manage_Buttons:hover{
-    background-color: var(--blue-secondary);
-    box-shadow: 0 0 10px var(--blue-secondary);
+    background-color: var(--accent-secondary);
+    box-shadow: 0 0 10px var(--accent-secondary);
 }
 #Delete_Button {
     background-color: var(--red);
@@ -76,6 +67,7 @@
 
 #Delete_Button:hover {
     background-color: hsl(353, 84%, 60%);
+    box-shadow: 0 0 10px hsl(353, 84%, 60%);
 }
 .select_typing_fields{
     width: 100%;
@@ -119,7 +111,7 @@
     color: var(--text-primary);
 }
 .select_typing_fields optgroup {
-    color: var(--blue-primary);
+    color: var(--accent-primary);
     font-weight: bold;
     background-color: var(--bg-secondary);
 }
@@ -141,11 +133,11 @@
     text-align: center;
     width: 300px;
     color: var(--text-primary);
-    background-color: var(--blue-primary);
+    background-color: var(--accent-primary);
     border: 1px solid var(--border);
     margin-bottom: 3rem;
 }
 #logout_button:hover{
-    background-color: var(--blue-secondary);
-    box-shadow: 0 0 10px var(--blue-secondary);
+    background-color: var(--accent-secondary);
+    box-shadow: 0 0 10px var(--accent-secondary);
 }

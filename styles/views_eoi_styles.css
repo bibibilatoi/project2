@@ -1,22 +1,4 @@
 
-.Announcement{
-    position: fixed;        /* stays on screen, does not push layout */
-    top: 20px;
-    right: 20px;
-    color: var(--green);
-    background-color: var(--bg-third);
-    padding: 15px 20px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 9999;
-    font-size: 20px;
-     animation: disappear 3s forwards;
-}
-@keyframes disappear {
-    0%   { opacity: 1; }
-    85%  { opacity: 1; }
-    100% { opacity: 0; }
-}
 /* --- Back to Manage Page button --- */
 #back_to_Manage_Page_icon {
     position: absolute;
@@ -24,7 +6,7 @@
     margin: 20px;
     border-radius: 6px;
     border: 1px solid var(--border);
-    background-color: var(--blue-primary);
+    background-color: var(--accent-primary);
     color: var(--text-primary);
     text-decoration: none;
     transition: background-color 0.25s ease;
@@ -32,8 +14,8 @@
 
 }
 #back_to_Manage_Page_icon:hover {
-    background-color: var(--blue-secondary);
-    box-shadow: 0 0 10px var(--blue-secondary);
+    background-color: var(--accent-secondary);
+    box-shadow: 0 0 10px var(--accent-secondary);
 }
 #back_to_Manage_Page_icon a {
     top: -4px;

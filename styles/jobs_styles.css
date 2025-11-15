@@ -91,7 +91,7 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
   padding: .5rem;
   margin-top: 5rem;
   color:var(--text-primary);
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
 
 }
 .jobs-menu-button {
@@ -99,9 +99,9 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 
 }
 .jobs-menu-button:hover, .go-apply-btn:hover {
-  background-color: var(--blue-secondary);
+  background-color: var(--accent-secondary);
   color:var(--text-primary);
-  box-shadow: 0 0 10px var(--blue-secondary);
+  box-shadow: 0 0 10px var(--accent-secondary);
 }
 
 
@@ -109,7 +109,7 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 #toggle-jobs-menu:checked + .jobs-menu-button{
   border-radius: 6px 6px 0 0;
   border-bottom: none;
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
 
 }
 
@@ -147,20 +147,10 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 }
 
 
-/* the dropdown_animation */
-@keyframes dropdown_animation {
-  from {
-    opacity: 0;  
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
+
 /* making the list of departments and job positions show up more smoothly */
 .job-menu li, .job-positions {
-  animation: dropdown_animation 0.4s ease forwards;
+  animation: dropDown 0.4s ease forwards;
 }
 
 
@@ -198,13 +188,13 @@ input[name="department-select"]:checked ~ .department-content {
 
 .department-content label:hover {
   transform: translateX(6px);
-  color: var(--blue-secondary);
+  color: var(--accent-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 input[name="department-select"]:checked ~ .department-content label:first-child {
-  color: var(--blue-primary);
+  color: var(--accent-primary);
   transform: translateX(0px);
   cursor: pointer;
 }
@@ -248,7 +238,7 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 
 .job-descriptions h3{
   margin-top: 2rem;
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
   width: fit-content;
   padding: 0 0.5rem;
   border-radius: 4px;
@@ -279,13 +269,13 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 .job-positions label:hover {
   transform: translateX(6px);
-  color:var(--blue-secondary);
+  color:var(--accent-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
-  color: var(--blue-primary);
+  color: var(--accent-primary);
   margin-left:0.5rem;
 }
 
@@ -302,7 +292,7 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   flex-direction: column;
   margin-bottom: 1rem; 
   font-weight: bold;
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
   width: fit-content;
   padding: 1rem;
   font-size: 20px;
@@ -318,10 +308,10 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 
 
 .department-content .dept-hiring {
-  color:var(--blue-primary);
+  color:var(--accent-primary);
 }
 .job-positions .is-hiring {
-  color: var(--blue-primary);
+  color: var(--accent-primary);
 }
 
 

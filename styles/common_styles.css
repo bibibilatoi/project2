@@ -40,15 +40,36 @@ BASIC STYLING
   --text-primary: hsl(0, 0%, 90%);
   --text-secondary: hsl(0, 0%, 70%);
 
-  --blue-primary: hsl(233, 70%, 60%);
-  --blue-secondary: hsl(233, 70%, 70%);
+  --accent-primary: hsl(233, 70%, 60%);
+  --accent-secondary: hsl(233, 70%, 70%);
 
+  --space-img: url("../images/space-bg3.jpg");
 
-  --green: hsl(139, 95%, 55%);
+  --green: hsl(139, 95%, 55%); 
   --red: hsl(353, 84%, 45%);
 
-  --space-img: url("../images/space-bg.jpg");
+  /* 
+  OTHER ACCENTS:
+  Blue
+  --accent-primary: hsl(233, 70%, 60%);
+  --accent-secondary: hsl(233, 70%, 70%);
 
+  --space-img: url("../images/space-bg3.jpg");
+
+  Orange
+  
+  --accent-primary: hsl(15, 70%, 60%);
+  --accent-secondary: hsl(15, 70%, 70%);
+
+  --space-img: url("../images/space-bg2.jpg");
+
+  Cyan
+  --accent-primary: hsl(195, 80%, 44%);
+  --accent-secondary: hsl(195, 90%, 70%);
+
+  --space-img: url("../images/space-bg3.jpg");
+  
+  */
 }
 
 body {
@@ -69,10 +90,11 @@ img{
 }
 
 a {
-  color:var(--blue-primary);
+  color:var(--accent-primary);
+  z-index: 9999;
 }
 a:hover, a:active {
-  color:var(--blue-secondary);
+  color:var(--accent-secondary);
 }
 
 
@@ -83,7 +105,7 @@ a:hover, a:active {
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: var(--blue-primary); /* semi-transparent */
+    background-color: var(--accent-primary); /* semi-transparent */
     color: var(--text-primary);
     border-radius: 50%; /* circle */
     text-align: center;
@@ -96,7 +118,7 @@ a:hover, a:active {
 
 #backToTop:hover,
 #backToTop:focus {
-    background-color: var(--blue-secondary); /* darker on hover/focus */
+    background-color: var(--accent-secondary); /* darker on hover/focus */
     opacity: 1;
 }
 
@@ -148,16 +170,14 @@ header {
 }
 
 #nav-menu a:not(#current-page):hover {
-  background-color: var(--blue-primary);
+  background-color: var(--accent-primary);
 }
 
-/* --- Animations --- */
-@keyframes slideIn { from {opacity:0; transform:translateX(-20px);} to {opacity:1; transform:translateX(0);} }
-@keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
 
 
 
-#nav-menu li { opacity:0; animation: slideIn 0.5s ease-out forwards; }
+
+#nav-menu li { opacity:0; animation: menuSlideIn 0.5s ease-out forwards; }
 
 #nav-menu li:nth-child(1) { animation-delay:0.1s; }
 #nav-menu li:nth-child(2) { animation-delay:0.25s; }
@@ -171,35 +191,6 @@ header {
     animation: activateCurrent 0.4s 1.2s forwards ease-in-out;
 }
 
-@keyframes activateCurrent { to { background-color: none; background-color: var(--blue-primary); } }
-
-
-
-
-
-#banner {
-  position: relative;
-  background-image: url("./images/space_banner.jpg");
-  background-size: cover; /* Ensures the image covers the entire header area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat;
-  height: 60vh; /* Sets the banner height */
-  animation: bannerFade 1.2s ease-out forwards;
-}
-@keyframes bannerFade {
-  from { opacity: 0; background-position: center top; }
-  to   { opacity: 1; background-position: center center; }
-}
-
-
-#banner p {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  font-size: 32px;
-  text-shadow: 2px 2px 5px rgb(0, 0, 0);
-
-}
 
 
 
@@ -233,7 +224,7 @@ footer{
 footer a {
   text-decoration: none;
   display: block;
-  color: var(--blue-primary);
+  color: var(--accent-primary);
   font-weight: bold;
 }
 footer strong {
@@ -265,7 +256,19 @@ footer p {
 }
 
 
-/* Animated gradient background */
+
+
+
+/* 
+*****************************************
+*****************************************
+
+  ANIMATION BANK
+
+*****************************************
+*****************************************
+*/
+/* Gradient background used in apply, about */
 @keyframes gradientShiftSpace {
   0% {
     background-position: 100% 50%;
@@ -275,12 +278,40 @@ footer p {
   }
 }
 
+/* Sliding menu used in nav menu */
+@keyframes menuSlideIn { from {opacity:0; transform:translateX(-20px);} to {opacity:1; transform:translateX(0);} }
+@keyframes dropDown { from {opacity:0; transform:translateY(-15px);} to {opacity:1; transform:translateY(0);} }
+
+
+/* Highlight current page used in nav menu */
+@keyframes activateCurrent { to { background-color: none; background-color: var(--accent-primary); } }
+
+
+@keyframes slideIn {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
 
 
 
 
 
-
+@keyframes pageSlideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 /* 
 *****************************************
 *****************************************
@@ -311,7 +342,7 @@ footer p {
 		text-align: center;
 	}
 
-	#nav-menu li { opacity:0; animation: slideDown 0.5s ease-out forwards; }
+	#nav-menu li { opacity:0; animation: menuSlideDown 0.5s ease-out forwards; }
 
 }
 
