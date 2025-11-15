@@ -82,8 +82,8 @@ if ($action == "list_all") {
 </head>
 <body>
     <div class="background"></div>
+    <a id="back_to_Manage_Page_icon" href="manage.php"><i class='bx bx-reply-stroke'></i> Back to Manage Page</a>
     <div class="container">
-        <a id="back_to_Manage_Page_icon" href="manage.php"><i class='bx bx-reply-stroke'></i> Back to Manage Page</a>
         <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
 
         <?php if ($result && mysqli_num_rows($result) > 0): ?>
@@ -111,6 +111,8 @@ if ($action == "list_all") {
                 <td><?= display_field($row['reference_number']) ?></td>
                 <td><?= display_field($row['first_name']) ?></td>
                 <td><?= display_field($row['last_name']) ?></td>
+                <td><?= display_field($row['date_of_birth']) ?></td>
+                <td><?= display_field($row['gender']) ?></td>
                 <td><?= display_field($row['street']) ?></td>
                 <td><?= display_field($row['suburb']) ?></td>
                 <td><?= display_field($row['state']) ?></td>

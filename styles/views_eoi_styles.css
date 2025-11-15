@@ -42,32 +42,32 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    padding: 20px; /* optional padding inside container */
-    overflow: auto; /* allow scrolling if table is too large */
+    padding: 20px; 
+    overflow: auto; 
 }
 
 /* --- Table Styling --- */
 table {
     width: 100%;
-    border-collapse: collapse; /* merge borders nicely */
+    border-collapse: collapse; 
     margin-top: 20px;
-    table-layout: fixed; /* evenly distribute column widths */
-    word-wrap: break-word; /* wrap long text */
+    table-layout: fixed; 
+    word-wrap: break-word; 
 }
 
 table th, table td {
-    border: 1px solid #ffffff88; /* subtle white border */
-    padding: 10px 15px; /* spacing inside cells */
+    border: 1px solid #ffffff88; 
+    padding: 10px 15px; 
     text-align: left;
     color: white;
 }
 
 table th {
-    background-color: rgba(0,0,0,0.5); /* semi-transparent header */
+    background-color: rgba(0,0,0,0.5); 
 }
 
 table tr:nth-child(even) {
-    background-color: rgba(255,255,255,0.05); /* striped rows */
+    background-color: rgba(255,255,255,0.05); 
 }
 
 /* --- Responsive Adjustments --- */
@@ -81,7 +81,6 @@ table tr:nth-child(even) {
     }
 }
 
-/* Optional: make table horizontally scrollable on very small screens */
 @media screen and (max-width: 900px) {
     .container {
         overflow-x: auto;

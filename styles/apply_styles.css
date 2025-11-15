@@ -17,7 +17,7 @@ Apply Page CSS
     background-position: 0% 50%;
   }
 }
-#apply-body main, #login_body{
+#apply-body main{
   min-height: 100vh;
 
   /*Background is a space-ish color gradient (static)*/
@@ -115,7 +115,7 @@ select,
 input[type="radio"],
 input[type="checkbox"] 
 {
-  accent-color: var(--green);
+  accent-color: var(--blue-secondary);
 }
 
 
@@ -142,13 +142,14 @@ input[type="checkbox"]
 }
 
 #jobApplicationForm .fieldset-container input:checked + label {
-  color:var(--green);
+  color:var(--blue-secondary);
 }
 #gender-field input, label {
   margin-left: 0.5rem;
 }
 #gender-field input:checked + label{
-  color:var(--green);
+  color:var(--blue-secondary);
+
 }
 
 

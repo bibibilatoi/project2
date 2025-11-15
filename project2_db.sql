@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 05:55 AM
+-- Generation Time: Nov 13, 2025 at 04:24 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -182,8 +182,9 @@ CREATE TABLE `managers` (
 --
 
 INSERT INTO `managers` (`username`, `password`, `email`) VALUES
-('long', '123', 'long@gmail.com'),
-('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com');
+('ABC', '$2y$10$HNRFOl69REtervonKj0/nuE.CTzThXlvWOWOFqsx.V51FC41crlju', 'anhtuan@gmail.com'),
+('Admin', '$2y$10$e9qIillhDPEiMOUo0nGBC.taIGT/.oEDuReD4Dc9C1CHBs9byVSJW', 'trinhthaianhtuan@gmail.com'),
+('NeverGonnaGiveYouUp', '$2y$10$.bmxdXQyEdF457w4WQDKFObBfHWJe14hjEtLbmp7lYEa5cZJv9KTS', 'steepmolecules@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -351,7 +352,7 @@ ALTER TABLE `basic_qualifications`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -375,7 +376,7 @@ ALTER TABLE `preferred_skills`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
