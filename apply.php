@@ -31,7 +31,7 @@ $skills_result = $conn->query($skills_query);
     <main class="jobs-main">
         <h1 id="h1-apply">Job Application Form</h1>
 
-        <form id="jobApplicationForm" method="post" action="process_eoi.php">
+        <form id="jobApplicationForm" method="post" action="process_eoi.php" novalidate="novalidate">
             <input type="hidden" name="form_token" value="<?php echo $_SESSION['apply_form_token']; ?>">
             <!-- Job Reference -->
             <label for="reference_number">Job Reference Number:</label>
