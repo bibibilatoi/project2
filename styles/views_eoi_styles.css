@@ -10,7 +10,12 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 9999;
     font-size: 16px;
-    animation: fadeOut 1s forwards;
+     animation: disappear 3s forwards;
+}
+@keyframes disappear {
+    0%   { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 /* --- Back to Manage Page button --- */
 #back_to_Manage_Page_icon {
