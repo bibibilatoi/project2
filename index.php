@@ -16,7 +16,6 @@
     <body>
 
         <?php include("header.inc") ?>
-
         <main id="index-main">
             <section id="index-intro">
                 <h1>Welcome to SpeedX</h1>

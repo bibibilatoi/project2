@@ -101,6 +101,7 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 .jobs-menu-button:hover, .go-apply-btn:hover {
   background-color: var(--blue-secondary);
   color:var(--text-primary);
+  box-shadow: 0 0 10px var(--blue-secondary);
 }
 
 

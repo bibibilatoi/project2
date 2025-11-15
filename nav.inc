@@ -15,7 +15,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 
 ?>
-
+<a id="top"></a>
 <nav id="nav-menu">
     <ul>
         <?php foreach ($pages as $file => $title): ?>
@@ -33,4 +33,5 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </li>
     </ul>
 </nav>
+<a  href="#top" id="backToTop">&#8593;</a>
 

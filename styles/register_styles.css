@@ -1,14 +1,12 @@
-/*main background*/
 .background{
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: url("./images/universe_background.jpg") no-repeat;
+    background: var(--space-img) no-repeat;
     background-size: cover;
     background-position: center;
     filter: blur(10px);
 }
-/*smaller background*/
 .container{
     position:absolute;
     top: 50%;
@@ -16,14 +14,11 @@
     transform: translate(-50%, -50%);
     width: 75%;
     height: 550px;
-    background: url("./images/universe_background.jpg") no-repeat;
+    background: var(--space-img) no-repeat;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
 }
-/*left side of the web*/
-/*left side of the web*/
-/*left side of the web*/
 .container .content{
     position: absolute;
     top:0;
@@ -44,23 +39,24 @@
 .text-sci h2 {
     font-size: 40px;
     line-height: 1;
-    color: aliceblue;
+    color:var(--text-primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
 }
 .text-sci h2 span{
     font-size: 25px;
+    color:var(--text-primary);
 }
 .social-icons a i{
-    font-size: 22px;
-    color:white;
+    color:var(--text-primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
+    font-size: 30px;
     margin-right: 10px;
-    transition: .5s ease;
+    transition: all .2s ease-in;
 }
 .social-icons a:hover i{
     transform: scale(1.2);
+    color:var(--blue-secondary);
 }
-/*right side of the web*/
-/*right side of the web*/
-/*right side of the web*/
 .container .register_container{
     top:0;
     right:0;
@@ -69,17 +65,17 @@
     height: 100%;
 }
 .error-message{
-    width: 340px;
-    color: #ff6b6b; /* red-ish for errors */
-    font-size: 14px;
-    margin: 10px; /* space from input */
-    vertical-align: middle; /* align with input field */
-    display: inline-block; 
- 
+ position: relative;
+ color: var(--red);
+ font-size: 16px;
+ width: 340px;
+ margin-top: 12px;
+ margin-bottom: 25px;
+ display: block;
+ text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
 .register_container .register_form_box{
     display:flex;
-    margin-left: 12px;
     justify-content: center;
     align-items: center;
     background: transparent;
@@ -96,7 +92,7 @@
     color:aliceblue;
 }
 .register_form_box .input_box{
-    position: relative; /* Important!!!*/
+    position: relative;
     width: 340px;
     height: 50px;
     border-bottom: 2px solid white;
@@ -112,7 +108,6 @@
     color:aliceblue;
     font-weight: 500;
     padding-right: 28px;
-    
 }
 .input_box label{
     position: absolute;
@@ -125,7 +120,6 @@
     transition: .5s ease;
     animation: slideIn .5s ease-out;
 }
-
 @keyframes slideIn {
     from {
         transform: translateY(5px);
@@ -140,129 +134,128 @@
 .input_box input:valid~label{
     top: -5px;
 }
-
 .input_box .icon{
     position: absolute;
     top: 13px;
     right: 0;
     font-size: 19px;
 }
-
 .buttons{
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 .register_button{
-  width: 75%;
-  height: 45px;
-  background:transparent;
-  border: 1px solid rgb(247, 242, 242);
-  border-radius: 6px;
-  outline: none;
-  cursor:pointer;
-  font-size: 16px;
-  color:aliceblue;
-  font-weight: 500;
-  box-shadow: 0 0 10px white;
+    width: 75%;
+    height: 45px;
+    background:transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    cursor:pointer;
+    font-size: 16px;
+    color:var(--text-primary);
+    font-weight: 500;
+    box-shadow: 0 0 10px var(--blue-primary);
+    background-color: var(--blue-primary);
 }
 .back_button{
-  padding: 7px;
-  text-align: center;
-  margin-right: 16px;
-  width: 25%;
-  height: 45px;
-  background:transparent;
-  border: 1px solid rgb(247, 242, 242);
-  border-radius: 6px;
-  outline: none;
-  cursor:pointer;
-  text-decoration: none;
-  font-size: 20px;
-  color:rgb(243, 249, 255);
-  font-weight: 500;
-  box-shadow: 0 0 10px white;
+    padding: 7px;
+    text-align: center;
+    margin-right: 16px;
+    width: 25%;
+    height: 45px;
+    background:transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    cursor:pointer;
+    text-decoration: none;
+    font-size: 20px;
+    color:var(--text-primary);
+    font-weight: 500;
+    box-shadow: 0 0 10px var(--blue-primary);
+    background-color: var(--blue-primary);
 }
 .back_button:visited{
-  color:white;
+    color:var(--text-primary);
 }
-/* Responsive design for tablets and smaller screens */
+.back_button:hover, .register_button:hover{
+    background-color: var(--blue-secondary);
+    box-shadow: 0 0 10px var(--blue-secondary);
+}
+.Tranfer_to_login{
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.Tranfer_to_login a{
+    color:var(--blue-primary);
+}
+.Tranfer_to_login a:hover{
+    color:var(--blue-secondary);
+}
 @media (max-width: 992px) {
     .container {
-    width: 90%;
-    height: auto;
-    flex-direction: column;
-    display: flex;
-  }
-
-  .container .content {
-    height: auto;
-    padding: 40px 20px;
-    text-align: center;
-    top:0;
-  }
-
-  .container .register_container {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0 0 10px 10px;
-    bottom:0;
-  }
-
-  .register_container .register_form_box {
-    padding: 40px 20px;
-    border-radius: 0;
-  }
-
-  .input_box {
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto;
-  }
-
-  .registerbutton {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .text-sci h2 {
-    font-size: 28px;
-  }
-
-  .text-sci h2 span {
-    font-size: 18px;
-  }
-
-  .social-icons {
-    text-align: center;
-  }
-
-  .social-icons a i {
-    font-size: 20px;
-  }
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        display: flex;
+    }
+    .container .content {
+        height: auto;
+        padding: 40px 20px;
+        text-align: center;
+        top:0;
+    }
+    .container .register_container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0 0 10px 10px;
+        bottom:0;
+    }
+    .register_container .register_form_box {
+        padding: 40px 20px;
+        border-radius: 0;
+    }
+    .input_box {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+    }
+    .register_button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .text-sci h2 {
+        font-size: 28px;
+    }
+    .text-sci h2 span {
+        font-size: 18px;
+    }
+    .social-icons {
+        text-align: center;
+    }
+    .social-icons a i {
+        font-size: 20px;
+    }
 }
-
-/* For small phones */
 @media (max-width: 600px) {
-  .background {
-    filter: blur(6px);
-  }
-
-  .container {
-    width: 95%;
-  }
-
-  .text-sci h2 {
-    font-size: 22px;
-  }
-
-  .text-sci h2 span {
-    font-size: 16px;
-  }
-
-  .content .logo {
-    font-size: 24px;
-  }
+    .background {
+        filter: blur(6px);
+    }
+    .container {
+        width: 95%;
+    }
+    .text-sci h2 {
+        font-size: 22px;
+    }
+    .text-sci h2 span {
+        font-size: 16px;
+    }
+    .content .logo {
+        font-size: 24px;
+    }
 }

@@ -3,13 +3,13 @@
     position: fixed;        /* stays on screen, does not push layout */
     top: 20px;
     right: 20px;
-    background: #4CAF50;    /* green success color */
-    color: white;
+    color: var(--green);
+    background-color: var(--bg-third);
     padding: 15px 20px;
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     z-index: 9999;
-    font-size: 16px;
+    font-size: 20px;
      animation: disappear 3s forwards;
 }
 @keyframes disappear {
@@ -20,13 +20,20 @@
 /* --- Back to Manage Page button --- */
 #back_to_Manage_Page_icon {
     position: absolute;
-    padding: 12px;
+    padding: 8px 20px;
     margin: 20px;
     border-radius: 6px;
-    border: 1px solid white;
-    background: transparent;
-    color: rgb(255, 255, 255);
+    border: 1px solid var(--border);
+    background-color: var(--blue-primary);
+    color: var(--text-primary);
     text-decoration: none;
+    transition: background-color 0.25s ease;
+    font-size: 24px;
+
+}
+#back_to_Manage_Page_icon:hover {
+    background-color: var(--blue-secondary);
+    box-shadow: 0 0 10px var(--blue-secondary);
 }
 #back_to_Manage_Page_icon a {
     top: -4px;
@@ -36,9 +43,10 @@
 /* --- EOI Query Results Title --- */
 #EOI_Query_Results_title {
     text-align: center;
-    color: white;
+    color: var(--text-primary);
     margin: 30px;
     padding: 30px;
+    font-size: 40px;
 }
 
 /* --- Background --- */
@@ -46,7 +54,7 @@
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: url("./images/universe_background.jpg") no-repeat;
+    background: var(--space-img) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -76,38 +84,35 @@ table {
 }
 
 table th, table td {
-    border: 1px solid #ffffff88; 
+    border: 1px solid var(--border); 
     padding: 10px 15px; 
     text-align: left;
-    color: white;
+    color: var(--text-primary);
 }
-
+table td {
+    background-color: var(--bg-third);
+}
 table th {
-    background-color: rgba(0,0,0,0.5); 
+    background-color: var(--bg-secondary); 
 }
 
 table tr:nth-child(even) {
     background-color: rgba(255,255,255,0.05); 
 }
-.status_select {
-    appearance: none;
-    font-size: 15px;
-    border: none;
-    background-color: #ffffff00;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    transition: 0.2s ease;
+
+#No-record-error {
+    font-size: 30px;
+    text-align: center;
+    color: var(--red);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
+
 }
-.status_select option{
-    color: black;
-}
-.save_button{
-    background-color: rgba(20, 19, 19, 0.846);
-    font-size: 25px;
-    color:white;
-    margin-top: 20px;
-    padding: 20px;
+
+#Deleted-eoi {
+    font-size: 30px;
+    text-align: center;
+    color: var(--green);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
 }
 
 /* --- Responsive Adjustments --- */
@@ -126,3 +131,5 @@ table tr:nth-child(even) {
         overflow-x: auto;
     }
 }
+
+

@@ -47,7 +47,7 @@ BASIC STYLING
   --green: hsl(139, 95%, 55%);
   --red: hsl(353, 84%, 45%);
 
-
+  --space-img: url("../images/space-bg.jpg");
 
 }
 
@@ -55,6 +55,7 @@ body {
   font-family: 'Exo 2', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+
 }
 
 p, li, figcaption, label {
@@ -71,11 +72,33 @@ a {
   color:var(--blue-primary);
 }
 a:hover, a:active {
-  color:var(--blue-primary);
+  color:var(--blue-secondary);
 }
 
 
 
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--blue-primary); /* semi-transparent */
+    color: var(--text-primary);
+    border-radius: 50%; /* circle */
+    text-align: center;
+    line-height: 50px; /* vertically center the arrow */
+    font-size: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s, opacity 0.3s;
+    opacity: 0.5; /* idle opacity */
+}
+
+#backToTop:hover,
+#backToTop:focus {
+    background-color: var(--blue-secondary); /* darker on hover/focus */
+    opacity: 1;
+}
 
 /* --- Logo --- */
 header {
