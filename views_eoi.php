@@ -50,9 +50,17 @@ if ($action == "list_all") {
     $reference_number = mysqli_real_escape_string($conn, $_POST['reference_number']);
     $query = "DELETE FROM eoi WHERE reference_number = '$reference_number'";
     if (mysqli_query($conn, $query)) {
-        echo "<p>EOIs for job ref '$reference_number' have been deleted.</p>";
+        echo "<p class='Announcement'>EOIs for job ref '$reference_number' have been deleted.</p>";
+        $query = "
+            SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
+            FROM eoi e
+            LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
+            LEFT JOIN skills s ON us.skill_id = s.skill_id
+            GROUP BY e.eoi_number
+        ";
+        $result = mysqli_query($conn, $query);
     } else {
-        echo "<p>Error deleting records.</p>";
+        echo "<p class='Announcement'>Error deleting records.</p>";
     }
 
 } elseif ($action == "change_status") {
@@ -60,10 +68,48 @@ if ($action == "list_all") {
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $query = "UPDATE eoi SET status = '$status' WHERE eoi_number = $eoi_number";
     if (mysqli_query($conn, $query)) {
-        echo "<p>Status updated successfully.</p>";
+        echo "<p class='Announcement'>Status updated successfully.</p>";
+        $query = "
+            SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
+            FROM eoi e
+            LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
+            LEFT JOIN skills s ON us.skill_id = s.skill_id
+            GROUP BY e.eoi_number
+        ";
+        $result = mysqli_query($conn, $query);
     } else {
-        echo "<p>Error updating status.</p>";
+        echo "<p class='Announcement'>Error updating status.</p>";
+        $query = "
+            SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
+            FROM eoi e
+            LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
+            LEFT JOIN skills s ON us.skill_id = s.skill_id
+            GROUP BY e.eoi_number
+        ";
+        $result = mysqli_query($conn, $query);
     }
+} elseif ($action == "bulk_update_status") {
+    // NEW BULK UPDATE ACTION
+    $eoi_numbers = $_POST['eoi_number'];
+    $statuses    = $_POST['status'];
+
+    for ($i = 0; $i < count($eoi_numbers); $i++) {
+        $id = mysqli_real_escape_string($conn, $eoi_numbers[$i]);
+        $status = mysqli_real_escape_string($conn, $statuses[$i]);
+
+        $query = "UPDATE eoi SET status = '$status' WHERE eoi_number = '$id'";
+        mysqli_query($conn, $query);
+    }
+
+    echo "<p class='Announcement'>All statuses updated successfully.</p>";
+    $query = "
+        SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
+        FROM eoi e
+        LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
+        LEFT JOIN skills s ON us.skill_id = s.skill_id
+        GROUP BY e.eoi_number
+    ";
+    $result = mysqli_query($conn, $query);
 }
 ?>
 
@@ -87,44 +133,65 @@ if ($action == "list_all") {
         <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
 
         <?php if ($result && mysqli_num_rows($result) > 0): ?>
-        <table>
-            <tr>
-                <th>EOI number</th>
-                <th>Job Ref</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of birth</th>
-                <th>Gender</th>
-                <th>Street address</th>
-                <th>Suburb/Town</th>
-                <th>State</th>
-                <th>Postcode</th>
-                <th>Email</th>
-                <th>Phone number</th>
-                <th>Skills</th>
-                <th>Other skills</th>
-                <th>Status</th>
-            </tr>
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-            <tr>
-                <td><?= display_field($row['eoi_number']) ?></td>
-                <td><?= display_field($row['reference_number']) ?></td>
-                <td><?= display_field($row['first_name']) ?></td>
-                <td><?= display_field($row['last_name']) ?></td>
-                <td><?= display_field($row['date_of_birth']) ?></td>
-                <td><?= display_field($row['gender']) ?></td>
-                <td><?= display_field($row['street']) ?></td>
-                <td><?= display_field($row['suburb']) ?></td>
-                <td><?= display_field($row['state']) ?></td>
-                <td><?= display_field($row['postcode']) ?></td>
-                <td><?= display_field($row['email']) ?></td>
-                <td><?= display_field($row['phone']) ?></td>
-                <td><?= display_field($row['skills_list']) ?></td>
-                <td><?= display_field($row['other_skills']) ?></td>
-                <td><?= display_field($row['status']) ?></td>
-            </tr>
-            <?php endwhile; ?>
-        </table>
+         <!--FORM FOR BULK STATUS UPDATE -->
+        <form method="POST" action="">
+            <input type="hidden" name="action" value="bulk_update_status">
+
+            <table>
+                <tr>
+                    <th>EOI number</th>
+                    <th>Job Ref</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of birth</th>
+                    <th>Gender</th>
+                    <th>Street address</th>
+                    <th>Suburb/Town</th>
+                    <th>State</th>
+                    <th>Postcode</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Skills</th>
+                    <th>Other skills</th>
+                    <th>Status</th>
+                </tr>
+
+                <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    <td><?= display_field($row['eoi_number']) ?></td>
+                    <td><?= display_field($row['reference_number']) ?></td>
+                    <td><?= display_field($row['first_name']) ?></td>
+                    <td><?= display_field($row['last_name']) ?></td>
+                    <td><?= display_field($row['date_of_birth']) ?></td>
+                    <td><?= display_field($row['gender']) ?></td>
+                    <td><?= display_field($row['street']) ?></td>
+                    <td><?= display_field($row['suburb']) ?></td>
+                    <td><?= display_field($row['state']) ?></td>
+                    <td><?= display_field($row['postcode']) ?></td>
+                    <td><?= display_field($row['email']) ?></td>
+                    <td><?= display_field($row['phone']) ?></td>
+                    <td><?= display_field($row['skills_list']) ?></td>
+                    <td><?= display_field($row['other_skills']) ?></td>
+
+                    <!-- Editable dropdown for bulk status update -->
+                    <td>
+                        <input type="hidden" name="eoi_number[]" value="<?= $row['eoi_number'] ?>">
+
+                        <select name="status[]" class="status_select">
+                            <option value="New"        <?= ($row['status']=='New' ? 'selected' : '') ?>>New</option>
+                            <option value="Current"<?= ($row['status']=='Current' ? 'selected' : '') ?>>Current</option>
+                            <option value="Final"   <?= ($row['status']=='Final' ? 'selected' : '') ?>>Final</option>
+                        </select>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+
+            </table>
+
+            <!-- BULK UPDATE BUTTON -->
+            <button type="submit" class="save_button">Save All Changes</button>
+
+        </form>
         <?php else: ?>
             <p>No records found.</p>
         <?php endif; ?>

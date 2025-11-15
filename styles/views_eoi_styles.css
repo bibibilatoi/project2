@@ -1,3 +1,17 @@
+
+.Announcement{
+    position: fixed;        /* stays on screen, does not push layout */
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;    /* green success color */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-size: 16px;
+    animation: fadeOut 1s forwards;
+}
 /* --- Back to Manage Page button --- */
 #back_to_Manage_Page_icon {
     position: absolute;
@@ -38,8 +52,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
-    height: 550px;
+    width: 90%;
+    height: 650px;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -69,6 +83,26 @@ table th {
 
 table tr:nth-child(even) {
     background-color: rgba(255,255,255,0.05); 
+}
+.status_select {
+    appearance: none;
+    font-size: 15px;
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+}
+.status_select option{
+    color: black;
+}
+.save_button{
+    background-color: rgba(20, 19, 19, 0.846);
+    font-size: 25px;
+    color:white;
+    margin-top: 20px;
+    padding: 20px;
 }
 
 /* --- Responsive Adjustments --- */
