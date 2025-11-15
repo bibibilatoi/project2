@@ -1,11 +1,11 @@
 <?php
 if (!isset($pages) || !is_array($pages)) {
     $pages = [
-        'login.php' => 'Login',
         'index.php' => 'Home Page',
         'jobs.php' => 'Jobs Positions',
         'apply.php' => 'Applications',
-        'about.php' => 'About Us'
+        'about.php' => 'About Us',
+        'login.php' => 'Manager Page'
     ];
 }
 

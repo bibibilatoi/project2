@@ -183,6 +183,7 @@ CREATE TABLE `managers` (
 
 INSERT INTO `managers` (`username`, `password`, `email`) VALUES
 <<<<<<< HEAD
+<<<<<<< HEAD
 ('ABC', '$2y$10$HNRFOl69REtervonKj0/nuE.CTzThXlvWOWOFqsx.V51FC41crlju', 'anhtuan@gmail.com'),
 ('Admin', '$2y$10$e9qIillhDPEiMOUo0nGBC.taIGT/.oEDuReD4Dc9C1CHBs9byVSJW', 'trinhthaianhtuan@gmail.com'),
 ('NeverGonnaGiveYouUp', '$2y$10$.bmxdXQyEdF457w4WQDKFObBfHWJe14hjEtLbmp7lYEa5cZJv9KTS', 'steepmolecules@gmail.com');
@@ -190,6 +191,11 @@ INSERT INTO `managers` (`username`, `password`, `email`) VALUES
 ('long', '123', 'long@gmail.com'),
 ('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com');
 >>>>>>> origin/main
+=======
+('ABC', '$2y$10$HNRFOl69REtervonKj0/nuE.CTzThXlvWOWOFqsx.V51FC41crlju', 'anhtuan@gmail.com'),
+('Admin', '$2y$10$e9qIillhDPEiMOUo0nGBC.taIGT/.oEDuReD4Dc9C1CHBs9byVSJW', 'trinhthaianhtuan@gmail.com'),
+('NeverGonnaGiveYouUp', '$2y$10$.bmxdXQyEdF457w4WQDKFObBfHWJe14hjEtLbmp7lYEa5cZJv9KTS', 'steepmolecules@gmail.com');
+>>>>>>> redesign-branch
 
 -- --------------------------------------------------------
 
@@ -366,10 +372,14 @@ ALTER TABLE `basic_qualifications`
 --
 ALTER TABLE `eoi`
 <<<<<<< HEAD
+<<<<<<< HEAD
   MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 =======
   MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 >>>>>>> origin/main
+=======
+  MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+>>>>>>> redesign-branch
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -394,10 +404,14 @@ ALTER TABLE `preferred_skills`
 --
 ALTER TABLE `skills`
 <<<<<<< HEAD
+<<<<<<< HEAD
   MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 =======
   MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 >>>>>>> origin/main
+=======
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+>>>>>>> redesign-branch
 
 --
 -- Constraints for dumped tables

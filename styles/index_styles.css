@@ -4,34 +4,39 @@ Index PAGE CSS - MAIN AND SECTIONS
 *****************************************
 */
 
-/* Base body */
-#index-main {
-    background-color: #000000;
-    color: #fff;
-    line-height: 1.6;
+
+#index-intro, #index-achievements, #index-aspiration, 
+#index-our-people, #index-our-brilliant-minds, #Why-work-with-us 
+{
+    display: block;
 }
 
-
-
 /* Intro */
-#index-intro {
+#index-intro h1{
     text-align: center;
-    padding: 4rem 2rem; 
+    margin-top: 10rem;
+    font-size:45px;
+
 }
 
 #index-intro p {
     margin-top: 1.5rem;
+    text-align: center;
+    padding: 0 5rem;
+    font-size: 24px;
 }
 
-/* Section headings */
-.section-heading, #index-achievements h1, #index-our-people h1, #index-our-brilliant-minds h1, #Why-work-with-us h1 {
-    text-align: center;
-    margin: 3rem 0 2rem; /* top 3rem, bottom 2rem */
-}
+
 
 /* Achievements */
 #index-achievements {
+    margin-top: 22rem;
+    margin-bottom: 10rem;
+}
+#index-achievements h1{
     text-align: center;
+    font-size:40px;
+
 }
 
 .achievement-2060, .achievement-2075, .achievement-2110 {
@@ -45,30 +50,61 @@ Index PAGE CSS - MAIN AND SECTIONS
 
 .achievement-2075 {
     flex-direction: row-reverse;
+    padding-top: 6rem;
+    padding-bottom: 2rem;
 }
 
-.achievement-text, .achievement-figure {
-    flex: 1 1 300px;
+.achievement-figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 500px;
+    gap: 1rem;
 }
-
-/* Add small horizontal padding for text */
-.achievement-text {
+.achievement-figure figcaption{
+    font-size: 24px;
+    color: var(--text-secondary);
+} 
+.achievement-text{
+    font-size: 24px;
     padding: 0 1rem;
+    background-color: var(--blue-primary);
+    width: fit-content;
+} 
+.achievement-figure img {
+    border-radius: 8px;
 }
-
 /* Aspiration paragraph */
 #index-aspiration {
     text-align: center;
     font-weight: bold;
-    margin: 4rem 2rem; 
+    padding: 1.5rem 1rem; 
+    margin-top: 10rem;
+    background-color: var(--bg-third);
+    width: fit-content;
+    font-size: 24px;
 }
 
 /* Our People */
+#index-our-people {
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+
+}
+#index-our-people h1{
+    font-size: 40px;
+    text-align: center;
+}
 #index-our-people p {
     text-align: center;
-    margin: 1.5rem 2rem;
+    margin: 1.5rem;
+    font-size: 24px;
 }
+#index-our-people p:first-of-type {
+    margin-top: 3rem;
+}
+
 
 /* Our Brilliant Minds */
 #index-our-brilliant-minds {
@@ -76,28 +112,98 @@ Index PAGE CSS - MAIN AND SECTIONS
     padding: 2rem;
 }
 
-#index-our-brilliant-minds-behind {
+#index-our-brilliant-minds {
     margin: 2rem 0;
 }
-
-.engineer-profile {
-    margin: 7rem 0 2rem;
+#index-our-brilliant-minds  h1{
+    font-size: 40px;
     text-align: center;
+
+}
+#index-our-brilliant-minds p {
+    margin: 2rem;
+    font-size: 22px;
+}
+#index-our-brilliant-minds > p:first-of-type {
+    margin-bottom: 10rem;
+    font-size:24px;
+}
+
+
+.engineer-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+
+}
+/* Reverse even rows */
+.engineer-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+/* Text alignment based on row */
+.engineer-row:nth-child(odd) .engineer-profile {
+    text-align: left;
+}
+
+.engineer-row:nth-child(even) .engineer-profile {
+    text-align: right;
+}
+
+
+.engineer-row:last-of-type {
+    margin-bottom: 10rem;
+}
+
+/* Left side text */
+.engineer-profile {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Right side image + caption */
+.engineer-figure {
+    flex: 1;
+    max-width: 350px;
+}
+
+.engineer-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .engineer-figure figcaption {
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 16px;
+    color: var(--text-secondary);
     text-align: center;
-    font-style: italic;
 }
 
 /* Together section */
 #index-our-brilliant-minds-together {
-    margin: 7rem 0;
     text-align: center;
+    font-weight: bold;
+    padding: 1.5rem 1rem; 
+    background-color: var(--bg-third);
+    width: fit-content;
+    font-size: 24px;
 }
 
+
+
+
+
 /* Why Work With Us */
+#Why-work-with-us  h1{
+    margin-top: 20rem;
+    font-size: 40px;
+    text-align: center;
+
+}
 #Why-work-with-us ul {
     list-style-type: none;
     font-style: italic;
@@ -106,7 +212,9 @@ Index PAGE CSS - MAIN AND SECTIONS
 }
 
 .work-with-us-item {
-    margin: 1.5rem 0;
+    margin: 5rem 0;
+    font-size: 20px;
+
 }
 
 .work-with-us-item--left {
@@ -134,4 +242,11 @@ Index PAGE CSS - MAIN AND SECTIONS
     align-items: center;        /* center horizontally */
     justify-content: center;    /* center vertically, if container has height */
     height: auto;    
+}
+#workplace-img-container img {
+    border-radius: 8px;
+}
+#workplace-img-container figcaption {
+    color:var(--text-secondary);
+    font-size: 20px;
 }

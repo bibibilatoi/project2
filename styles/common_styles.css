@@ -31,40 +31,34 @@ BASIC STYLING
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --block-basic-color: #5E747F;
-  --block-special-color:#668a9c;
-  --block-hover-color: #478aac;
-  --text-basic-color: #E5E5E5;
-  --text-selected-color: #1EF963;
-  --text-warning-color: #D61229;
-  --text-heading-color: #FFD700;
-  --bg-main-color:#000000;
+  --bg-primary: hsl(0, 0%, 0%);
+  --bg-secondary: hsl(0, 0%, 15%);
+  --bg-third: hsl(0, 0%, 30%);
+
+  --border: hsl(0, 0%, 50%);
+
+  --text-primary: hsl(0, 0%, 90%);
+  --text-secondary: hsl(0, 0%, 70%);
+
+  --blue-primary: hsl(233, 70%, 60%);
+  --blue-secondary: hsl(233, 70%, 70%);
+
+
+  --green: hsl(139, 95%, 55%);
+  --red: hsl(353, 84%, 45%);
+
+
+
 }
 
 body {
   font-family: 'Exo 2', sans-serif;
-  background-color: var(--bg-main-color);
-  color: var(--text-basic-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-p, li, figcaption {
-  font-size: 20px;
-}
-
-h1, h2, h3, h4 {
-  color:var(--text-heading-color)
-}
-h1 {
-  font-size: 48px;
-}
-h2 {
-  font-size: 40px;
-}
-h3 {
-  font-size: 32px;
-}
-h4 {
-  font-size: 24px;
+p, li, figcaption, label {
+  font-size: 16px;
 }
 
 img{
@@ -74,10 +68,18 @@ img{
 }
 
 a {
-  color: var(--text-selected-color);
+  color:var(--blue-primary);
 }
-a:visited {
-  color: var(--block-hover-color);
+a:hover, a:active {
+  color:var(--blue-primary);
+}
+
+
+
+
+/* --- Logo --- */
+header {
+	border-bottom: 1px solid var(--border);
 }
 
 
@@ -98,6 +100,7 @@ a:visited {
 #nav-menu {
 	width: 100%;
 	padding: 1rem 0;
+
 }
 
 #nav-menu ul {
@@ -110,18 +113,19 @@ a:visited {
 }
 
 #nav-menu a {
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: var(--text-basic-color);
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
-    border-radius: 4px;
+	display: block;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	color:var(--text-primary);
+	font-weight: bold;
+	transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
+	border-radius: 4px;
+	font-size:20px;
+
 }
 
 #nav-menu a:not(#current-page):hover {
-    background-color: var(--text-basic-color);
-    color: var(--bg-main-color);
+  background-color: var(--blue-primary);
 }
 
 /* --- Animations --- */
@@ -141,12 +145,10 @@ a:visited {
 
 
 #nav-menu #current-page {
-    background: var(--text-basic-color);
-    color: var(--bg-main-color);
     animation: activateCurrent 0.4s 1.2s forwards ease-in-out;
 }
 
-@keyframes activateCurrent { to { background-color: var(--text-basic-color); color: var(--bg-main-color); } }
+@keyframes activateCurrent { to { background-color: none; background-color: var(--blue-primary); } }
 
 
 
@@ -194,24 +196,49 @@ a:visited {
 
 
 footer{
-  border-top: 1px solid var(--text-basic-color);
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   clear: both;
   align-items: center;
   text-align: center;
   margin: 1rem 0;
-  gap: 1rem;
+  color: var(--text-secondary);
+
+  line-height: 1.5rem;
 }
+footer a {
+  text-decoration: none;
+  display: block;
+  color: var(--blue-primary);
+  font-weight: bold;
+}
+footer strong {
+	color: var(--text-primary);
+}
+footer > strong{
+  margin-top:1.5rem;
+  margin-bottom: 0;
+  
+}
+
+
 footer p {
   font-size: 16px;
+  color: var(--text-secondary);
 }
-#contact-info a{
+
+
+#footer-logo {
   display: block;
-  color: var(--text-selected-color)
+  margin-bottom: 2rem;
 }
-#contact-info a:visited {
-  color: var(--block-hover-color);
+#footer-logo p {
+  margin-top: 0.5rem;
+}
+
+#contact-info {
+  margin-bottom: 2rem;
 }
 
 
@@ -227,23 +254,7 @@ footer p {
 
 
 
-#apply-body main{
-  min-height: 100vh;
 
-  /*Background is a space-ish color gradient (static)*/
-  /*the color gradient go from left to right (90deg) */
-
-  /*the color #02010a get repeated so that the jump looks seemsless*/
-
-  background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
-  );
-  background-size: 800% 800%;
-  /* Animate from right to left */
-  animation: gradientShiftSpace 10s linear infinite;
-
-
-}
 
 
 

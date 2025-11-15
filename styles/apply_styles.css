@@ -17,7 +17,23 @@ Apply Page CSS
     background-position: 0% 50%;
   }
 }
+#apply-body main{
+  min-height: 100vh;
 
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
+}
 
 
 #apply-body main, #about-body main{
@@ -47,7 +63,7 @@ Apply Page CSS
   backdrop-filter: blur(5px);
   margin: 0 auto;
   padding: 25px;
-  border: 1px solid var(--text-basic-color);
+  border: 1px solid var(--border);
   border-radius: 8px;
   max-width: 700px;
 
@@ -62,7 +78,7 @@ Apply Page CSS
   display: block;
   margin-bottom: 6px;
   font-weight: bold;
-  color: var(--text-heading-color);
+  font-size: 20px;
 }
 #jobApplicationForm label:first-child {
   margin-top: 0;
@@ -74,8 +90,8 @@ Apply Page CSS
 
 #h1-apply 
 {
+  padding-top: 3rem;
   text-align: center;
-  color: var(--text-heading-color);
   margin-bottom: 20px;
 }
 
@@ -90,7 +106,7 @@ select,
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid var(--text-basic-color);
+  border: 1px solid var(--border);
   border-radius: 5px;
   font-size: 16px;
 }
@@ -99,8 +115,7 @@ select,
 input[type="radio"],
 input[type="checkbox"] 
 {
-  margin-right: 6px;
-  accent-color: var(--text-selected-color);
+  accent-color: var(--blue-secondary);
 }
 
 
@@ -113,12 +128,12 @@ input[type="checkbox"]
 
 
 #jobApplicationForm fieldset {
-  color: var(--text-heading-color);
+  font-size: 20px;
   font-weight: bold;
   padding-left: 0.5rem;
 }
 #jobApplicationForm fieldset label {
-  color: var(--text-basic-color);
+  font-size: 16px;
   display: inline-block;
 }
 
@@ -127,17 +142,22 @@ input[type="checkbox"]
 }
 
 #jobApplicationForm .fieldset-container input:checked + label {
-  color:var(--text-selected-color);
+  color:var(--blue-secondary);
 }
+#gender-field input, label {
+  margin-left: 0.5rem;
+}
+#gender-field input:checked + label{
+  color:var(--blue-secondary);
 
-
+}
 
 
 #apply-button, input[type="submit"] 
 {
   display: block;
   width: 100%;
-  background-color: #1976d2;
+  background-color: var(--blue-primary);
   color:inherit;
   border: none;
   padding: 0.5rem;
@@ -150,8 +170,8 @@ input[type="checkbox"]
 
 #apply-button:hover, input[type="submit"]:hover 
 {
-  background-color: #23b1d1;
+  background-color: var(--blue-secondary);
   transform: translateY(-2px);
-  box-shadow: 0 0 10px #23b1d1;
+  box-shadow: 0 0 10px var(--blue-secondary);
   
 }
