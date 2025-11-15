@@ -64,19 +64,19 @@
 			<dl>
 				<dt>Trinh Thai Anh Tuan</dt>
 				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: About Us page (about.php)</dd>
+				<dd>Individual Responsibility: About Us page (about.php), ; manage, login, register and view_eoi pages</dd>
 
 				<dt>Vu Hoang Long</dt>
 				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: Job Positions page (jobs.php)</dd>
+				<dd>Individual Responsibility: Job Positions page (jobs.php), SQL tables, refine design</dd>
 
 				<dt>Duong Tri Duc</dt>
 				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: Job Applications page, some job positions' descriptions</dd>
+				<dd>Individual Responsibility: Job Applications page, some job positions' descriptions, process_eoi.php</dd>
 				<dd>Question Poster</dd>
 
 				<dt>Dang Thien An</dt>
-				<dd>Shared Responsibility: Home Page, CSS File</dd>
+				<dd>Shared Responsibility: Home Page, CSS File, refine design, pptx slides</dd>
 				<dd>Question Poster</dd>
 			</dl>
 
