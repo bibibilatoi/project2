@@ -1,307 +1,77 @@
 <?php
+session_start();
+require_once "settings.php";
 
-// --- PREVENT DIRECT ACCESS ---
-if (!isset($_POST['firstname'])) {   //-- if the value of firstname does not exist,
-    header('Location: apply.php');  // redirect if someone lands here manually
-    exit();
+// --- Prevent direct access ---
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
+    !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||
+    $_POST['form_token'] !== $_SESSION['apply_form_token']
+) {
+    unset($_SESSION['apply_form_token']);
+    die("<div class='error-msg'>Access denied. Please submit the form from the Apply page.</div>");
 }
 
-// --- INPUT CLEANUP FUNCTION ---
-function cleanStuff($stuff) {
-    $stuff = trim($stuff);
-    $stuff = stripslashes($stuff);
-    $stuff = htmlspecialchars($stuff);
-    return $stuff;
+// Valid submission -> delete the token -> avoid persistence with same token
+// Only infos stored is confirm eoi which is only displayed info and not fetching/inserting anything
+unset($_SESSION['apply_form_token']);
+
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+
+// --- Collect main EOI data ---
+$reference_number = $conn->real_escape_string($_POST['reference_number']);
+$first_name = $conn->real_escape_string($_POST['first_name']);
+$last_name = $conn->real_escape_string($_POST['last_name']);
+$date_of_birth = $conn->real_escape_string($_POST['date_of_birth']);
+$gender = $conn->real_escape_string($_POST['gender']);
+$street = $conn->real_escape_string($_POST['street']);
+$suburb = $conn->real_escape_string($_POST['suburb']);
+$state = $conn->real_escape_string($_POST['state']);
+$postcode = $conn->real_escape_string($_POST['postcode']);
+$email = $conn->real_escape_string($_POST['email']);
+$phone = $conn->real_escape_string($_POST['phone']);
+$other_skills = $conn->real_escape_string($_POST['other_skills'] ?? '');
+
+// --- Insert EOI ---
+$stmt = $conn->prepare("INSERT INTO eoi 
+    (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
 }
 
-// --- TAKE AND CLEAN INPUTS ---
+$stmt->bind_param(
+    "ssssssssssss", 
+    $reference_number, $first_name, $last_name, $date_of_birth, $gender, 
+    $street, $suburb, $state, $postcode, $email, $phone, $other_skills
+);
 
-//- JobRef
-if (isset($_POST['jobRef'])) {    //-- if there is value input of 'jobRef' and isn't null, take and clean it through cleanStuff function
-    $job_ref = cleanStuff($_POST['jobRef']);
-} else {                    // -- if not, put $job_ref value as an empty string 
-    $job_ref = "";              //-- the "" helps to intepret the value 
+if (!$stmt->execute()) {
+    die("<div class='error-msg'>Error submitting EOI: " . $stmt->error . "</div>");
 }
 
-//- FirstName
-if (isset($_POST['firstName'])) {
-    $fname = cleanStuff($_POST['firstName']);
-} else {
-    $fname = "";
+$eoi_number = $stmt->insert_id;
+$stmt->close();
+
+
+if (!empty($_POST['skills']) && is_array($_POST['skills'])) {
+    $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)");
+    if (!$stmt_skill) {
+        die("Prepare failed for skills: " . $conn->error);
+    }
+    foreach ($_POST['skills'] as $skill_id) {
+        $skill_id = (int)$skill_id; // cast to int for safety
+        $stmt_skill->bind_param("ii", $eoi_number, $skill_id);
+        if (!$stmt_skill->execute()) {
+            error_log("Skill insert failed: " . $stmt_skill->error);
+        }
+    }
+    $stmt_skill->close();
 }
 
-//- LastName
-if (isset($_POST['lastName'])) {
-    $lname = cleanStuff($_POST['lastName']);
-} else {
-    $lname = "";
-}
+// Save EOI number in session for confirmation page
+$_SESSION['eoi_confirm'] = $eoi_number;
 
-//- Dob
-if (isset($_POST['dob'])) {
-    $dob = cleanStuff($_POST['dob']);
-} else {
-    $dob = "";
-}
-
-//- Gender
-if (isset($_POST['gender'])) {
-    $gender = cleanStuff($_POST['gender']);
-} else {
-    $gender = "";
-}
-
-//- Street
-if (isset($_POST['street'])) {
-    $street = cleanStuff($_POST['street']);
-} else {
-    $street = "";
-}
-
-//- Suburb
-if (isset($_POST['suburb'])) {
-    $suburb = cleanStuff($_POST['suburb']);
-} else {
-    $suburb = "";
-}
-
-//- State
-if (isset($_POST['state'])) {
-    $state = cleanStuff($_POST['state']);
-} else {
-    $state = "";
-}
-
-//- Postcode
-if (isset($_POST['postcode'])) {
-    $postcode = cleanStuff($_POST['postcode']);
-} else {
-    $postcode = "";
-}
-
-//- Email
-if (isset($_POST['email'])) {
-    $email = cleanStuff($_POST['email']);
-} else {
-    $email = "";
-}
-
-//- Phone
-if (isset($_POST['phone'])) {
-    $phone = cleanStuff($_POST['phone']);
-} else {
-    $phone = "";
-}
-
-
-//- OtherSkills
-if (isset($_POST['otherSkills'])) {        // optional text area
-    $other = cleanStuff($_POST['otherSkills']);
-} else {
-    $other = "";  
-}
-
-
-// --- VALIDATION ---
-
-
-
-//- jobRef
-
-$numerror = 0;
-
-if (empty($job_ref)) {
-    echo " Job reference is missing!<br>";
-    $numerror++;
-} else {
-    echo "Job reference is valid.<br>";
-}
-
-//-- checkng first name
-if (empty($fname)) {
-    echo "First name is missing!";
-    $numerror++;
-} else if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/", $fname )) {   // If the fname value doesnt match the pattern and length, echo the following
-    echo "Invalid first name format<br>";
-    $numerror++;
-} else {
-    echo "Valid first name format<br>";
-}
-
-//-- checking last name
-if (empty($lname)) {
-    echo "Last name is missing!<br>";
-    $numerror++;
-} else if (!preg_match("/^[A-Za-zÀ-ỹà-ỹ\s]{1,20}$/", $lname)) {  //similar
-    echo "Invalid last name format<br>";
-    $numerror++;
-} else {
-    echo "Valid last name format<br>";
-}
-
-//-- checking dob
-
-if (empty($dob)) {
-    echo "Please enter your date of birth<br>";
-    $numerror++;
-} else if (!preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $dob)) {
-    echo "Invalid DOB format<br>";
-    $numerror++;
-} else {
-    echo "Valid DOB format<br>";
-}
-
-//-- checking gender
-if (empty($gender)) {
-    echo "Gender is not selected<br>";
-    $numerror++;
-} else {
-    echo "Gender is selected<br>";
-}
-
-//-- checking street (by length)
-if (strlen ($street) > 40) {          //check whether string length is more than 40
-    echo "Street name is too long";
-    $numerror++;
-} else {
-    echo "Valid street name";
-}
-
-//-- checking suburb 
-if (strlen($suburb) > 40) {
-    echo "Suburb name is too long";
-    $numerror++;
-} else {
-    echo "Valid suburb name";
-}
-
-//-- checking state
-$valid_states = ["VIC","NSW","QLD","NT","WA","SA","TAS","ACT"];   // array of states 
-if (empty($state)) {
-    echo "No state is selected";
-    $numerror++;
-} else if (!in_array($state, $valid_states)) {      //to check if the state selected is among the array above
-    echo "Invalid state option";
-    $numerror++;
-} else {
-    echo "Valid state option";
-}
-
-//-- checking postcode
-if (empty($postcode)) {
-    echo "No postcode is entered<br>";
-    $numerror++;
-} else if (!preg_match("/^\d{4}$/", $postcode)) {         //to check if the post code value entered match the pattern
-    echo "Invalid postcode number<br>";
-    $numerror++;
-} else {
-    echo "Valid postcode number<br>";
-}
-
-//-- Checking email
-if (empty($email)) {
-    echo "Email address is missing<br>";
-    $numerror++;
-} else if (!preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i" , $email)) {      //checking if email input match the pattern
-    echo "Invalid email format";
-    $numerror++;
-} else {
-    echo "Valid email format<br>";
-}
-
-//-- Checking phone 
-if (empty($phone)) {
-    echo "Phone number is missing<br>";
-    $numerror++;
-} else if (!preg_match("/^[0-9 ]{8,12}$/", $phone)) {   //similar to above
-    echo "Invalid phone number format";
-    $numerror++;
-} else {
-    echo "Valid phone number format<br>";
-}
-
-//-- checking skills
-if (empty($skills)) {
-    echo "No skills are selected<br>";
-    $numerror++;
-} else {
-    echo "Skills are selected<br>";
-}
-
-
-
-///--- ERROR CHECK ---
-
-if ($numerror > 0) {
-    echo "<strong>❌ Form is not submitted. Please fix the errors</strong>";
-    exit(); // to not insert into the database
-} else {
-    echo "<strong> ✅ The inputs are valid. The form is submitted </strong> ";  
-}
-
-
-
-/// --- DATABASE ---   (copy theo trong phan setting.php)
-
-$host = "localhost";        
-$user = "root";         
-$pwd = "";              
-$sql_db = "project2_db";
-$conn = mysqli_connect($host, $user, $pwd, $sql_db);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-} 
-
-// --- TABLE ---
-$create_table = "CREATE TABLE IF NOT EXISTS eoi (          
-    EOInumber INT AUTO_INCREMENT PRIMARY KEY,       
-    jobRef VARCHAR(5),
-    firstName VARCHAR(20),                      --Table Structure--
-    lastName VARCHAR(20),
-    dob VARCHAR(10),
-    gender VARCHAR(10),
-    street VARCHAR(40),
-    suburb VARCHAR(40),
-    state VARCHAR(10),
-    postcode VARCHAR(4),
-    email VARCHAR(50),
-    phone VARCHAR(20),
-    skills VARCHAR(100),
-    otherSkills TEXT,
-    status VARCHAR(20) DEFAULT 'New'
-)";
-
-$skillsStr = is_array($skills) ? implode(', ', $skills) : $skills; //to combine skills checkboxes into string
-
-mysqli_query($conn, $create_table);
-
-///--- BUILD AND RUN INSERT QUERY ---
-
-$sql = "INSERT INTO eoi 
-(jobRef, firstName, lastName, dob, gender, street, suburb, state, postcode, email, phone, skills, otherSkills)
-VALUES (
-'$job_ref', '$fname', '$lname', '$dob', '$gender',
-'$street', '$suburb', '$state', '$postcode', '$email', '$phone', '$skillsStr', '$other'
-)";
-
-$formresult = mysqli_query($conn, $sql);
-
-
-///--- USER FEEDBACK ---
-if ($formresult) { 
-    $Id = mysqli_insert_id($conn);        // store the generated id by php in the $Id variable
-    echo "<h1> ✅Your application have been received!";
-    echo "<p> Thank you, <strong>$fname</strong>! Your EOI number is <b>$Id</b></p>";
-    echo "<p> We will hopefully be in touch with you soon</p>";
-} else {
-    echo "<p> Something had went wrong";
-}
-
-
-/// --- CLOSING CONNECTION ---
-mysqli_close($conn); 
-
-
-//--- ACKNOWLEDGEMENTS: The patterns are created by AI ---
+header("Location: confirm_eoi.php");
+exit;
 ?>

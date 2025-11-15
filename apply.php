@@ -1,11 +1,12 @@
 <?php
-// --- Load all available skills from DB ---
-require_once "settings.php"; // contains $conn = new mysqli(...);
+session_start();
+require_once "settings.php"; 
 
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$_SESSION['apply_form_token'] = bin2hex(random_bytes(16)); 
 
 $skills_query = "SELECT skill_id, skill_name FROM skills ORDER BY skill_name ASC";
 $skills_result = $conn->query($skills_query);
@@ -31,7 +32,7 @@ $skills_result = $conn->query($skills_query);
         <h1 id="h1-apply">Job Application Form</h1>
 
         <form id="jobApplicationForm" method="post" action="process_eoi.php">
-            
+            <input type="hidden" name="form_token" value="<?php echo $_SESSION['apply_form_token']; ?>">
             <!-- Job Reference -->
             <label for="reference_number">Job Reference Number:</label>
             <select id="reference_number" name="reference_number" required>
@@ -121,6 +122,7 @@ $skills_result = $conn->query($skills_query);
 
             <!-- Submit -->
             <button id="apply-button" type="submit">Apply</button>
+            
         </form>
     </main>
 
