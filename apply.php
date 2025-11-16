@@ -100,7 +100,7 @@ $skills_result = $conn->query($skills_query);
 
                 <?php if ($skills_result && $skills_result->num_rows > 0): ?>
                     <?php while ($row = $skills_result->fetch_assoc()): ?>
-                        <div class="fieldset-container">
+                        <div class="fieldset-container skills-container">
                             <input type="checkbox" id="skill_<?php echo $row['skill_id']; ?>" name="skills[]" value="<?php echo $row['skill_id']; ?>">
                             <label for="skill_<?php echo $row['skill_id']; ?>"><?php echo htmlspecialchars($row['skill_name']); ?></label>
                         </div>
@@ -108,12 +108,6 @@ $skills_result = $conn->query($skills_query);
                 <?php else: ?>
                     <p>No skills found. Please contact admin.</p>
                 <?php endif; ?>
-
-                <!-- Optional extra skill -->
-                <div class="fieldset-container">
-                    <input type="checkbox" id="Oas" name="skills[]" value="0">
-                    <label for="Oas">Other Advanced Skills (for higher roles)</label>
-                </div>
             </fieldset>
 
             <!-- Other Skills -->

@@ -87,7 +87,7 @@
 			<table class="about-table">
 			<caption>Our team's interests</caption>
 			<tr>
-				<th class="diagonal-cell"></th>
+				<th>Member</th>
 				<th colspan="2">Books</th>
 				<th>Music</th>
 				<th>Films</th>

@@ -94,9 +94,58 @@ input[type="checkbox"]
 }
 
 
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+#otherSkills:focus {
+  border-color: var(--border);
+  background-color: var(--accent-secondary);
+  box-shadow: 0 0 20px var(--accent-secondary);
+  transform: translateY(-2px);
+}
+select:focus {
+  border-color: var(--border);
+  background-color: var(--accent-secondary);
+  box-shadow: 0 0 20px var(--accent-secondary);
+  transform: translateY(-2px);
+}
+select option {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 0 20px var(--bg-secondary);
+  color:var(--text-primary);
+  border-radius: 0;
+}
+
+.skills-container {
+  display: flex;
+}
+.skills-container input {
+  display: none;
+  accent-color: var(--text-primary);
+
+}
+.skills-container label{
+    display: block;
+    padding:1.5rem;
+    width: 100%;
+    background-color: var(--bg-third);
+    color: var(--text-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.skills-container input:not(:checked) + label:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+.skills-container input:checked + label {
+    background-color: var(--accent-primary);
+    color: var(--text-primary);
+}
 #otherSkills
 {
-  resize: vertical;
   min-height: 80px;
 } 
 
@@ -116,16 +165,52 @@ input[type="checkbox"]
   padding-left: 1rem;
 }
 
-#jobApplicationForm .fieldset-container input:checked + label {
-  color:var(--accent-secondary);
-}
-#gender-field input, label {
-  margin-left: 0.5rem;
-}
-#gender-field input:checked + label{
-  color:var(--accent-secondary);
 
+/* Gender fieldset container */
+#gender-field {
+  border: none;
+  padding: 0;
+  margin-bottom: 2rem;
+
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
 }
+
+/* Hide native radio */
+#gender-field input[type="radio"] {
+  display: none;
+}
+
+/* Compact label style */
+#gender-field label {
+  padding: 1rem 2rem;
+  width: auto;                 /* shrink to fit content */
+  min-width: 90px;             /* optional: ensure consistent width */
+  background-color: var(--bg-third);
+  color: var(--text-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s ease;
+  white-space: nowrap;         /* prevent text wrap */
+}
+
+/* Hover */
+#gender-field input:not(:checked) + label:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+
+/* Checked */
+#gender-field input:checked + label {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
 
 
 #apply-button, input[type="submit"] 

@@ -105,22 +105,24 @@ a:hover, a:active {
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: var(--accent-primary); /* semi-transparent */
+    background-color: var(--accent-secondary);
     color: var(--text-primary);
-    border-radius: 50%; /* circle */
+    border-radius: 50%;
     text-align: center;
-    line-height: 50px; /* vertically center the arrow */
+    line-height: 50px;
     font-size: 30px;
     text-decoration: none;
-    transition: background-color 0.3s, opacity 0.3s;
-    opacity: 0.5; /* idle opacity */
+    transition: background-color 0.3s, opacity 0.3s, transform 0.5s ease;
+    opacity: 0.5;
 }
 
 #backToTop:hover,
 #backToTop:focus {
-    background-color: var(--accent-secondary); /* darker on hover/focus */
+    background-color: var(--accent-primary);
     opacity: 1;
+    transform: scale(1.05);
 }
+
 
 /* --- Logo --- */
 header {
@@ -290,11 +292,9 @@ footer p {
 @keyframes slideIn {
     from {
         transform: translateY(5px);
-        opacity: 0;
     }
     to {
         transform: translateY(-10px);
-        opacity: 1;
     }
 }
 

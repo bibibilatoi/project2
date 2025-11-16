@@ -93,6 +93,8 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
   color:var(--text-primary);
   background-color: var(--accent-primary);
 
+  transition: transform 0.3s ease;
+
 }
 .jobs-menu-button {
   margin-left: 2rem;
@@ -103,7 +105,9 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
   color:var(--text-primary);
   box-shadow: 0 0 10px var(--accent-secondary);
 }
-
+.go-apply-btn:hover {
+  transform: translateY(-5px);
+}
 
 /* making the bottom corners of the Jobs button straight if the Jobs button is clicked  */
 #toggle-jobs-menu:checked + .jobs-menu-button{

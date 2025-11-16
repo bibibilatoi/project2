@@ -63,30 +63,29 @@ if ($action == "list_all") {
     }
 
 } elseif ($action == "change_status") {
-    $eoi_number = $_POST['eoi_number'];
+    $eoi_number = (int) $_POST['eoi_number'];
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+
     $query = "UPDATE eoi SET status = '$status' WHERE eoi_number = $eoi_number";
+
     if (mysqli_query($conn, $query)) {
+
+        // Get ONLY the updated record
         $query = "
             SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
             FROM eoi e
             LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
             LEFT JOIN skills s ON us.skill_id = s.skill_id
+            WHERE e.eoi_number = $eoi_number
             GROUP BY e.eoi_number
         ";
         $result = mysqli_query($conn, $query);
+
     } else {
         echo "<p class='Announcement'>Error updating status.</p>";
-        $query = "
-            SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
-            FROM eoi e
-            LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
-            LEFT JOIN skills s ON us.skill_id = s.skill_id
-            GROUP BY e.eoi_number
-        ";
-        $result = mysqli_query($conn, $query);
     }
-} 
+}
+
 ?>
 
 <!DOCTYPE html>
