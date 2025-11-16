@@ -29,95 +29,20 @@ unset($_SESSION['apply_form_token']);
 // --- Collect and clean input ---
 // -- Input cleanup function --
 function cleanStuff($stuff) {
-    $stuff = trim($stuff);
-    $stuff = stripslashes($stuff);
-    $stuff = htmlspecialchars($stuff);
-    return $stuff;
+    return trim($stuff);
 }
-//- JobRef
-if (isset($_POST['jobRef'])) {    //-- if there is value input of 'jobRef' and isn't null, take and clean it through cleanStuff function
-    $job_ref = cleanStuff($_POST['jobRef']);
-} else {                    // -- if not, put $job_ref value as an empty string 
-    $job_ref = "";              //-- the "" helps to intepret the value 
-}
-
-//- FirstName
-if (isset($_POST['firstName'])) {
-    $fname = cleanStuff($_POST['firstName']);
-} else {
-    $fname = "";
-}
-
-//- LastName
-if (isset($_POST['lastName'])) {
-    $lname = cleanStuff($_POST['lastName']);
-} else {
-    $lname = "";
-}
-
-//- Dob
-if (isset($_POST['dob'])) {
-    $dob = cleanStuff($_POST['dob']);
-} else {
-    $dob = "";
-}
-
-//- Gender
-if (isset($_POST['gender'])) {
-    $gender = cleanStuff($_POST['gender']);
-} else {
-    $gender = "";
-}
-
-//- Street
-if (isset($_POST['street'])) {
-    $street = cleanStuff($_POST['street']);
-} else {
-    $street = "";
-}
-
-//- Suburb
-if (isset($_POST['suburb'])) {
-    $suburb = cleanStuff($_POST['suburb']);
-} else {
-    $suburb = "";
-}
-
-//- State
-if (isset($_POST['state'])) {
-    $state = cleanStuff($_POST['state']);
-} else {
-    $state = "";
-}
-
-//- Postcode
-if (isset($_POST['postcode'])) {
-    $postcode = cleanStuff($_POST['postcode']);
-} else {
-    $postcode = "";
-}
-
-//- Email
-if (isset($_POST['email'])) {
-    $email = cleanStuff($_POST['email']);
-} else {
-    $email = "";
-}
-
-//- Phone
-if (isset($_POST['phone'])) {
-    $phone = cleanStuff($_POST['phone']);
-} else {
-    $phone = "";
-}
-
-
-//- OtherSkills
-if (isset($_POST['otherSkills'])) {        // optional text area
-    $other = cleanStuff($_POST['otherSkills']);
-} else {
-    $other = "";  
-}
+$reference_number = cleanStuff($_POST['reference_number'] ?? '');     //cleans the input, if the value on the left is good then use, otherwise use '' (empty)       //code cleaned
+$first_name = cleanStuff($_POST['first_name'] ?? '');
+$last_name = cleanStuff($_POST['last_name'] ?? '');
+$date_of_birth = cleanStuff($_POST['date_of_birth'] ?? '');
+$gender = cleanStuff($_POST['gender'] ?? '');
+$street = cleanStuff($_POST['street'] ?? '');
+$suburb = cleanStuff($_POST['suburb'] ?? '');
+$state = cleanStuff($_POST['state'] ?? '');
+$postcode = cleanStuff($_POST['postcode'] ?? '');
+$email = cleanStuff($_POST['email'] ?? '');
+$phone = cleanStuff($_POST['phone'] ?? '');
+$other_skills = cleanStuff($_POST['other_skills'] ?? '');
 
 
 //-- Error Validation --
@@ -138,36 +63,36 @@ $required = [
 ];
 
 foreach ($required as $field => $value) {
-    if (empty($value)) $errors[] = "$field is required.";
+    if (empty($value)) $errors[] = "$field is required.";  //to check if value is empty, if it is then send an error mssg
 }
 
-// Validate email
+//-Validate email
 if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {  // filters and check whether format is correct or not
     $errors[] = "Invalid email format.";
 }
 
-// Validate date of birth (YYYY-MM-DD)
+//-Validate date of birth (YYYY-MM-DD)
 if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   //to check whether there is input and if it matches the pattern
     $errors[] = "Date of Birth must be in YYYY-MM-DD format.";
 }
 
-// Validate postcode (numbers only, 4-6 digits)
+//-Validate postcode (numbers only, 4-6 digits)
 if (!empty($postcode) && !preg_match('/^\d{4,6}$/', $postcode)) {
     $errors[] = "Postcode must be 4-6 digits.";
 }
 
-// Validate phone (numbers, spaces, +, -)
+//-Validate phone (numbers, spaces, +, -)
 if (!empty($phone) && !preg_match('/^[\d\+\-\s]{8,20}$/', $phone)) {
     $errors[] = "Phone number contains invalid characters.";
 }
 
-// Validate gender
+//-Validate gender
 $valid_genders = ['Male', 'Female', 'Other'];
 if (!empty($gender) && !in_array($gender, $valid_genders)) {
     $errors[] = "Invalid gender selected.";
 }
 
-// Validate skills
+//-Validate skills
 $skills_selected = !empty($_POST['skills']) && is_array($_POST['skills']) && count($_POST['skills']) > 0;
 $other_skills_filled = !empty(trim($_POST['other_skills'] ?? ''));
 
@@ -198,7 +123,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param(
+$stmt->bind_param(      //bind php variables to the placeholders '?' in the sql statement
     "ssssssssssss", 
     $reference_number, $first_name, $last_name, $date_of_birth, $gender, 
     $street, $suburb, $state, $postcode, $email, $phone, $other_skills
@@ -240,10 +165,10 @@ if (!empty($_POST['skills'])) {
 
 
 
-//Clean up
+//-Clean up
 $conn->close();
 $_SESSION['eoi_confirm'] = $eoi_number;
-// Add a timestamp to limit viewing duration
+//-Add a timestamp to limit viewing duration
 $_SESSION['eoi_confirm_time'] = time(); 
 header("Location: confirm_eoi.php");
 exit;
