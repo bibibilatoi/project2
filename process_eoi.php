@@ -2,10 +2,6 @@
 session_start();
 require_once "settings.php";
 
-// --- Helper function for cleaning (TRIM ONLY) ---
-function clean_input($data) {
-    return trim($data);
-}
 
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
@@ -24,23 +20,107 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
     die("<div class='error-msg'>Access denied. Please submit the form from the Apply page.</div>");
 }
 
+
 // Valid submission -> delete the token -> avoid reuse
 unset($_SESSION['apply_form_token']);
 
-// --- Collect and clean input ---
-$reference_number = clean_input($_POST['reference_number'] ?? '');
-$first_name = clean_input($_POST['first_name'] ?? '');
-$last_name = clean_input($_POST['last_name'] ?? '');
-$date_of_birth = clean_input($_POST['date_of_birth'] ?? '');
-$gender = clean_input($_POST['gender'] ?? '');
-$street = clean_input($_POST['street'] ?? '');
-$suburb = clean_input($_POST['suburb'] ?? '');
-$state = clean_input($_POST['state'] ?? '');
-$postcode = clean_input($_POST['postcode'] ?? '');
-$email = clean_input($_POST['email'] ?? '');
-$phone = clean_input($_POST['phone'] ?? '');
-$other_skills = clean_input($_POST['other_skills'] ?? '');
 
+
+// --- Collect and clean input ---
+// -- Input cleanup function --
+function cleanStuff($stuff) {
+    $stuff = trim($stuff);
+    $stuff = stripslashes($stuff);
+    $stuff = htmlspecialchars($stuff);
+    return $stuff;
+}
+//- JobRef
+if (isset($_POST['jobRef'])) {    //-- if there is value input of 'jobRef' and isn't null, take and clean it through cleanStuff function
+    $job_ref = cleanStuff($_POST['jobRef']);
+} else {                    // -- if not, put $job_ref value as an empty string 
+    $job_ref = "";              //-- the "" helps to intepret the value 
+}
+
+//- FirstName
+if (isset($_POST['firstName'])) {
+    $fname = cleanStuff($_POST['firstName']);
+} else {
+    $fname = "";
+}
+
+//- LastName
+if (isset($_POST['lastName'])) {
+    $lname = cleanStuff($_POST['lastName']);
+} else {
+    $lname = "";
+}
+
+//- Dob
+if (isset($_POST['dob'])) {
+    $dob = cleanStuff($_POST['dob']);
+} else {
+    $dob = "";
+}
+
+//- Gender
+if (isset($_POST['gender'])) {
+    $gender = cleanStuff($_POST['gender']);
+} else {
+    $gender = "";
+}
+
+//- Street
+if (isset($_POST['street'])) {
+    $street = cleanStuff($_POST['street']);
+} else {
+    $street = "";
+}
+
+//- Suburb
+if (isset($_POST['suburb'])) {
+    $suburb = cleanStuff($_POST['suburb']);
+} else {
+    $suburb = "";
+}
+
+//- State
+if (isset($_POST['state'])) {
+    $state = cleanStuff($_POST['state']);
+} else {
+    $state = "";
+}
+
+//- Postcode
+if (isset($_POST['postcode'])) {
+    $postcode = cleanStuff($_POST['postcode']);
+} else {
+    $postcode = "";
+}
+
+//- Email
+if (isset($_POST['email'])) {
+    $email = cleanStuff($_POST['email']);
+} else {
+    $email = "";
+}
+
+//- Phone
+if (isset($_POST['phone'])) {
+    $phone = cleanStuff($_POST['phone']);
+} else {
+    $phone = "";
+}
+
+
+//- OtherSkills
+if (isset($_POST['otherSkills'])) {        // optional text area
+    $other = cleanStuff($_POST['otherSkills']);
+} else {
+    $other = "";  
+}
+
+
+//-- Error Validation --
 $errors = [];
 
 $required = [
@@ -62,12 +142,12 @@ foreach ($required as $field => $value) {
 }
 
 // Validate email
-if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {  // filters and check whether format is correct or not
     $errors[] = "Invalid email format.";
 }
 
 // Validate date of birth (YYYY-MM-DD)
-if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {
+if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   //to check whether there is input and if it matches the pattern
     $errors[] = "Date of Birth must be in YYYY-MM-DD format.";
 }
 
@@ -95,7 +175,7 @@ if (!$skills_selected && !$other_skills_filled) {
     $errors[] = "You must select at least one skill or enter other skills.";
 }
 
-//If errors exist, save the inputs and errors then redirect back to apply
+//if error exist, save input and error and go back to apply
 if (!empty($errors)) {
     // *** FIX: Save the entire submitted data for re-population ***
     $_SESSION['apply_form_data'] = $_POST;
@@ -106,14 +186,13 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- Insert EOI ---
+// --- Insert eoi ---
 $stmt = $conn->prepare("INSERT INTO eoi 
     (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 if (!$stmt) {
-    // Critical error: Prepare failed
-    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";
+    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";   //to check if the preparation is successfull
     $conn->close();
     header("Location: apply.php");
     exit;
@@ -125,16 +204,16 @@ $stmt->bind_param(
     $street, $suburb, $state, $postcode, $email, $phone, $other_skills
 );
 
-if (!$stmt->execute()) {
+if (!$stmt->execute()) {            //run the sql query in the data base
     // Critical error: Execution failed
-    $_SESSION['apply_error'] = "Error submitting EOI: " . $stmt->error;
+    $_SESSION['apply_error'] = "Error submitting EOI: " . $stmt->error;   
     $stmt->close();
     $conn->close();
     header("Location: apply.php");
     exit;
 }
 
-$eoi_number = $stmt->insert_id;
+$eoi_number = $stmt->insert_id;     //getting inserted record id
 $stmt->close();
 
 // --- Insert skills ---
@@ -159,6 +238,8 @@ if (!empty($_POST['skills'])) {
     }
 }
 
+
+
 //Clean up
 $conn->close();
 $_SESSION['eoi_confirm'] = $eoi_number;
@@ -166,4 +247,6 @@ $_SESSION['eoi_confirm'] = $eoi_number;
 $_SESSION['eoi_confirm_time'] = time(); 
 header("Location: confirm_eoi.php");
 exit;
+
+//-- ACKNOWLEDGEMENTS: Usage of AI to generate patterns and to make code cleaner than the original //
 ?>
