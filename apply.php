@@ -1,11 +1,12 @@
 <?php
-// --- Load all available skills from DB ---
-require_once "settings.php"; // contains $conn = new mysqli(...);
+session_start();
+require_once "settings.php"; 
 
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$_SESSION['apply_form_token'] = bin2hex(random_bytes(16)); 
 
 $skills_query = "SELECT skill_id, skill_name FROM skills ORDER BY skill_name ASC";
 $skills_result = $conn->query($skills_query);
@@ -30,8 +31,8 @@ $skills_result = $conn->query($skills_query);
     <main class="jobs-main">
         <h1 id="h1-apply">Job Application Form</h1>
 
-        <form id="jobApplicationForm" method="post" action="process_eoi.php">
-            
+        <form id="jobApplicationForm" method="post" action="process_eoi.php" novalidate="novalidate">
+            <input type="hidden" name="form_token" value="<?php echo $_SESSION['apply_form_token']; ?>">
             <!-- Job Reference -->
             <label for="reference_number">Job Reference Number:</label>
             <select id="reference_number" name="reference_number" required>
@@ -52,11 +53,16 @@ $skills_result = $conn->query($skills_query);
             <input type="date" id="dob" name="date_of_birth" required>
 
             <!-- Gender -->
-            <fieldset>
+            <fieldset id="gender-field">
                 <legend>Gender</legend>
-                <label><input type="radio" name="gender" value="Male" required> Male</label>
-                <label><input type="radio" name="gender" value="Female"> Female</label>
-                <label><input type="radio" name="gender" value="Other"> Other</label>
+                <input type="radio" name="gender" value="Male"  id="male" required>
+                <label for="male"> Male</label>
+                
+                <input type="radio" name="gender" value="Female"  id="female">
+                <label for="female">Female</label>
+
+                <input type="radio" name="gender" value="Other"  id="other"> 
+                <label for="other">Other</label>
             </fieldset>
 
             <!-- Address -->
@@ -94,7 +100,7 @@ $skills_result = $conn->query($skills_query);
 
                 <?php if ($skills_result && $skills_result->num_rows > 0): ?>
                     <?php while ($row = $skills_result->fetch_assoc()): ?>
-                        <div class="fieldset-container">
+                        <div class="fieldset-container skills-container">
                             <input type="checkbox" id="skill_<?php echo $row['skill_id']; ?>" name="skills[]" value="<?php echo $row['skill_id']; ?>">
                             <label for="skill_<?php echo $row['skill_id']; ?>"><?php echo htmlspecialchars($row['skill_name']); ?></label>
                         </div>
@@ -102,12 +108,6 @@ $skills_result = $conn->query($skills_query);
                 <?php else: ?>
                     <p>No skills found. Please contact admin.</p>
                 <?php endif; ?>
-
-                <!-- Optional extra skill -->
-                <div class="fieldset-container">
-                    <input type="checkbox" id="Oas" name="skills[]" value="0">
-                    <label for="Oas">Other Advanced Skills (for higher roles)</label>
-                </div>
             </fieldset>
 
             <!-- Other Skills -->
@@ -116,6 +116,7 @@ $skills_result = $conn->query($skills_query);
 
             <!-- Submit -->
             <button id="apply-button" type="submit">Apply</button>
+            
         </form>
     </main>
 

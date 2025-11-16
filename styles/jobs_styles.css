@@ -8,101 +8,53 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 *****************************************
 */
 
-.jobs-main {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  color: var(--text-basic-color);
-  overflow-wrap: break-word;
-  line-height: 1.5;
 
-}
-#forewords {
-  clear: both;
-  padding-bottom: 2rem;
-}
-#forewords h1 {
+#forewords h1{
   text-align: center;
+  font-size: 45px;
+  margin: 2rem 0;
 }
-#currently-hiring h2 {
-  color:var(--text-heading-color);
-}
+
 #forewords p {
   text-align: center;
-}
-#currently-hiring ol{
-  margin-left: 2rem;
+  font-size: 20px;
+  padding: 0 0.5rem;
 }
 
-#forewords {
-  margin-top: 2rem;
-}
-#currently-hiring {
+
+
+#bottom-section {
   margin-top: 6rem;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.5rem;
 }
-/* apply button css in the jobs.php  */
-.go-apply-btn {
-  background-color: #1976d2;
-  border: none;
-  clear: both;
-  text-align: center;
-  padding: 0.8rem 1.2rem;
-  width: fit-content;
-  border-radius: 6px;
-  margin: 2rem auto;
-  transition: all 0.3s ease;
-
+#bottom-section h2 {
+  margin-bottom: 1rem;
 }
-
-.go-apply-btn a {
-  text-decoration: none;
-  color: var(--text-basic-color);
-  font-weight: bold;
+#bottom-section strong {
+  color:var(--text-primary);
 }
-
-
-.go-apply-btn:hover{
-  background: #23b1d1;
-  color: var(--bg-main-color);
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px #23b1d1;
+#bottom-section li {
+  color:var(--text-secondary);
+  margin-left: 1.5rem;
 }
-.go-apply-btn:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-
-/* aside css in the jobs.php  */
 
 .jobs-aside {
-  width: 25%;
-  margin:2rem;
-  padding: 0.5rem;
-  background-color: var(--block-basic-color);
-  border-radius: 8px;
-  border: 3px solid var(--text-heading-color);
-  float: right;
-
+  padding: 1.5rem;
 }
 
-.jobs-aside h2 {
-  margin-bottom: 1rem;
-  color: var(--text-heading-color);
-  overflow-wrap: break-word;
-  
-}
+
 .jobs-aside li {
-  list-style: none;
-  overflow-wrap: break-word;
-  padding-left: 1.2rem;
-  margin-top: 1rem;
+  list-style-type:decimal;
 }
 
 
 
 .jobs-benefits {
-  margin: 2rem 0 1rem 2rem;
+  padding: 1.5rem;
 }
+
 
 
 
@@ -113,23 +65,12 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 */
 
 
-.blink-arrow {
-  color: var(--text-selected-color);
-  animation: blinking 2s linear infinite;
-  display: inline-block;
-  padding-right: 0.5rem;
+#apply-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-@keyframes blinking {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+
 
 /* hide the checkbox icon/button  */
 #toggle-jobs-menu {
@@ -137,37 +78,50 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
   display: none;
 }
 /* styling the Jobs button  */
-.jobs-menu-label {
+.jobs-menu-button, .go-apply-btn {
   cursor: pointer;
-  clear:both;
   display: block;
   width: fit-content;
-  padding: 0.4rem 1rem;
-  margin-top: 3rem;
 
-  border: 1px solid var(--text-basic-color); 
+  text-decoration: none;
+  border: 1px solid var(--border); 
   border-radius: 6px;
-
   font-size: 24px;
-  color:var(--text-basic-color);
+
+  padding: .5rem;
+  margin-top: 5rem;
+  color:var(--text-primary);
+  background-color: var(--accent-primary);
+
+  transition: transform 0.3s ease;
 
 }
-.jobs-menu-label:hover {
-  color: var(--text-heading-color);
-  background-color: var(--block-basic-color);
-}
+.jobs-menu-button {
+  margin-left: 2rem;
 
+}
+.jobs-menu-button:hover, .go-apply-btn:hover {
+  background-color: var(--accent-secondary);
+  color:var(--text-primary);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+.go-apply-btn:hover {
+  transform: translateY(-5px);
+}
 
 /* making the bottom corners of the Jobs button straight if the Jobs button is clicked  */
-#toggle-jobs-menu:checked + .jobs-menu-label {
+#toggle-jobs-menu:checked + .jobs-menu-button{
   border-radius: 6px 6px 0 0;
   border-bottom: none;
-  background-color: var(--block-basic-color);
+  background-color: var(--accent-primary);
 
 }
 
 
 /* hide all the checkbox/radio icons/buttons of the job menu  */
+.job-menu {
+  margin-left: 2rem;
+}
 .job-menu input{
   display: none;
 }
@@ -178,11 +132,11 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 
 .job-menu  li {
   list-style-type: none;
-  border: 1px solid var(--text-basic-color);
+  border: 1px solid var(--border); 
   border-bottom: none;
 }
 .job-menu li:last-child {
-  border-bottom: 1px solid var(--text-basic-color);
+  border-bottom: 1px solid var(--border); 
 }
 /*1. hide the list of departments  */
 .job-menu {
@@ -197,20 +151,10 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 }
 
 
-/* the dropdown_animation */
-@keyframes dropdown_animation {
-  from {
-    opacity: 0;  
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
+
 /* making the list of departments and job positions show up more smoothly */
 .job-menu li, .job-positions {
-  animation: dropdown_animation 0.4s ease forwards;
+  animation: dropDown 0.4s ease forwards;
 }
 
 
@@ -223,7 +167,7 @@ JOBS PAGE CSS  - MAIN AND SECTIONS
 /*2. show the list of job positions if the department is clicked */
 input[name="department-select"]:checked ~ .department-content .job-listing-container {
   display: block;
-  border-left: 1px solid var(--text-basic-color);
+  border-left: 1px solid var(--border);
 }
 
 /* make the display from normal blocks to grid so to have a better layout (when the department is clicked) */
@@ -231,7 +175,7 @@ input[name="department-select"]:checked ~ .department-content {
   display: grid;
   grid-template-columns: 1fr 3fr;
   padding: 0;
-  background-color: var(--block-basic-color);
+  background-color: var(--bg-secondary);
 
 }
 
@@ -248,15 +192,14 @@ input[name="department-select"]:checked ~ .department-content {
 
 .department-content label:hover {
   transform: translateX(6px);
-  color: var(--text-selected-color);
+  color: var(--accent-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 input[name="department-select"]:checked ~ .department-content label:first-child {
-  background-color: var(--block-basic-color);
+  color: var(--accent-primary);
   transform: translateX(0px);
-  color: var(--text-selected-color);
   cursor: pointer;
 }
 
@@ -275,14 +218,14 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 /*2. show the description/content if the job position is clicked */
 .job-positions input:checked + label + .job-descriptions {
   display: block;
-  background-color: var(--block-special-color);
+  background-color: var(--bg-third);
   margin: 0.5rem;
 }
 
 
 /* adding border-top and padding to separate job positions */
 .job-positions {
-  border-top: 1px solid var(--text-basic-color);
+  border-top: 1px solid var(--border);
   padding: 0.5rem 0;
 }
 /* remove the border-top of the first item */
@@ -290,20 +233,37 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   border-top: none;
 }
 .job-descriptions {
-  padding-left: 1.5rem;
+  padding: 1.5rem;
+  padding-top:1rem;
 }
 .job-descriptions li, .job-descriptions li:last-child {
   border: none;
 }
-.job-descriptions h4{
-  color:gold;
+
+.job-descriptions h3{
+  margin-top: 2rem;
+  background-color: var(--accent-primary);
+  width: fit-content;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+.job-descriptions h3:first-of-type{
+  margin-top: 1rem;
 }
 
+.job-descriptions li:first-child{
+  margin-top: 1rem;
+}
 
+.job-descriptions p{
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
 
 .job-descriptions li {
   list-style-type: disc;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
+  line-height: 1.5rem;
 }
 
 
@@ -313,19 +273,20 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 .job-positions label:hover {
   transform: translateX(6px);
-  color: var(--text-selected-color);
+  color:var(--accent-secondary);
 }
 
 
 /* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
-  color: var(--text-selected-color);
+  color: var(--accent-primary);
+  margin-left:0.5rem;
 }
 
 
 /* styling the not hiring text */
-.job-descriptions h4.not-hiring {
-  color: var(--text-warning-color);
+.job-descriptions h3.not-hiring {
+  background-color: var(--red);
   font-size: 20px;
 }
 
@@ -335,17 +296,26 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   flex-direction: column;
   margin-bottom: 1rem; 
   font-weight: bold;
+  background-color: var(--accent-primary);
+  width: fit-content;
+  padding: 1rem;
+  font-size: 20px;
 }
 .job-basic-info dt {
   color:var(--text-heading-color);
 }
 
+.job-basic-info .pair-data {
+  display: flex;
+  gap: 0.5rem;
+}
+
 
 .department-content .dept-hiring {
-  color:var(--text-heading-color);
+  color:var(--accent-primary);
 }
 .job-positions .is-hiring {
-  color: var(--text-heading-color);
+  color: var(--accent-primary);
 }
 
 
@@ -364,15 +334,17 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 
 
 @media (max-width: 700px) {
-	.jobs-aside {
-		width: 100%;
-		float: none;
-		margin: 2rem 0;
-	}
-
-	.jobs-benefits {
-		margin: 2rem 0 1rem 2rem;
-	}
+  #bottom-section {
+    flex-direction: column;
+  }
 
 
+}
+
+
+.background{
+  background: url("./images/universe_background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

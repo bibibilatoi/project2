@@ -16,7 +16,6 @@
     <body>
 
         <?php include("header.inc") ?>
-
         <main id="index-main">
             <section id="index-intro">
                 <h1>Welcome to SpeedX</h1>
@@ -31,7 +30,7 @@
                 <h1>Our Achievements</h1>
 
                 <section class="achievement-2060">
-                    <p class="achievement-text achievement-2060-text">
+                    <p class="achievement-text">
                         <strong>2060</strong> - Launched the first reusable interplanetary shuttle.
                     </p>
                     <figure id="index-shuttle" class="achievement-figure">
@@ -41,7 +40,7 @@
                 </section>
 
                 <section class="achievement-2075">
-                    <p class="achievement-text achievement-2075-text">
+                    <p class="achievement-text">
                         <strong>2075</strong> - Established the first lunar research base.
                     </p>
                     <figure id="index-research-base" class="achievement-figure">
@@ -52,7 +51,7 @@
                 </section>
 
                 <section class="achievement-2110">
-                    <p class="achievement-text achievement-2110-text">
+                    <p class="achievement-text">
                         <strong>2110</strong> - Built the SpeedX Orbital City for civilian life orbit.
                     </p>
                     <figure id="index-orbital-cities" class="achievement-figure">
@@ -62,10 +61,10 @@
                 </section>
             </section>
 
-            <p id="index-aspiration">
-                -Today, SpeedX continues to push the boundaries of human innovation, connecting worlds and inspiration
-                to look to the stars.-
-            </p>
+            <em id="index-aspiration">
+                Today, SpeedX continues to push the boundaries of human innovation, connecting worlds and inspiration
+                to look to the stars.
+            </em>
 
             <section id="index-our-people">
                 <h1 class="section-heading">Our People</h1>
@@ -88,42 +87,51 @@
             <section id="index-our-brilliant-minds">
                 <h1 class="section-heading">Our Brilliant Minds</h1>
 
-                <p id="index-our-brilliant-minds-behind">
+                <p>
                     Behind every successful mission at SpeedX the decication and genius of our software engineers.
-                    They are the ones who turn imnagination into reality, building the codes that guide our rockets across the stars:
+                    They are the ones who turn imnagination into reality, building the codes that guide our rockets across the stars
                 </p>
 
-                <p id="Daniel-Kross" class="engineer-profile">
-                    <strong>Daniel Kross</strong>, the lead programmer who developed our "Astra Flight System". This is a navigation algorithm capable of calculating
-                    interplanetary trajectories in real time. His work has reduced launch errors by 80% and set a new standard for deep space missions.
-                </p>
-                <figure id="astra-flight" class="engineer-figure">
-                    <img alt="astra flight" src="images/Astra-flight.jpg">
-                    <figcaption>Rocket powered by Astra flight system.</figcaption>
-                </figure>
+                <div class="engineer-row">
+                    <p id="Daniel-Kross" class="engineer-profile">
+                        <strong>Daniel Kross</strong>, the lead programmer who developed our "Astra Flight System". This is a navigation algorithm capable of calculating
+                        interplanetary trajectories in real time. His work has reduced launch errors by 80% and set a new standard for deep space missions.
+                    </p>
+                    <figure id="astra-flight" class="engineer-figure">
+                        <img alt="astra flight" src="images/Astra-flight.jpg">
+                        <figcaption>Rocket powered by Astra flight system.</figcaption>
+                    </figure>
+                </div>
 
-                <p id="Leila-Tango" class="engineer-profile">
-                    <strong>Leila Tango</strong>, she is a system architect who is known for desining the communication interface that allows
-                    our spacecraft to send and receive data even millions of kilometers away from the Earth. Her code keeps every astronaut connected, no matter how far they travel.
-                </p>
-                <figure id="Space-communication-interfaces" class="engineer-figure">
-                    <img alt="Space communication interfaces" src="images/Space-communication-interfaces.jpg">
-                    <figcaption>Our futuristic communication interface technology</figcaption>
-                </figure>
+                <div class="engineer-row">
+                    <p id="Leila-Tango" class="engineer-profile">
+                        <strong>Leila Tango</strong>, she is a system architect who is known for designing the communication interface that allows
+                        our spacecraft to send and receive data even millions of kilometers away from the Earth. Her code keeps every astronaut connected, no matter how far they travel.
+                    </p>
+                    <figure id="Space-communication-interfaces" class="engineer-figure">
+                        <img alt="Space communication interfaces" src="images/Space-communication-interfaces.jpg">
+                        <figcaption>Our futuristic communication interface technology</figcaption>
+                    </figure>
+                </div>
 
-                <p id="Kenji-Itoma" class="engineer-profile">
-                    <strong>Kenji Itoma</strong>, one of our early developers, wrote the original "Cosmo Core". It is the software that simulates rocket behavior under zero gravity conditions.
-                    This breakthrough helped SpeedX cut testing time in half and paved the way for our first successful Mars landing.
-                </p>
-                <figure id="cosmo-core" class="engineer-figure">
-                    <img alt="cosmo core" src="images/cosmos-core.png">
-                    <figcaption>Cosmo core application review</figcaption>
-                </figure>
+                <div class="engineer-row">
+                    <p id="Kenji-Itoma" class="engineer-profile">
+                        <strong>Kenji Itoma</strong>, one of our early developers, wrote the original "Cosmo Core". It is the software that simulates rocket behavior under zero gravity conditions.
+                        This breakthrough helped SpeedX cut testing time in half and paved the way for our first successful Mars landing.
+                    </p>
+                    <figure id="cosmo-core" class="engineer-figure">
+                        <img alt="cosmo core" src="images/cosmos-core.png">
+                        <figcaption>Cosmo core application review</figcaption>
+                    </figure>
+                </div>
 
-                <p id="index-our-brilliant-minds-together">
-                    Together, these programmers form the digital backbone SpeedX, ensuring that every
-                    mission is not only flies, but flies smarter. Their innovations remind us that sometimes, the most powerful engines are made of coding.
-                </p>
+
+                <section id="index-our-brilliant-minds-together">
+                    <em>
+                        Together, these programmers form the digital backbone SpeedX, ensuring that every
+                        mission is not only flies, but flies smarter. Their innovations remind us that sometimes, the most powerful engines are made of coding.
+                    </em>
+                </section>
             </section>
 
             <section id="Why-work-with-us">

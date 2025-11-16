@@ -1,155 +1,284 @@
-/* 
-*****************************************
-*****************************************
+/* ===============================
+   ABOUT PAGE — GLOBAL LAYOUT
+   =============================== */
 
-ABOUT PAGE CSS  - MAIN AND SECTIONS
 
-*****************************************
-*****************************************
-*/
-#topbar-container{
-  position: relative;
-  color: white;
-  text-align: center;
-  animation: slideIn 1.5s ease-out;
+#about-body main{
+  min-height: 100vh;
+
+  /*Background is a space-ish color gradient (static)*/
+  /*the color gradient go from left to right (90deg) */
+
+  /*the color #02010a get repeated so that the jump looks seemsless*/
+
+  background: linear-gradient(
+    90deg,
+    #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+  );
+  background-size: 800% 800%;
+  /* Animate from right to left */
+  animation: gradientShiftSpace 10s linear infinite;
+
+
 }
-.background{
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: url("./images/universe_background.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-  z-index: -2;
+
+
+#about-body {
+    font-family: "Exo 2", sans-serif;
+    color: var(--text-primary);
 }
 
-#Our-tutor{
-  padding: 2rem 0;
-  text-align: center;
-  color: var(--text-warning-color);
-  font-size: 24px;
+
+
+
+/* ===============================
+   HEADINGS
+   =============================== */
+
+#Our-tutor,
+#about-Group7-member-contribution {
+    text-align: center;
+    font-size: 40px;
+    margin: 3rem 0 1.5rem 0;
+}
+#Our-tutor {
+  margin-top: 0;
+  padding-top: 3rem;
 }
 
 #our-class {
-  padding-top: 1rem;
-  text-align: center;
-  color:var(--text-heading-color)
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 30px;
+
 }
+
+
+/* ===============================
+   STUDENT LIST SECTION
+   =============================== */
 
 #about-student-section {
-  background-color: rgba(255, 255, 255, 0.174);
-  padding-bottom: 2rem;
-
-}
-.student_information{
-  display: flex;
-  justify-content: center;
-}
-.ID{
-  margin-left: 20px;
-}
-.about-student-id{
-  list-style-type: none;
-}
-.about-student-id > ul { 
-  padding: 0 20px;
-  padding-top: 2rem;
-  font-size: 32px;
-  color: var(--text-heading-color);
-  list-style-type: none;
-
-  display: flex;
-  justify-content: space-between; /* spread them apart */
+    background: rgba(255, 255, 255, 0.12);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    margin: 0 2rem
 }
 
-
-/*The title "Members contribution"*/
-#about-Group7-member-contribution{
-  margin: 4rem 0 1rem 0;
-  text-align: center;  
-  font-size: 24px;
-  color: var(--text-warning-color);
+#about-student-section ul {
+    list-style: none;
 }
 
-
-
-#Members-contributions{
-  background-color: rgba(255, 255, 255, 0.174);
-  padding: 1rem 0.5rem;
-
+.about-student-id {
+    margin-bottom: 1.2rem;
 }
-#Members-contributions dt{      /*The content of the members contribution*/
-  font-size: 20px;
-  color:var(--text-heading-color);
+
+.about-student-id ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5rem;
+}
+.about-student-id li {
+    padding: 0.8rem 1.5rem;
+
+    color: var(--text-heading-color);
+    font-size: 24px;
+
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .about-student-id ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.4rem;
+    }
 }
 
 
+/* ===============================
+   CONTRIBUTIONS SECTION
+   =============================== */
 
-#about-figure-group-img{
-  float: right;       /*image on the right side*/
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-}
-#group-image{
-  border: 4px solid var(--block-basic-color); /* border shorthand: width style color */
-  max-width: 300px;
-  height: auto;
-}
-#about-figure-group-img figcaption {
-  align-self: center;
-}
+#Members-contributions {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 2rem;
+    margin: 1.5rem 2rem;
+    border-radius: 12px;
 
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    justify-content: space-between;
 
-
-
-.about-table, .about-table th, .about-table td{
-  margin:auto;
-  border: 0.5px var(--bg-main-color) solid;
-  background-color: rgba(255, 255, 255, 0.174);
-  backdrop-filter: blur(5px);
-  text-align: center;            /* styling our interests' table*/
-  padding:25px ;
-  border-collapse: collapse;
+    flex-wrap: wrap; /* for extra safety */
 }
 
+/* -------------------------------
+   IMAGE + FIGCAPTION
+   ------------------------------- */
+
+#about-figure-group {
+    flex: 1 1 40%;
+    text-align: left;   /* left-aligned caption */
+}
+
+#group-image {
+    width: 100%;
+    max-width: 650px;      /* ⬆ increased size */
+    height: auto;
+    border: 4px solid var(--block-basic-color);
+    border-radius: 12px;
+}
+
+#about-figure-group figcaption {
+    font-size: 24px;
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* -------------------------------
+   CONTRIBUTIONS TEXT
+   ------------------------------- */
+
+#contributions-details {
+    flex: 1 1 50%;
+    text-align: left;
+}
+
+#Members-contributions dt {
+    font-size: 1.6rem;
+    margin-top: 1.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 600;
+}
+
+#Members-contributions dt::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    color: var(--text-primary);
+}
+
+#Members-contributions dd {
+    margin-left: 2rem;
+    margin-top: 0.6rem;
+    font-size: 1.15rem;
+    line-height: 1.6rem;
+    opacity: 0.95;
+}
+
+#Members-contributions dd::before {
+    content: "– ";
+    opacity: 0.6;
+}
+
+/* ===============================
+   RESPONSIVE (STACKED COLUMN)
+   =============================== */
+
+@media (max-width: 900px) {
+    #Members-contributions {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    #about-figure-group,
+    #contributions-details {
+        flex: 1 1 100%;
+    }
+
+    #group-image {
+        max-width: 100%;
+    }
+}
+
+
+/* ===============================
+   INTERESTS TABLE
+   =============================== */
 
 .about-table {
-  width: 100%;
-  table-layout: fixed; /* columns evenly spaced */
-  word-wrap: break-word;
-  margin-bottom: 1rem;
-}
-.about-table th{
-  font-weight: bold;             /*bold headings*/
-  background-color: #478aac74; /*diff color for headings*/
-  color: var(--text-heading-color);
+    width: 100%;
+    margin: 4rem 0;
+    border-collapse: collapse;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.12);
+    word-wrap: break-word;
+
+    table-layout: fixed;   /* forces equal column width */
 }
 
-.about-table td:hover{
-    background-color: rgba(255, 255, 255, 0.544);  /* make the hover effect on table cells (not headings) */
-  cursor: pointer;
+.about-table caption {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.about-table th,
+.about-table td {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-primary);
+
+}
+
+.about-table th {
+    background: rgba(100, 160, 220, 0.3);
+    color: var(--text-heading-color);
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .about-table tr td:first-child {
-  color: var(--text-heading-color);
+    font-weight: bold;
+    color: var(--text-heading-color);
 }
 
+.about-table td:hover {
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+}
+
+/* Diagonal cell design */
 .diagonal-cell {
-  width: 100px; /* creat a diagonal line in the (0,0) cell*/
-  height: 100px;
-  background: linear-gradient(to left bottom, transparent 49%, var(--bg-main-color) 50%, transparent 51%);
+    background: linear-gradient(
+        to bottom left,
+        transparent 48%,
+        var(--bg-main-color) 50%,
+        transparent 52%
+    );
 }
-.about-table caption{
-  font-size: 24px;        /* our team's interests*/
-  font-weight: bold;
-  color: var(--text-warning-color);
-  margin: 4rem 0 1rem 0;
-  text-align: center;
+
+
+/* ===============================
+   RESPONSIVE LAYOUT
+   =============================== */
+
+@media (max-width: 900px) {
+    #Members-contributions {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #Members-contributions dl {
+        text-align: left;
+    }
 }
-.footer {
-  position: relative;
-  color: white;
-  text-align: center;
-  animation: slideIn 1.5s ease-out;
+
+@media (max-width: 600px) {
+    #group-image {
+        width: 220px;
+    }
+
+    .about-table th,
+    .about-table td {
+        padding: 0.6rem;
+    }
 }

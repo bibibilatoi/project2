@@ -50,7 +50,6 @@ if ($action == "list_all") {
     $reference_number = mysqli_real_escape_string($conn, $_POST['reference_number']);
     $query = "DELETE FROM eoi WHERE reference_number = '$reference_number'";
     if (mysqli_query($conn, $query)) {
-        echo "<p class='Announcement'>EOIs for job ref '$reference_number' have been deleted.</p>";
         $query = "
             SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
             FROM eoi e
@@ -64,53 +63,29 @@ if ($action == "list_all") {
     }
 
 } elseif ($action == "change_status") {
-    $eoi_number = $_POST['eoi_number'];
+    $eoi_number = (int) $_POST['eoi_number'];
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+
     $query = "UPDATE eoi SET status = '$status' WHERE eoi_number = $eoi_number";
+
     if (mysqli_query($conn, $query)) {
-        echo "<p class='Announcement'>Status updated successfully.</p>";
+
+        // Get ONLY the updated record
         $query = "
             SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
             FROM eoi e
             LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
             LEFT JOIN skills s ON us.skill_id = s.skill_id
+            WHERE e.eoi_number = $eoi_number
             GROUP BY e.eoi_number
         ";
         $result = mysqli_query($conn, $query);
+
     } else {
         echo "<p class='Announcement'>Error updating status.</p>";
-        $query = "
-            SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
-            FROM eoi e
-            LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
-            LEFT JOIN skills s ON us.skill_id = s.skill_id
-            GROUP BY e.eoi_number
-        ";
-        $result = mysqli_query($conn, $query);
     }
-} elseif ($action == "bulk_update_status") {
-    // NEW BULK UPDATE ACTION
-    $eoi_numbers = $_POST['eoi_number'];
-    $statuses    = $_POST['status'];
-
-    for ($i = 0; $i < count($eoi_numbers); $i++) {
-        $id = mysqli_real_escape_string($conn, $eoi_numbers[$i]);
-        $status = mysqli_real_escape_string($conn, $statuses[$i]);
-
-        $query = "UPDATE eoi SET status = '$status' WHERE eoi_number = '$id'";
-        mysqli_query($conn, $query);
-    }
-
-    echo "<p class='Announcement'>All statuses updated successfully.</p>";
-    $query = "
-        SELECT e.*, GROUP_CONCAT(s.skill_name SEPARATOR ', ') AS skills_list
-        FROM eoi e
-        LEFT JOIN user_skills us ON e.eoi_number = us.eoi_number
-        LEFT JOIN skills s ON us.skill_id = s.skill_id
-        GROUP BY e.eoi_number
-    ";
-    $result = mysqli_query($conn, $query);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -128,14 +103,15 @@ if ($action == "list_all") {
 </head>
 <body>
     <div class="background"></div>
-    <a id="back_to_Manage_Page_icon" href="manage.php"><i class='bx bx-reply-stroke'></i> Back to Manage Page</a>
+    <a id="back_to_Manage_Page_icon" href="manage.php">&larr;</a>
     <div class="container">
         <h1 id="EOI_Query_Results_title">EOI Query Results</h1>
 
-        <?php if ($result && mysqli_num_rows($result) > 0): ?>
-         <!--FORM FOR BULK STATUS UPDATE -->
-        <form method="POST" action="">
-            <input type="hidden" name="action" value="bulk_update_status">
+        <?php if ($result && mysqli_num_rows($result) > 0 && $action !="delete_by_job"): ?>
+        <?php if ($action == "change_status"): ?>
+            <p id="Deleted-eoi">Status updated successfully!</p>
+        <?php endif; ?>
+
 
             <table>
                 <tr>
@@ -172,28 +148,15 @@ if ($action == "list_all") {
                     <td><?= display_field($row['phone']) ?></td>
                     <td><?= display_field($row['skills_list']) ?></td>
                     <td><?= display_field($row['other_skills']) ?></td>
+                    <td><?= display_field($row['status']) ?></td>
 
-                    <!-- Editable dropdown for bulk status update -->
-                    <td>
-                        <input type="hidden" name="eoi_number[]" value="<?= $row['eoi_number'] ?>">
-
-                        <select name="status[]" class="status_select">
-                            <option value="New"        <?= ($row['status']=='New' ? 'selected' : '') ?>>New</option>
-                            <option value="Current"<?= ($row['status']=='Current' ? 'selected' : '') ?>>Current</option>
-                            <option value="Final"   <?= ($row['status']=='Final' ? 'selected' : '') ?>>Final</option>
-                        </select>
-                    </td>
                 </tr>
                 <?php endwhile; ?>
-
             </table>
-
-            <!-- BULK UPDATE BUTTON -->
-            <button type="submit" class="save_button">Save All Changes</button>
-
-        </form>
+        <?php elseif ($action == "delete_by_job"): ?>
+            <p id="Deleted-eoi">Deleted all EOI in department: <?= $reference_number?>.</p>
         <?php else: ?>
-            <p>No records found.</p>
+            <p id="No-record-error">No records found.</p>
         <?php endif; ?>
     </div>
 </body>

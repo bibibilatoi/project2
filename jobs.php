@@ -97,25 +97,13 @@ foreach ($departments as $deptName => $jobs) {
             </p>
         </section>
 
-        <section id="currently-hiring">
-            <h2>Currently Hiring for:</h2>
-            
-            <?php if (empty($currently_hiring_jobs)): ?>
-                <h2>We are not currently hiring for any positions, but please check back soon!</h2>
-            <?php else: ?>
-                <ol>
-                    <?php foreach ($currently_hiring_jobs as $job): ?>
-                        <li>
-                            <strong><?= htmlspecialchars($job['job_title']) ?></strong>
-                            (<?= htmlspecialchars($job['department']) ?>)
-                        </li>
-                    <?php endforeach; ?>
-                </ol>
-            <?php endif; ?>
-        </section>
+
 
         <input type="checkbox" id="toggle-jobs-menu" checked>
-        <label for="toggle-jobs-menu" class="jobs-menu-label">Jobs</label>
+
+        <label for="toggle-jobs-menu" class="jobs-menu-button">Jobs</label>
+
+
         <section class="job-menu">
             <ul>
                 <?php foreach ($departments as $deptIndex => $jobs): 
@@ -139,18 +127,24 @@ foreach ($departments as $deptName => $jobs) {
                                     </label>
                                     <div class="job-descriptions">
                                         <dl class="job-basic-info">
-                                            <dt>Reference Number:</dt><dd><?= htmlspecialchars($job['reference_number']) ?></dd>
-                                            <dt>Reports To:</dt><dd><?= htmlspecialchars($job['reports_to']) ?></dd>
-                                            <dt>Salary Range:</dt><dd><?= htmlspecialchars($job['salary_range']) ?></dd>
+                                            <section class="pair-data">
+                                                <dt>Reference Number:</dt><dd><?= htmlspecialchars($job['reference_number']) ?></dd>
+                                            </section>
+                                            <section class="pair-data">
+                                                <dt>Reports To:</dt><dd><?= htmlspecialchars($job['reports_to']) ?></dd>
+                                            </section>
+                                            <section class="pair-data">
+                                                <dt>Salary Range:</dt><dd><?= htmlspecialchars($job['salary_range']) ?></dd>
+                                            </section>
                                         </dl>
 
                                         <?php if (!empty($job['brief_description'])): ?>
-                                            <h4>Brief Description</h4>
+                                            <h3>Brief Description</h3>
                                             <p><?= htmlspecialchars($job['brief_description']) ?></p>
                                         <?php endif; ?>
 
                                         <?php if (!empty($key_responsibilities[$job['job_id']])): ?>
-                                            <h4>Key Responsibilities</h4>
+                                            <h3>Key Responsibilities</h3>
                                             <ul>
                                                 <?php foreach ($key_responsibilities[$job['job_id']] as $resp): ?>
                                                     <li><?= htmlspecialchars($resp) ?></li>
@@ -159,7 +153,7 @@ foreach ($departments as $deptName => $jobs) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($basic_qualifications[$job['job_id']])): ?>
-                                            <h4>Basic Qualifications</h4>
+                                            <h3>Basic Qualifications</h3>
                                             <ul>
                                                 <?php foreach ($basic_qualifications[$job['job_id']] as $qual): ?>
                                                     <li><?= htmlspecialchars($qual) ?></li>
@@ -168,7 +162,7 @@ foreach ($departments as $deptName => $jobs) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($preferred_skills[$job['job_id']])): ?>
-                                            <h4>Preferred Skills</h4>
+                                            <h3>Preferred Skills</h3>
                                             <ul>
                                                 <?php foreach ($preferred_skills[$job['job_id']] as $skill): ?>
                                                     <li><?= htmlspecialchars($skill) ?></li>
@@ -177,7 +171,7 @@ foreach ($departments as $deptName => $jobs) {
                                         <?php endif; ?>
 
                                         <?php if (!empty($additional_requirements[$job['job_id']])): ?>
-                                            <h4>Additional Requirements</h4>
+                                            <h3>Additional Requirements</h3>
                                             <ul>
                                                 <?php foreach ($additional_requirements[$job['job_id']] as $req): ?>
                                                     <li><?= htmlspecialchars($req) ?></li>
@@ -186,7 +180,7 @@ foreach ($departments as $deptName => $jobs) {
                                         <?php endif; ?>
 
                                         <?php if (!$job['is_hiring']): ?>
-                                            <h4 class="not-hiring">Currently Not Hiring</h4>
+                                            <h3 class="not-hiring">Currently Not Hiring</h3>
                                         <?php endif; ?>
                                     </div>
                                 </section>
@@ -197,30 +191,36 @@ foreach ($departments as $deptName => $jobs) {
                 <?php endforeach; ?>
             </ul>
         </section>
+        <div id="apply-btn">
+            <a  class="go-apply-btn" href="apply.php">Go to apply page</a>
+        </div>
+        
 
-        <aside class="jobs-aside">
-            <h3>Hiring Process Timeline</h3>
-            <ol>
-                <li><strong>Submit Application:</strong> Complete the application form.</li>
-                <li><strong>Initial Screening:</strong> Our HR team reviews your qualifications against the essential criteria.</li>
-                <li><strong>Technical Interview:</strong> A specialist from the department will test your core skills.</li>
-                <li><strong>Team Interview:</strong> Meet with the hiring manager and future team members for cultural fit.</li>
-                <li><strong>Offer Extended:</strong> Successful candidates receive a formal offer letter.</li>
-            </ol>
-        </aside>
+        <section id="bottom-section">
+            <section class="jobs-benefits">
+                <h2>Employee Benefits</h2>
+                <ul>
+                    <li><strong>Flexible Working Options: </strong>Hybrid remote and office opportunities</li>
+                    <li><strong>Stock and Equity Grants: </strong>Long-term incentives tied to mission success</li>
+                    <li><strong>Health and Wellness: </strong>Comprehensive medical, dental, and mental health support</li>
+                    <li><strong>Professional Growth: </strong>Training, conferences, and career development programs</li>
+                    <li><strong>Education Assistance: </strong>Tuition reimbursement for continued learning</li>
+                </ul>
+            </section>
 
-        <section class="jobs-benefits">
-            <h2>Employee Benefits</h2>
-            <ul>
-                <li>Flexible Working Options: Hybrid remote and office opportunities</li>
-                <li>Stock and Equity Grants: Long-term incentives tied to mission success</li>
-                <li>Health and Wellness: Comprehensive medical, dental, and mental health support</li>
-                <li>Professional Growth: Training, conferences, and career development programs</li>
-                <li>Education Assistance: Tuition reimbursement for continued learning</li>
-            </ul>
+            <aside class="jobs-aside">
+                <h2>Hiring Process Timeline</h2>
+                <ol>
+                    <li><strong>Submit Application:</strong> Complete the application form.</li>
+                    <li><strong>Initial Screening:</strong> Our HR team reviews your qualifications against the essential criteria.</li>
+                    <li><strong>Technical Interview:</strong> A specialist from the department will test your core skills.</li>
+                    <li><strong>Team Interview:</strong> Meet with the hiring manager and future team members for cultural fit.</li>
+                    <li><strong>Offer Extended:</strong> Successful candidates receive a formal offer letter.</li>
+                </ol>
+            </aside>
         </section>
 
-        <div class="go-apply-btn"><a href="apply.php">Go to apply page</a></div>
+
     </main>
 
     <?php include("footer.inc") ?>
