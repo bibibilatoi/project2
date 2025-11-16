@@ -66,14 +66,14 @@
 					<dd>Shared Responsibility: Home Page, CSS File, .inc files</dd>
 					<dd>Individual Responsibility: About Us page (about.php); Manage, login, register, view_eoi pages</dd>
 
-					<dt>Vu Hoang Long</dt>
-					<dd>Shared Responsibility: Home Page, CSS File, .inc files, design refinement (color, structure)</dd>
-					<dd>Individual Responsibility: Job Positions page (jobs.php), confirm submission page, MySQL tables</dd>
+						<dt>Vu Hoang Long</dt>
+						<dd>Shared Responsibility: Home Page, CSS File, .inc files, design refinement (color, structure)</dd>
+						<dd>Individual Responsibility: Job Positions page (jobs.php), confirm submission page, MySQL tables</dd>
 
-					<dt>Duong Tri Duc</dt>
-					<dd>Shared Responsibility: Home Page, CSS File, pptx slides</dd>
-					<dd>Individual Responsibility: Job Applications page, some job positions' descriptions, Process_eoi</dd>
-					<dd>Question Poster</dd>
+						<dt>Duong Tri Duc</dt>
+						<dd>Shared Responsibility: Home Page, CSS File, pptx slides</dd>
+						<dd>Individual Responsibility: Job Applications page, some job positions' descriptions, Process_eoi</dd>
+						<dd>Question Poster</dd>
 
 					<dt>Dang Thien An</dt>
 					<dd>Shared Responsibility: Home Page, CSS File, pptx slides, design refinement (effects)</dd>
