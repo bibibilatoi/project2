@@ -8,19 +8,8 @@ Apply Page CSS
 *****************************************
 */
 
-/* Animated gradient background */
-@keyframes gradientShiftSpace {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
-
-
-#apply-body main, #about-body main{
+#apply-body main{
   min-height: 100vh;
 
   /*Background is a space-ish color gradient (static)*/
@@ -29,13 +18,52 @@ Apply Page CSS
   /*the color #02010a get repeated so that the jump looks seemsless*/
 
   background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
+    90deg,
+    #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
   );
   background-size: 800% 800%;
   /* Animate from right to left */
   animation: gradientShiftSpace 10s linear infinite;
 
 
+}
+
+.error-box {
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 8px;
+    max-width: 700px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.general-error-msg {
+    color: var(--red);
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+.general-error-msg p {
+    margin: 0;
+}
+
+.validation-errors-msg {
+    color: var(--red);
+    border: 2px solid var(--border); 
+    font-size: 3rem;
+}
+.validation-errors-msg p {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.validation-errors-msg ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.validation-errors-msg li {
+    position: relative;
+    padding-left: 20px; 
 }
 
 
@@ -47,7 +75,7 @@ Apply Page CSS
   backdrop-filter: blur(5px);
   margin: 0 auto;
   padding: 25px;
-  border: 1px solid var(--text-basic-color);
+  border: 1px solid var(--border);
   border-radius: 8px;
   max-width: 700px;
 
@@ -62,7 +90,7 @@ Apply Page CSS
   display: block;
   margin-bottom: 6px;
   font-weight: bold;
-  color: var(--text-heading-color);
+  font-size: 20px;
 }
 #jobApplicationForm label:first-child {
   margin-top: 0;
@@ -74,8 +102,8 @@ Apply Page CSS
 
 #h1-apply 
 {
+  padding-top: 3rem;
   text-align: center;
-  color: var(--text-heading-color);
   margin-bottom: 20px;
 }
 
@@ -90,7 +118,7 @@ select,
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid var(--text-basic-color);
+  border: 1px solid var(--border);
   border-radius: 5px;
   font-size: 16px;
 }
@@ -99,26 +127,74 @@ select,
 input[type="radio"],
 input[type="checkbox"] 
 {
-  margin-right: 6px;
-  accent-color: var(--text-selected-color);
+  accent-color: var(--accent-secondary);
 }
 
 
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+#otherSkills:focus {
+  border-color: var(--border);
+  background-color: var(--accent-secondary);
+  box-shadow: 0 0 20px var(--accent-secondary);
+  transform: translateY(-2px);
+}
+select:focus {
+  border-color: var(--border);
+  background-color: var(--accent-secondary);
+  box-shadow: 0 0 20px var(--accent-secondary);
+  transform: translateY(-2px);
+}
+select option {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 0 20px var(--bg-secondary);
+  color:var(--text-primary);
+  border-radius: 0;
+}
+
+.skills-container {
+  display: flex;
+}
+.skills-container input {
+  display: none;
+  accent-color: var(--text-primary);
+
+}
+.skills-container label{
+    display: block;
+    padding:1.5rem;
+    width: 100%;
+    background-color: var(--bg-third);
+    color: var(--text-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.skills-container label:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+.skills-container input:checked + label {
+    background-color: var(--accent-primary);
+    color: var(--text-primary);
+}
 #otherSkills
 {
-  resize: vertical;
   min-height: 80px;
 } 
 
 
 
 #jobApplicationForm fieldset {
-  color: var(--text-heading-color);
+  font-size: 20px;
   font-weight: bold;
   padding-left: 0.5rem;
 }
 #jobApplicationForm fieldset label {
-  color: var(--text-basic-color);
+  font-size: 16px;
   display: inline-block;
 }
 
@@ -126,10 +202,51 @@ input[type="checkbox"]
   padding-left: 1rem;
 }
 
-#jobApplicationForm .fieldset-container input:checked + label {
-  color:var(--text-selected-color);
+
+/* Gender fieldset container */
+#gender-field {
+  border: none;
+  padding: 0;
+  margin-bottom: 2rem;
+
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
+/* Hide native radio */
+#gender-field input[type="radio"] {
+  display: none;
+}
+
+/* Compact label style */
+#gender-field label {
+  padding: 1rem 2rem;
+  width: auto;                 /* shrink to fit content */
+  min-width: 90px;             /* optional: ensure consistent width */
+  background-color: var(--bg-third);
+  color: var(--text-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s ease;
+  white-space: nowrap;         /* prevent text wrap */
+}
+
+/* Hover */
+#gender-field input:not(:checked) + label:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+
+/* Checked */
+#gender-field input:checked + label {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--accent-primary);
+}
 
 
 
@@ -137,7 +254,7 @@ input[type="checkbox"]
 {
   display: block;
   width: 100%;
-  background-color: #1976d2;
+  background-color: var(--accent-primary);
   color:inherit;
   border: none;
   padding: 0.5rem;
@@ -150,8 +267,8 @@ input[type="checkbox"]
 
 #apply-button:hover, input[type="submit"]:hover 
 {
-  background-color: #23b1d1;
+  background-color: var(--accent-secondary);
   transform: translateY(-2px);
-  box-shadow: 0 0 10px #23b1d1;
+  box-shadow: 0 0 10px var(--accent-secondary);
   
 }

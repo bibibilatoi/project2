@@ -4,6 +4,34 @@ if(!isset($_SESSION["username"])){
     header("Location: login.php");
     exit();
 }
+
+require_once "settings.php";
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+$eoi_query = "SELECT eoi_number, first_name, last_name, status FROM eoi ORDER BY eoi_number ASC";
+
+$stmt = $conn->prepare($eoi_query);
+
+if ($stmt === false) {
+    $conn->close();
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->execute();
+$eoi_result = $stmt->get_result();
+
+if ($eoi_result === false) {
+    echo "<h1>Database Error: Could not retrieve EOI list.</h1>";
+    $stmt->close();
+    $conn->close();
+    exit();
+}
+
+// NOTE: do not close $stmt or $conn here yet because database is still used below.
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +52,12 @@ if(!isset($_SESSION["username"])){
     <div class="background"></div>
     <div class="container">
         <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3>List All EOIs</h3>
+            <h2>List All EOIs</h2>
             <button name="action" value="list_all" class="Manage_Buttons">List All</button>
         </form>
         <!--List EOIs by Job Reference -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3>List EOIs by Job Reference</h3>
+            <h2>List EOIs by Job Reference</h2>
             <label for="reference_number">Select Job Reference:</label>
             <select class="select_typing_fields" name="reference_number" id="reference_number" required>
                 <option value="">-- Select a Job Reference --</option>
@@ -59,8 +87,8 @@ if(!isset($_SESSION["username"])){
         </form>
         <!--List EOIs by Applicant name -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3>List EOIs by Applicant Name</h3>
-            <div class="select_typing_fields">
+            <h2>List EOIs by Applicant Name</h2>
+            <div class="select_typing_fields" id="name-field">
                 <input class="select_typing_name" type="text" name="first_name" placeholder="First Name">
                 <input class="select_typing_name" type="text" name="last_name" placeholder="Last Name">
             </div>
@@ -68,7 +96,7 @@ if(!isset($_SESSION["username"])){
         </form>
         <!--Delete EOIs by Job Reference -->
         <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3 id="Delete_Job_h3">Delete EOIs by Job Reference</h3>
+            <h2 id="Delete_Job_h3">Delete EOIs by Job Reference</h2>
             <label for="reference_number">Select Job Reference:</label>
             <select name="reference_number" id="reference_number" class = "select_typing_fields" required>
                 <option value="">-- Select a Job Reference --</option>
@@ -97,20 +125,41 @@ if(!isset($_SESSION["username"])){
             <button name="action" value="delete_by_job" class="Manage_Buttons" id="Delete_Button">Delete</button>
         </form>
         <!--Change EOI status -->
-        <form action = "views_eoi.php" method="post" class = "List_manage">
-            <h3>Change EOI Status</h3>
-            <input class="select_typing_name" id="EOI_num_select" class="select_typing_fields" type="number" name="eoi_number" placeholder="EOI Number" required>
+        <form action="views_eoi.php" method="post" class="List_manage">
+            <h2>Change EOI Status</h2>
+
+            <select class="select_typing_fields" name="eoi_number" id="EOI_num_select" required>
+                <option value="">Select Applicant</option>
+
+                <?php
+                while ($row = mysqli_fetch_assoc($eoi_result)) {
+                    $id = $row["eoi_number"];
+                    $name = $row["first_name"] . " " . $row["last_name"];
+                    $status = $row["status"];
+
+                    echo "<option value='{$id}'>#{$id} – {$name} – ({$status})</option>";
+                }
+                ?>
+            </select>
+
+            <!-- Status options -->
             <select class="select_typing_fields" name="status">
                 <option value="New">New</option>
                 <option value="Current">Current</option>
                 <option value="Final">Final</option>
             </select>
+
             <button name="action" value="change_status" class="Manage_Buttons">Update Status</button>
         </form>
         <!--Log out-->
         <button class="select_typing_name" id="logout_button"onclick="window.location.href='logout.php'">Logout</button>
     </div>
     
-
+    <?php
+        // Clean up resources (CRITICAL)
+        $eoi_result->free(); 
+        $stmt->close();
+        $conn->close(); 
+    ?>
 </body>
 </html>

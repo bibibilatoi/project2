@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 04:24 PM
+-- Generation Time: Nov 16, 2025 at 05:17 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,13 +95,12 @@ CREATE TABLE `eoi` (
 --
 
 INSERT INTO `eoi` (`eoi_number`, `reference_number`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street`, `suburb`, `state`, `postcode`, `email`, `phone`, `other_skills`, `status`) VALUES
-(1, 'AI01', 'Alice', 'Nguyen', '1998-04-12', 'Female', '123 Space Ave', 'Melbourne', 'VIC', '3000', 'alice@example.com', '0412345678', 'AI hobby projects', 'New'),
-(2, 'MO04', 'Bob', 'Tran', '1990-09-05', 'Male', '99 Orbit Rd', 'Sydney', 'NSW', '2000', 'bob@example.com', '0422334455', 'Security research', 'New'),
-(3, 'AI01', 'john', 'smith', '2023-11-16', 'Female', 'adsbbasd', 'abdas', 'VIC', '1112', 'a@gmail.com', '11111121', 'None', 'New'),
-(4, 'MO04', 'a', 'b', NULL, NULL, NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', NULL, 'New'),
-(5, 'MO04', 'a', 'b', NULL, NULL, NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', NULL, 'New'),
-(6, 'MO04', 'a', 'b', '2025-11-19', 'Male', NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', 'abcdefg', 'New'),
-(7, 'MO04', 'a', 'b', '2025-11-19', 'Male', NULL, NULL, NULL, NULL, 'aaa@gmail.com', '444444443', 'abcdefg', 'New');
+(1, 'MO04', 'Bob', 'Tran', '2025-11-18', 'Female', '12 Star Lane', 'Melbourne', 'VIC', '3000', 'BobTran123@gmail.com', '0411222333', 'Also experience with AI pipelines', 'Current'),
+(2, 'AI01', 'Alice', 'Nguyen', '1993-09-15', 'Female', '88 Orbit Rd', 'Sydney', 'NSW', '2000', 'alice.nguyen@yahoo.com', '0433556677', 'Interested in cloud AI infrastructure', 'New'),
+(3, 'AI01', 'asdfdasf', 'asdf', '2025-11-11', 'Male', 'adsbddb', 'asbdasdas', 'WA', '1111', 'adsf@gmail.com', '111111222', '', 'New'),
+(4, 'AI01', 'Long', 'Vu', '2025-11-05', 'Male', 'abcdef', 'abcdef', 'SA', '7777', 'long1234@gmail.com', '222222222', 'None :)', 'Current'),
+(5, 'AI01', 'asdfadf', 'dfhfgd', '1981-10-20', 'Other', 'dfhga', 'ajrhaa', 'WA', '4444', 'adsgasdg@gmail.com', '888888998', 'huhuhuhuh', 'New'),
+(6, 'MO04', 'ahssh', 'asdhasdcxv', '1922-02-02', 'Male', 'abds', 'asdta', 'QLD', '9999', 'szvdgs@yahoo.com', '9922222243', 'adsgsegawegawefa', 'New');
 
 -- --------------------------------------------------------
 
@@ -182,11 +181,16 @@ CREATE TABLE `managers` (
 --
 
 INSERT INTO `managers` (`username`, `password`, `email`) VALUES
+<<<<<<< HEAD
 ('ABC', '$2y$10$HNRFOl69REtervonKj0/nuE.CTzThXlvWOWOFqsx.V51FC41crlju', 'anhtuan@gmail.com'),
 ('Admin', '$2y$10$e9qIillhDPEiMOUo0nGBC.taIGT/.oEDuReD4Dc9C1CHBs9byVSJW', 'trinhthaianhtuan@gmail.com'),
+('long12345', '$2y$10$LNDl4p7MlSqETbwDUG9RRusGC4h59017nwdexYQ1G8PPGpn45FaE2', 'hlong12345@gmail.com'),
+('long1234567', '$2y$10$kVBon5P4ci0NflunN65HguNSf9/1TbRGccdbbMn8YE7rGEbQBNNay', 'long0999@gmail.com'),
 ('NeverGonnaGiveYouUp', '$2y$10$.bmxdXQyEdF457w4WQDKFObBfHWJe14hjEtLbmp7lYEa5cZJv9KTS', 'steepmolecules@gmail.com');
+=======
 ('long', '123', 'long@gmail.com'),
 ('SteepMoleCules', 'steepbibilatoi123', 'trinhthaianhtuan@gmail.com');
+>>>>>>> origin/main
 
 -- --------------------------------------------------------
 
@@ -232,7 +236,10 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`skill_id`, `skill_name`) VALUES
+<<<<<<< HEAD
 (21, '3'),
+=======
+>>>>>>> origin/main
 (3, 'C++'),
 (6, 'Cloud Computing'),
 (9, 'Cybersecurity'),
@@ -260,7 +267,9 @@ CREATE TABLE `user_skills` (
 --
 
 INSERT INTO `user_skills` (`eoi_number`, `skill_id`) VALUES
+<<<<<<< HEAD
 (25, 3);
+=======
 (1, 1),
 (1, 5),
 (1, 7),
@@ -269,6 +278,7 @@ INSERT INTO `user_skills` (`eoi_number`, `skill_id`) VALUES
 (3, 1),
 (3, 6),
 (3, 9);
+>>>>>>> origin/main
 
 --
 -- Indexes for dumped tables
@@ -356,8 +366,11 @@ ALTER TABLE `basic_qualifications`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
+<<<<<<< HEAD
   MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+=======
   MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> origin/main
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -382,7 +395,9 @@ ALTER TABLE `preferred_skills`
 --
 ALTER TABLE `skills`
   MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
   MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+>>>>>>> origin/main
 
 --
 -- Constraints for dumped tables

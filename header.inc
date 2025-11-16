@@ -7,8 +7,4 @@
 
     <?php include("nav.inc") ?>
 
-
-    <section id="banner">
-        <p>SpeedX - Bridging innovation and the infinite</p>
-    </section>
 </header>

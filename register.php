@@ -6,7 +6,7 @@ $errors = [
 ];
 
 
-session_unset();
+unset($_SESSION['register_error']);
 
 function showError($error){
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
@@ -36,7 +36,10 @@ function showError($error){
         <div class="background"></div>
         <div class="container">
             <div class="content">
-                <h2 class="logo"><i class='bxr  bx-rocket' ></i> SpeedX</h2>
+                <div id="logo">
+                    <img src="images/speedx_logo.png" height="50" width="50" alt="SpeedX logo">
+                    <p>SpeedX</p>
+                </div>
                 <div class="text-sci">
                     <h2>Welcome!<br><span>To Register management page</span></h2>
                 </div>

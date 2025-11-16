@@ -36,7 +36,10 @@ function showError($error){
         <div class="background"></div>
         <div class="container">
             <div class="content">
-                <h2 class="logo"><i class='bxr  bx-rocket' ></i> SpeedX</h2>
+                <div id="logo">
+                    <img src="images/speedx_logo.png" height="50" width="50" alt="SpeedX logo">
+                    <p>SpeedX</p>
+                </div>
                 <div class="text-sci">
                     <h2>Welcome!<br><span>To login management page</span></h2>
                 </div>
@@ -64,10 +67,10 @@ function showError($error){
                         </div>
                         <?= showError($errors['login']); ?>
                         <div class="buttons">
-                            <a class="back_button" href="index.php">&larr;</a>
+                            <a class="back_button" href="index.php"><i class='bx  bx-home'    ></i> </a>
                             <button class="login_button" type="submit" name="login">Login</button>
                         </div>
-                        <p class="Tranfer_to_register"><a href="register.php">Don't have account? Click here</a></p>
+                        <p class="Tranfer_to_register">Don't have account? <a href="register.php">Click here</a></p>
                     </form>
                 </div>
             </div>

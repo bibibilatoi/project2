@@ -31,40 +31,56 @@ BASIC STYLING
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --block-basic-color: #5E747F;
-  --block-special-color:#668a9c;
-  --block-hover-color: #478aac;
-  --text-basic-color: #E5E5E5;
-  --text-selected-color: #1EF963;
-  --text-warning-color: #D61229;
-  --text-heading-color: #FFD700;
-  --bg-main-color:#000000;
+  --bg-primary: hsl(0, 0%, 0%);
+  --bg-secondary: hsl(0, 0%, 15%);
+  --bg-third: hsl(0, 0%, 30%);
+
+  --border: hsl(0, 0%, 50%);
+
+  --text-primary: hsl(0, 0%, 90%);
+  --text-secondary: hsl(0, 0%, 70%);
+
+  --accent-primary: hsl(233, 70%, 60%);
+  --accent-secondary: hsl(233, 70%, 70%);
+
+  --space-img: url("../images/space-bg3.jpg");
+
+  --green: hsl(139, 95%, 55%); 
+  --red: hsl(353, 84%, 45%);
+
+  /* 
+  OTHER ACCENTS:
+  Blue
+  --accent-primary: hsl(233, 70%, 60%);
+  --accent-secondary: hsl(233, 70%, 70%);
+
+  --space-img: url("../images/space-bg3.jpg");
+
+  Orange
+  
+  --accent-primary: hsl(15, 70%, 60%);
+  --accent-secondary: hsl(15, 70%, 70%);
+
+  --space-img: url("../images/space-bg2.jpg");
+
+  Cyan
+  --accent-primary: hsl(195, 80%, 44%);
+  --accent-secondary: hsl(195, 90%, 70%);
+
+  --space-img: url("../images/space-bg3.jpg");
+  
+  */
 }
 
 body {
   font-family: 'Exo 2', sans-serif;
-  background-color: var(--bg-main-color);
-  color: var(--text-basic-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+
 }
 
-p, li, figcaption {
-  font-size: 20px;
-}
-
-h1, h2, h3, h4 {
-  color:var(--text-heading-color)
-}
-h1 {
-  font-size: 48px;
-}
-h2 {
-  font-size: 40px;
-}
-h3 {
-  font-size: 32px;
-}
-h4 {
-  font-size: 24px;
+p, li, figcaption, label {
+  font-size: 16px;
 }
 
 img{
@@ -74,10 +90,43 @@ img{
 }
 
 a {
-  color: var(--text-selected-color);
+  color:var(--accent-primary);
+  z-index: 9999;
 }
-a:visited {
-  color: var(--block-hover-color);
+a:hover, a:active {
+  color:var(--accent-secondary);
+}
+
+
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-secondary);
+    color: var(--text-primary);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s, opacity 0.3s, transform 0.5s ease;
+    opacity: 0.5;
+}
+
+#backToTop:hover,
+#backToTop:focus {
+    background-color: var(--accent-primary);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+
+/* --- Logo --- */
+header {
+	border-bottom: 1px solid var(--border);
 }
 
 
@@ -98,6 +147,7 @@ a:visited {
 #nav-menu {
 	width: 100%;
 	padding: 1rem 0;
+
 }
 
 #nav-menu ul {
@@ -110,27 +160,26 @@ a:visited {
 }
 
 #nav-menu a {
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: var(--text-basic-color);
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
-    border-radius: 4px;
+	display: block;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	color:var(--text-primary);
+	font-weight: bold;
+	transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
+	border-radius: 4px;
+	font-size:20px;
+
 }
 
 #nav-menu a:not(#current-page):hover {
-    background-color: var(--text-basic-color);
-    color: var(--bg-main-color);
+  background-color: var(--accent-primary);
 }
 
-/* --- Animations --- */
-@keyframes slideIn { from {opacity:0; transform:translateX(-20px);} to {opacity:1; transform:translateX(0);} }
-@keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
 
 
 
-#nav-menu li { opacity:0; animation: slideIn 0.5s ease-out forwards; }
+
+#nav-menu li { opacity:0; animation: menuSlideIn 0.5s ease-out forwards; }
 
 #nav-menu li:nth-child(1) { animation-delay:0.1s; }
 #nav-menu li:nth-child(2) { animation-delay:0.25s; }
@@ -141,40 +190,9 @@ a:visited {
 
 
 #nav-menu #current-page {
-    background: var(--text-basic-color);
-    color: var(--bg-main-color);
     animation: activateCurrent 0.4s 1.2s forwards ease-in-out;
 }
 
-@keyframes activateCurrent { to { background-color: var(--text-basic-color); color: var(--bg-main-color); } }
-
-
-
-
-
-#banner {
-  position: relative;
-  background-image: url("./images/space_banner.jpg");
-  background-size: cover; /* Ensures the image covers the entire header area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat;
-  height: 60vh; /* Sets the banner height */
-  animation: bannerFade 1.2s ease-out forwards;
-}
-@keyframes bannerFade {
-  from { opacity: 0; background-position: center top; }
-  to   { opacity: 1; background-position: center center; }
-}
-
-
-#banner p {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  font-size: 32px;
-  text-shadow: 2px 2px 5px rgb(0, 0, 0);
-
-}
 
 
 
@@ -194,28 +212,65 @@ a:visited {
 
 
 footer{
-  border-top: 1px solid var(--text-basic-color);
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   clear: both;
   align-items: center;
   text-align: center;
   margin: 1rem 0;
-  gap: 1rem;
+  color: var(--text-secondary);
+
+  line-height: 1.5rem;
 }
+footer a {
+  text-decoration: none;
+  display: block;
+  color: var(--accent-primary);
+  font-weight: bold;
+}
+footer strong {
+	color: var(--text-primary);
+}
+footer > strong{
+  margin-top:1.5rem;
+  margin-bottom: 0;
+  
+}
+
+
 footer p {
   font-size: 16px;
+  color: var(--text-secondary);
 }
-#contact-info a{
+
+
+#footer-logo {
   display: block;
-  color: var(--text-selected-color)
+  margin-bottom: 2rem;
 }
-#contact-info a:visited {
-  color: var(--block-hover-color);
+#footer-logo p {
+  margin-top: 0.5rem;
+}
+
+#contact-info {
+  margin-bottom: 2rem;
 }
 
 
-/* Animated gradient background */
+
+
+
+/* 
+*****************************************
+*****************************************
+
+  ANIMATION BANK
+
+*****************************************
+*****************************************
+*/
+/* Gradient background used in apply, about */
 @keyframes gradientShiftSpace {
   0% {
     background-position: 100% 50%;
@@ -225,28 +280,38 @@ footer p {
   }
 }
 
+/* Sliding menu used in nav menu */
+@keyframes menuSlideIn { from {opacity:0; transform:translateX(-20px);} to {opacity:1; transform:translateX(0);} }
+@keyframes dropDown { from {opacity:0; transform:translateY(-15px);} to {opacity:1; transform:translateY(0);} }
 
 
-#apply-body main{
-  min-height: 100vh;
-
-  /*Background is a space-ish color gradient (static)*/
-  /*the color gradient go from left to right (90deg) */
-
-  /*the color #02010a get repeated so that the jump looks seemsless*/
-
-  background: linear-gradient(
-    90deg, #02010a, #02010a, #0a0534, #10075f, #0a0534, #02010a, #02010a
-  );
-  background-size: 800% 800%;
-  /* Animate from right to left */
-  animation: gradientShiftSpace 10s linear infinite;
+/* Highlight current page used in nav menu */
+@keyframes activateCurrent { to { background-color: none; background-color: var(--accent-primary); } }
 
 
+@keyframes slideIn {
+    from {
+        transform: translateY(5px);
+    }
+    to {
+        transform: translateY(-10px);
+    }
 }
 
 
 
+
+
+@keyframes pageSlideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 /* 
 *****************************************
 *****************************************
@@ -277,7 +342,7 @@ footer p {
 		text-align: center;
 	}
 
-	#nav-menu li { opacity:0; animation: slideDown 0.5s ease-out forwards; }
+	#nav-menu li { opacity:0; animation: menuSlideDown 0.5s ease-out forwards; }
 
 }
 

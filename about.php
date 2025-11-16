@@ -20,75 +20,74 @@
 			<h2 id="Our-tutor">Our tutor: Vu Ngoc Binh</h2> <!--Our tutor's name-->
 			<!--Students id here-->
 			<section id="about-student-section">
-			<p id="our-class">Class COS10026.2 - Friday 2pm</p> <!--Our tutor's name-->
+				<p id="our-class">Class COS10026.2 - Friday 2pm</p> <!--Our tutor's name-->
 
-			<ul>
-				<li class = "about-student-id">
 				<ul>
-					<li>Trinh Thai Anh Tuan</li>
-					<li>ID: SWH03039</li>
+					<li class = "about-student-id">
+					<ul>
+						<li>Trinh Thai Anh Tuan</li>
+						<li>ID: SWH03039</li>
+					</ul>
+					</li>
+					
+					<li class = "about-student-id">
+					<ul>
+						<li>Vu Hoang Long</li>
+						<li>ID: SWH03135</li>
+					</ul>
+					</li>
+					
+					<li class = "about-student-id">
+					<ul>
+						<li>Duong Tri Duc</li>
+						<li>ID: SWH02992</li>
+					</ul>
+					</li>        
+					
+					<li class = "about-student-id">
+					<ul>
+						<li>Dang Thien An</li>
+						<li>ID: SWH03458</li>
+					</ul>
+					</li>
 				</ul>
-				</li>
-				
-				<li class = "about-student-id">
-				<ul>
-					<li>Vu Hoang Long</li>
-					<li>ID: SWH03135</li>
-				</ul>
-				</li>
-				
-				<li class = "about-student-id">
-				<ul>
-					<li>Duong Tri Duc</li>
-					<li>ID: SWH02992</li>
-				</ul>
-				</li>        
-				
-				<li class = "about-student-id">
-				<ul>
-					<li>Dang Thien An</li>
-					<li>ID: SWH03458</li>
-				</ul>
-				</li>
-			</ul>
 
 			</section>
 			<!-- Our particular responsibilities -->
 			<h2 id="about-Group7-member-contribution">Members' Contributions</h2>
 			<section id="Members-contributions">
-			<!--Our Group photo-->
-			<figure id="about-figure-group-img">
-				<img id="group-image" src="images/group-image.jpg"  alt="Group 7 photo">
-				<figcaption>Our group photo</figcaption>
-			</figure>
-			<dl>
-				<dt>Trinh Thai Anh Tuan</dt>
-				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: About Us page (about.php)</dd>
+				<figure id="about-figure-group">
+					<img id="group-image" src="images/group-image.jpg" alt="Group 7 photo">
+					<figcaption>Our group photo</figcaption>
+				</figure>
 
-				<dt>Vu Hoang Long</dt>
-				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: Job Positions page (jobs.php)</dd>
+				<dl id="contributions-details">
+					<dt>Trinh Thai Anh Tuan</dt>
+					<dd>Shared Responsibility: Home Page, CSS File, .inc files</dd>
+					<dd>Individual Responsibility: About Us page (about.php); Manage, login, register, view_eoi pages</dd>
 
-				<dt>Duong Tri Duc</dt>
-				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Individual Responsibility: Job Applications page, some job positions' descriptions</dd>
-				<dd>Question Poster</dd>
+						<dt>Vu Hoang Long</dt>
+						<dd>Shared Responsibility: Home Page, CSS File, .inc files, design refinement (color, structure)</dd>
+						<dd>Individual Responsibility: Job Positions page (jobs.php), confirm submission page, MySQL tables</dd>
 
-				<dt>Dang Thien An</dt>
-				<dd>Shared Responsibility: Home Page, CSS File</dd>
-				<dd>Question Poster</dd>
-			</dl>
+						<dt>Duong Tri Duc</dt>
+						<dd>Shared Responsibility: Home Page, CSS File, pptx slides</dd>
+						<dd>Individual Responsibility: Job Applications page, some job positions' descriptions, Process_eoi</dd>
+						<dd>Question Poster</dd>
 
-
+					<dt>Dang Thien An</dt>
+					<dd>Shared Responsibility: Home Page, CSS File, pptx slides, design refinement (effects)</dd>
+					<dd>Question Poster</dd>
+				</dl>
 			</section>
+
 
 
 			<!--Our interest table-->
 			<table class="about-table">
 			<caption>Our team's interests</caption>
 			<tr>
-				<th class="diagonal-cell"></th>
+				<th>Member</th>
 				<th colspan="2">Books</th>
 				<th>Music</th>
 				<th>Films</th>
