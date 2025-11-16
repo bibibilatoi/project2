@@ -13,11 +13,11 @@
         <p><strong>Phone:</strong> +1-800-555-SpeedX</p>
     </div>
     <div id="project-info">
-        <a href="https://trinhthaianhtuan.atlassian.net/jira/software/projects/HCFPP1/boards/35/timeline?" target="_blank">
-            Visit our Jira project
+        <a href="https://github.com/users/bibibilatoi/projects/2" target="_blank">
+            Visit our Github project
         </a>
         
-        <a href="https://github.com/bibibilatoi/project1" target="_blank">
+        <a href="https://github.com/bibibilatoi/project2" target="_blank">
             Visit the GitHub repo of this project
         </a>
         <strong>&copy; 2025 SpeedX. All rights reserved.</strong>
