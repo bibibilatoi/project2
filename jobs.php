@@ -1,6 +1,11 @@
 <?php
 require_once 'settings.php';
 
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 $sql = "SELECT * FROM jobs ORDER BY department, reference_number";
 $result = $conn->query($sql);
 
@@ -14,40 +19,58 @@ if ($result && $result->num_rows > 0) {
     }
 }
 
+if (isset($result) && $result instanceof mysqli_result) {
+    $result->close();
+}
+
 
 $job_ids = array_keys($jobs_data);
 if (!empty($job_ids)) {
     $ids_string = implode(',', $job_ids);
 
+
+
     // Key Responsibilities
     $key_responsibilities = [];
     $res = $conn->query("SELECT * FROM key_responsibilities WHERE job_id IN ($ids_string)");
-    while ($row = $res->fetch_assoc()) {
-        $key_responsibilities[$row['job_id']][] = $row['responsibility'];
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $key_responsibilities[$row['job_id']][] = $row['responsibility'];
+        }
+        $res->close(); // **CLEANUP: Close temporary result set**
     }
+
 
     // Basic Qualifications
     $basic_qualifications = [];
     $res = $conn->query("SELECT * FROM basic_qualifications WHERE job_id IN ($ids_string)");
-    while ($row = $res->fetch_assoc()) {
-        $basic_qualifications[$row['job_id']][] = $row['qualification'];
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $basic_qualifications[$row['job_id']][] = $row['qualification'];
+        }
+        $res->close();
     }
 
     // Preferred Skills
     $preferred_skills = [];
     $res = $conn->query("SELECT * FROM preferred_skills WHERE job_id IN ($ids_string)");
-    while ($row = $res->fetch_assoc()) {
-        $preferred_skills[$row['job_id']][] = $row['skill'];
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $preferred_skills[$row['job_id']][] = $row['skill'];
+        }
+        $res->close();
     }
 
     // Additional Requirements
     $additional_requirements = [];
     $res = $conn->query("SELECT * FROM additional_requirements WHERE job_id IN ($ids_string)");
-    while ($row = $res->fetch_assoc()) {
-        $additional_requirements[$row['job_id']][] = $row['additional_requirement'];
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $additional_requirements[$row['job_id']][] = $row['additional_requirement'];
+        }
+        $res->close(); 
     }
 }
-
 
 $currently_hiring_jobs = [];
 foreach ($departments as $jobs) {
@@ -65,11 +88,12 @@ foreach ($departments as $deptName => $jobs) {
     foreach ($jobs as $job) {
         if ($job['is_hiring']) {
             $hiring_departments[$deptName] = true;
-            break; // one hiring job is enough
+            break; 
         }
     }
 }
 
+$conn->close();
 
 ?>
 <!DOCTYPE html>

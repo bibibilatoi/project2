@@ -249,3 +249,8 @@
         font-size: 24px;
     }
 }
+@media (max-width: 1000px) {
+  .logo, .text-sci, .social-icons{
+    display: none;
+  }
+}

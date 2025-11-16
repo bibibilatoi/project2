@@ -2,25 +2,47 @@
 session_start();
 require_once "settings.php";
 
+// Define the maximum viewing time (seconds) 
+// After the time expire, if refresh the page or change the url then the page cant be accessed
+$MAX_VIEW_TIME = 60; 
+
+//Check for explicit finish
 if (isset($_POST['finish'])) {
-    // Unset everything related to this EOI confirmation
     unset($_SESSION['eoi_confirm']);
+    unset($_SESSION['eoi_confirm_time']); 
     header("Location: apply.php");
     exit;
 }
 
-if (!isset($_SESSION['eoi_confirm'])) {
-    die("Access denied.");
+//Check remaining time left
+$is_expired = false;
+if (isset($_SESSION['eoi_confirm_time']) && (time() - $_SESSION['eoi_confirm_time']) > $MAX_VIEW_TIME) {
+    $is_expired = true;
+}
+// If access is denied or time out -> clear any lingering session keys
+if (!isset($_SESSION['eoi_confirm']) || $is_expired) {
+    unset($_SESSION['eoi_confirm']);
+    unset($_SESSION['eoi_confirm_time']); 
+    header("Location: apply.php");
+    exit;
 }
 
 $eoi_number = (int)$_SESSION['eoi_confirm'];
 
 $conn = new mysqli($host, $user, $pwd, $sql_db);
-if ($conn->connect_error) die("<p>Database connection failed: " . $conn->connect_error . "</p>");
+if ($conn->connect_error) {
+    // If the database connection fails, clear the session and die to prevent re-attempts/loops.
+    unset($_SESSION['eoi_confirm']); 
+    die("<p>Database connection failed: " . $conn->connect_error . "</p>");
+}
 
 
 $stmt = $conn->prepare("SELECT * FROM eoi WHERE eoi_number = ?");
-if (!$stmt) die("Prepare failed for EOI: " . $conn->error);
+if (!$stmt) {
+    unset($_SESSION['eoi_confirm']); 
+    $conn->close();
+    die("Prepare failed for EOI: " . $conn->error);
+}
 $stmt->bind_param("i", $eoi_number);
 $stmt->execute();
 $result = $stmt->get_result();

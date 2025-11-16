@@ -28,6 +28,43 @@ Apply Page CSS
 
 }
 
+.error-box {
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 8px;
+    max-width: 700px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.general-error-msg {
+    color: var(--red);
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+.general-error-msg p {
+    margin: 0;
+}
+
+.validation-errors-msg {
+    color: var(--red);
+    border: 2px solid var(--border); 
+    font-size: 3rem;
+}
+.validation-errors-msg p {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.validation-errors-msg ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.validation-errors-msg li {
+    position: relative;
+    padding-left: 20px; 
+}
 
 
 
@@ -135,7 +172,7 @@ select option {
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-.skills-container input:not(:checked) + label:hover {
+.skills-container label:hover {
   background-color: var(--accent-secondary);
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--accent-secondary);

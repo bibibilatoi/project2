@@ -10,7 +10,7 @@
 }
 
 .eoi-title {
-    color: var(--accent-primary);
+    color: var(--green);
     text-align: center;
     margin-bottom: 1.5rem;
 }
@@ -79,7 +79,7 @@
 
 /* --- Finish Button for confirmation page --- */
 #finish-form {
-    margin-top: 20px;
+    margin: 10px 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -93,7 +93,6 @@
   color: inherit;
   border: none;
   padding: 1rem;
-  margin-top: 2rem;
   font-size: 24px;
   border-radius: 5px;
   cursor: pointer;
