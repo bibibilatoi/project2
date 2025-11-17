@@ -26,12 +26,13 @@ unset($_SESSION['apply_form_token']);
 
 
 
-// --- Collect and clean input ---
-// -- Input cleanup function --
+
+//Input cleanup function
 function cleanStuff($stuff) {
     return trim($stuff);
 }
-$reference_number = cleanStuff($_POST['reference_number'] ?? '');     //cleans the input, if the value on the left is good then use, otherwise use '' (empty)       //code cleaned
+//cleans the input, if the value on the left is good then use, otherwise use '' (empty)
+$reference_number = cleanStuff($_POST['reference_number'] ?? '');     
 $first_name = cleanStuff($_POST['first_name'] ?? '');
 $last_name = cleanStuff($_POST['last_name'] ?? '');
 $date_of_birth = cleanStuff($_POST['date_of_birth'] ?? '');
@@ -45,7 +46,7 @@ $phone = cleanStuff($_POST['phone'] ?? '');
 $other_skills = cleanStuff($_POST['other_skills'] ?? '');
 
 
-//-- Error Validation --
+//Error Validation
 $errors = [];
 
 $required = [
@@ -63,36 +64,37 @@ $required = [
 ];
 
 foreach ($required as $field => $value) {
-    if (empty($value)) $errors[] = "$field is required.";  //to check if value is empty, if it is then send an error mssg
+    //Check if value is empty, if it is then send an error mssg
+    if (empty($value)) $errors[] = "$field is required.";
 }
 
-//-Validate email
+//Validate email
 if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {  // filters and check whether format is correct or not
     $errors[] = "Invalid email format.";
 }
 
-//-Validate date of birth (YYYY-MM-DD)
+//Validate date of birth (YYYY-MM-DD)
 if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   //to check whether there is input and if it matches the pattern
     $errors[] = "Date of Birth must be in YYYY-MM-DD format.";
 }
 
-//-Validate postcode (numbers only, 4-6 digits)
+//Validate postcode (numbers only, 4-6 digits)
 if (!empty($postcode) && !preg_match('/^\d{4,6}$/', $postcode)) {
     $errors[] = "Postcode must be 4-6 digits.";
 }
 
-//-Validate phone (numbers, spaces, +, -)
+//Validate phone (numbers, spaces, +, -)
 if (!empty($phone) && !preg_match('/^[\d\+\-\s]{8,20}$/', $phone)) {
     $errors[] = "Phone number contains invalid characters.";
 }
 
-//-Validate gender
+//Validate gender
 $valid_genders = ['Male', 'Female', 'Other'];
 if (!empty($gender) && !in_array($gender, $valid_genders)) {
     $errors[] = "Invalid gender selected.";
 }
 
-//-Validate skills
+//Validate skills
 $skills_selected = !empty($_POST['skills']) && is_array($_POST['skills']) && count($_POST['skills']) > 0;
 $other_skills_filled = !empty(trim($_POST['other_skills'] ?? ''));
 
@@ -102,7 +104,7 @@ if (!$skills_selected && !$other_skills_filled) {
 
 //if error exist, save input and error and go back to apply
 if (!empty($errors)) {
-    // *** FIX: Save the entire submitted data for re-population ***
+    //Save the entire submitted data for re-generation
     $_SESSION['apply_form_data'] = $_POST;
     
     $_SESSION['apply_errors'] = $errors;
@@ -111,19 +113,19 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- Insert eoi ---
+//Insert eoi
 $stmt = $conn->prepare("INSERT INTO eoi 
     (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
+//Check if the preparation is successfull
 if (!$stmt) {
-    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";   //to check if the preparation is successfull
+    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";
     $conn->close();
     header("Location: apply.php");
     exit;
 }
-
-$stmt->bind_param(      //bind php variables to the placeholders '?' in the sql statement
+$stmt->bind_param(
     "ssssssssssss", 
     $reference_number, $first_name, $last_name, $date_of_birth, $gender, 
     $street, $suburb, $state, $postcode, $email, $phone, $other_skills
@@ -141,7 +143,7 @@ if (!$stmt->execute()) {            //run the sql query in the data base
 $eoi_number = $stmt->insert_id;     //getting inserted record id
 $stmt->close();
 
-// --- Insert skills ---
+//Insert skills
 if (!empty($_POST['skills'])) {
     $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)");
     
@@ -165,10 +167,10 @@ if (!empty($_POST['skills'])) {
 
 
 
-//-Clean up
+//Clean up
 $conn->close();
 $_SESSION['eoi_confirm'] = $eoi_number;
-//-Add a timestamp to limit viewing duration
+//Add a timestamp to limit viewing duration
 $_SESSION['eoi_confirm_time'] = time(); 
 header("Location: confirm_eoi.php");
 exit;

@@ -296,9 +296,9 @@ Index PAGE CSS - MAIN AND SECTIONS
 }
 #workplace-img-container {
     display: flex;
-    flex-direction: column;     /* stack image and caption vertically */
-    align-items: center;        /* center horizontally */
-    justify-content: center;    /* center vertically, if container has height */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: auto;    
 }
 #workplace-img-container img {

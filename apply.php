@@ -11,14 +11,17 @@ if ($conn->connect_error) {
 $general_error = $_SESSION['apply_error'] ?? '';
 unset($_SESSION['apply_error']);
 
-// Retrieve validation errors (list of field-specific errors)
+// Retrieve validation errors
 $validation_errors = $_SESSION['apply_errors'] ?? [];
 unset($_SESSION['apply_errors']);
-// Retrieve old form data to re-populate the form
+// Retrieve old form data to re-genarate the form
 $old_input = $_SESSION['apply_form_data'] ?? [];
 unset($_SESSION['apply_form_data']);
 
-// --- Database Setup ---
+
+
+
+
 // Generate a new token for the current page load
 $_SESSION['apply_form_token'] = bin2hex(random_bytes(16)); 
 

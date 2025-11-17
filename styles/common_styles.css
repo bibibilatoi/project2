@@ -124,7 +124,7 @@ a:hover, a:active {
 }
 
 
-/* --- Logo --- */
+/* --- HEADER --- */
 header {
 	border-bottom: 1px solid var(--border);
 }
@@ -315,14 +315,13 @@ footer p {
 
 @keyframes hiring-pulse {
     0% {
-        color: var(--accent-primary); /* Initial color */
+        color: var(--accent-primary); 
     }
     50% {
-        color: var(--text-primary); /* Flash to the main text color or a contrasting color */
-        text-shadow: 0 0 5px var(--accent-primary); /* Optional glow effect */
+        color: var(--text-primary); 
     }
     100% {
-        color: var(--accent-primary); /* Return to initial color */
+        color: var(--accent-primary);
     }
 }
 /* 

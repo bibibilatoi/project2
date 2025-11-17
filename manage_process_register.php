@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
-    // If connection fails, set an error and exit gracefully
+    // If connection fails, set an error and exit
     $_SESSION['register_error'] = 'Database connection failed. Please try again later.';
     header("Location: register.php");
     exit();

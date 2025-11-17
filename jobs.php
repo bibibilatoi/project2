@@ -37,7 +37,7 @@ if (!empty($job_ids)) {
         while ($row = $res->fetch_assoc()) {
             $key_responsibilities[$row['job_id']][] = $row['responsibility'];
         }
-        $res->close(); // **CLEANUP: Close temporary result set**
+        $res->close();
     }
 
 

@@ -102,7 +102,6 @@ $conn->close();
             <?php endif; ?>
         </table>
     </div>
-    <!-- Finish button -->
     <form method="post" id="finish-form">
         <button type="submit" name="finish" id="finish-button">Finish</button>
     </form>

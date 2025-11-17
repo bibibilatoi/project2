@@ -8,7 +8,7 @@ if ($conn->connect_error) {
     header("Location: login.php");
     exit();
 }
-// --- Check Request Method
+// Check Request Method
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $conn->close();
     header("Location: login.php");

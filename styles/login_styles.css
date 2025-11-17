@@ -8,7 +8,7 @@
     background-position: center;
     filter: blur(10px);
 }
-/*smaller background*/
+/*background for the container*/
 .container{
     position:absolute;
     top: 50%;
@@ -22,8 +22,6 @@
     border-radius: 10px;
 }
 /*left side of the web*/
-/*left side of the web*/
-/*left side of the web*/
 .container .content{
     position: absolute;
     top:0;
@@ -31,7 +29,7 @@
     width: 58%;
     height:100%;
     padding: 80px;
-    color: var(--text-primary);
+    color: white;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -69,8 +67,6 @@
 
 }
 /*right side of the web*/
-/*right side of the web*/
-/*right side of the web*/
 .container .login_container{
     top:0;
     right:0;
@@ -102,10 +98,10 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
 }
 .login_form_box .input_box{
-    position: relative; /* Important!!!*/
+    position: relative;
     width: 340px;
     height: 50px;
-    border-bottom: 2px solid var(--text-primary);
+    border-bottom: 2px solid white;
     margin: 30px 0;
 }
 .input_box input{
@@ -187,7 +183,7 @@
   background-color: var(--accent-primary);
 }
 .back_button:visited{
-  color:var(--text-primary);
+  color:white;
 }
 .back_button:hover, .login_button:hover{
   background-color: var(--accent-secondary);
@@ -273,7 +269,6 @@
   }
 }
 
-/* For small phones */
 @media (max-width: 600px) {
   .background {
     filter: blur(6px);

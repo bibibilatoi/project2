@@ -72,7 +72,7 @@ $_SESSION['reg_token'] = bin2hex(random_bytes(16));
                             <button class="login_button" type="submit" name="login">Login</button>
                         </div>
                     </form>
-
+                    <!--- Form to go to register page with a correct token --->
                     <form class="Tranfer_to_register" action="register.php" method="POST">
                         <input type="hidden" name="access_via_login" value="<?php echo $_SESSION['reg_token']; ?>">
                         <label>Don't have an account?</label>

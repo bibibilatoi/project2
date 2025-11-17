@@ -7,8 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: blur(8px); /* adjust blur strength */
-    z-index: -1; /* keep behind content */
+    filter: blur(8px);
+    z-index: -1;
 }
 .container{
     position: relative;
@@ -85,7 +85,7 @@
 }
 .select_typing_name::placeholder{
     color: #d7cdcdff;        
-    opacity: 1;         /* ensures consistent visibility across browsers */
+    opacity: 1;
     font-style: italic;
 }
 .select_typing_name:focus {
