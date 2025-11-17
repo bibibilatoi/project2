@@ -25,11 +25,15 @@
 ```
 
 
-2. The register.php page check the accessed method and check the token:
+2. The register.php page check the accessed method:
 ```php
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
+// Allow access if it's a POST request with the token (from login.php's "link"),
+// OR if there is an error set in the session (indicating a redirect from manage_process_register.php)
+if (
+    ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
     !isset($_POST['access_via_login'], $_SESSION['reg_token']) ||
-    $_POST['access_via_login'] !== $_SESSION['reg_token']
+    $_POST['access_via_login'] !== $_SESSION['reg_token']) &&
+    !isset($_SESSION['register_error'])
 ){
     unset($_SESSION['reg_token']);
     die("Access Denied!");

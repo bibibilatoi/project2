@@ -344,6 +344,9 @@ footer p {
 
 
 	/*menu items stack on top of each others */
+  #nav-menu {
+    z-index: 10;
+  }
 	#nav-menu ul {
 		flex-direction: column;
 		gap: 0.5rem;
@@ -354,7 +357,7 @@ footer p {
 		text-align: center;
 	}
 
-	#nav-menu li { opacity:0; animation: menuSlideDown 0.5s ease-out forwards; }
+	#nav-menu li { opacity:0; animation: dropDown 0.5s ease-out forwards; }
 
 }
 

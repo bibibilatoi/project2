@@ -8,6 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
+//Token check:
+if (!isset($_POST['error_token']) || $_POST['error_token'] !== $_SESSION['error_check_token']) {
+    // Clear the token and deny access
+    unset($_SESSION['error_check_token']);
+    header("Location: register.php");
+    exit();
+}
+
+unset($_SESSION['error_check_token']);
+
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
     // If connection fails, set an error and exit
@@ -33,7 +43,7 @@ if(isset($_POST['Register'])){
     if($stmt->num_rows != 0){
         $stmt->close();
         $conn->close();
-        $_SESSION['register_error'] = 'Email or username Already exist';
+        $_SESSION['register_error'] = 'Email or username already exist';
         header("Location: register.php");
         exit();
     }
