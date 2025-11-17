@@ -174,4 +174,5 @@ header("Location: confirm_eoi.php");
 exit;
 
 //-- ACKNOWLEDGEMENTS: Usage of AI to generate patterns and to make code cleaner than the original //
+// AI mainly used to reformat the code and also cleaning the incomming form data
 ?>

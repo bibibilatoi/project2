@@ -312,6 +312,19 @@ footer p {
         opacity: 1;
     }
 }
+
+@keyframes hiring-pulse {
+    0% {
+        color: var(--accent-primary); /* Initial color */
+    }
+    50% {
+        color: var(--text-primary); /* Flash to the main text color or a contrasting color */
+        text-shadow: 0 0 5px var(--accent-primary); /* Optional glow effect */
+    }
+    100% {
+        color: var(--accent-primary); /* Return to initial color */
+    }
+}
 /* 
 *****************************************
 *****************************************

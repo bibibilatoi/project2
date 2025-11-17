@@ -1,5 +1,5 @@
 .background{
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100vh;
     background: var(--space-img) no-repeat;
