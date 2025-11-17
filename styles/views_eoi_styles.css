@@ -1,37 +1,7 @@
-
-/* --- Back to Manage Page button --- */
-#back_to_Manage_Page_icon {
-    position: absolute;
-    padding: 8px 20px;
-    margin: 20px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background-color: var(--accent-primary);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: background-color 0.25s ease;
-    font-size: 24px;
-
-}
-#back_to_Manage_Page_icon:hover {
-    background-color: var(--accent-secondary);
-    box-shadow: 0 0 10px var(--accent-secondary);
-}
-#back_to_Manage_Page_icon a {
-    top: -4px;
-    text-decoration: none;
+body {
+    overflow-y: scroll;
 }
 
-/* --- EOI Query Results Title --- */
-#EOI_Query_Results_title {
-    text-align: center;
-    color: var(--text-primary);
-    margin: 30px;
-    padding: 30px;
-    font-size: 40px;
-}
-
-/* --- Background --- */
 .background {
     position: fixed;
     width: 100%;
@@ -39,79 +9,126 @@
     background: var(--space-img) no-repeat;
     background-size: cover;
     background-position: center;
+    filter: brightness(0.7); 
 }
 
-/* --- Container --- */
 .container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 650px;
-    background-size: cover;
-    background-position: center;
+    max-width: 95%;
+    padding: 30px; 
+    min-height: 80vh; 
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
     border-radius: 10px;
-    padding: 20px; 
-    overflow: auto; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    overflow-x: auto;
 }
 
-/* --- Table Styling --- */
+#back_to_Manage_Page_icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--accent-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 10;
+}
+#back_to_Manage_Page_icon:hover {
+    background-color: var(--accent-secondary);
+    box-shadow: 0 0 15px var(--accent-secondary);
+}
+
+#EOI_Query_Results_title {
+    text-align: center;
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
 table {
     width: 100%;
     border-collapse: collapse; 
-    margin-top: 20px;
-    table-layout: fixed; 
-    word-wrap: break-word; 
+    margin: 20px 0;
+    min-width: 1200px;
+    overflow-x: auto;
 }
 
 table th, table td {
     border: 1px solid var(--border); 
-    padding: 10px 15px; 
+    padding: 12px 18px; 
     text-align: left;
     color: var(--text-primary);
+    vertical-align: top;
+}
+
+table th {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 table td {
     background-color: var(--bg-third);
-}
-table th {
-    background-color: var(--bg-secondary); 
+    max-width: 200px; 
+    word-wrap: break-word; 
+    font-size: 0.9rem;
 }
 
-table tr:nth-child(even) {
-    background-color: rgba(255,255,255,0.05); 
+table tr:nth-child(even) td {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+table tr:nth-child(odd) td {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#No-record-error, #Announcement {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 #No-record-error {
-    font-size: 30px;
-    text-align: center;
     color: var(--red);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
-
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid var(--red);
 }
 
-#Deleted-eoi {
-    font-size: 30px;
-    text-align: center;
+#Announcement { 
     color: var(--green);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.481);
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--green);
 }
 
-/* --- Responsive Adjustments --- */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 768px) {
     .container {
-        width: 90%;
-        height: auto;
+        max-width: 95%;
+        padding: 15px;
+        margin: 50px auto 20px auto;
+    }
+    #EOI_Query_Results_title {
+        font-size: 2rem;
+    }
+    table {
+        min-width: 1000px; 
     }
     table th, table td {
         padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    #No-record-error, #Announcement {
+        font-size: 1.2rem;
     }
 }
-
-@media screen and (max-width: 900px) {
-    .container {
-        overflow-x: auto;
-    }
-}
-
-

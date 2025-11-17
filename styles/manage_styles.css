@@ -4,16 +4,18 @@
     height: 100vh;
     background: var(--space-img) no-repeat;
     background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-position: center;
     filter: blur(8px); /* adjust blur strength */
-    z-index: -1; /* keep behind content */
+    z-index: -999; /* keep behind content */
 }
 .container{
-    position: relative;
+    position:absolute;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    height: 550px;
     text-align: center;
-    animation: pageSlideIn 1.5s ease-out;
+    border-radius: 10px;
 }
 
 

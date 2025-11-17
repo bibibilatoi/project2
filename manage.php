@@ -5,12 +5,33 @@ if(!isset($_SESSION["username"])){
     exit();
 }
 
-
 require_once "settings.php";
-// Fetch EOI list for dropdown
-$eoi_query = "SELECT eoi_number, first_name, last_name, status FROM eoi ORDER BY eoi_number ASC";
-$eoi_result = mysqli_query($conn, $eoi_query);
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
+
+$eoi_query = "SELECT eoi_number, first_name, last_name, status FROM eoi ORDER BY eoi_number ASC";
+
+$stmt = $conn->prepare($eoi_query);
+
+if ($stmt === false) {
+    $conn->close();
+    die("Prepare failed: " . $conn->error);
+}
+
+$stmt->execute();
+$eoi_result = $stmt->get_result();
+
+if ($eoi_result === false) {
+    echo "<h1>Database Error: Could not retrieve EOI list.</h1>";
+    $stmt->close();
+    $conn->close();
+    exit();
+}
+
+// NOTE: do not close $stmt or $conn here yet because database is still used below.
 ?>
 
 <!DOCTYPE html>
@@ -134,6 +155,11 @@ $eoi_result = mysqli_query($conn, $eoi_query);
         <button class="select_typing_name" id="logout_button"onclick="window.location.href='logout.php'">Logout</button>
     </div>
     
-
+    <?php
+        // Clean up resources (CRITICAL)
+        $eoi_result->free(); 
+        $stmt->close();
+        $conn->close(); 
+    ?>
 </body>
 </html>

@@ -6,7 +6,7 @@ $errors = [
 ];
 
 
-session_unset();
+unset($_SESSION['register_error']);
 
 function showError($error){
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
