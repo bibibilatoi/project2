@@ -16,14 +16,11 @@
 #### B. Preventing direct URL access:
 1. The login.php submit a form with a token if the "link" to register page is clicked:
 ```php
+<!--- Form to go to register page with a correct token --->
 <form class="Tranfer_to_register" action="register.php" method="POST">
-
-    <input type="hidden" name="access_via_login" value="<?php echo $_SESSION['reg_token']; ?>">
-
-    <label>Don't have an account?</label>
-
-    <button type="submit">Click here</button>
-
+	<input type="hidden" name="access_via_login" value="<?php echo $_SESSION['reg_token']; ?>">
+	<label>Don't have an account?</label>
+	<button type="submit">Click here</button>
 </form>
 ```
 
@@ -31,17 +28,11 @@
 2. The register.php page check the accessed method and check the token:
 ```php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
-
-    !isset($_POST['access_via_login'], $_SESSION['reg_token']) ||
-
-    $_POST['access_via_login'] !== $_SESSION['reg_token']
-
+    !isset($_POST['access_via_login'], $_SESSION['reg_token']) ||
+    $_POST['access_via_login'] !== $_SESSION['reg_token']
 ){
-
-    unset($_SESSION['reg_token']);
-
-    die("Access Denied!");
-
+    unset($_SESSION['reg_token']);
+    die("Access Denied!");
 }
 ```
 
@@ -56,38 +47,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
 #### A. Attempts check:
 ```php
 $name = trim($_POST['username'] ?? '');
-
 $password = trim($_POST['password'] ?? '');
-
 $success = false; // Flag to track success/failure for unified cleanup
 
+
 if (!isset($_SESSION['login_attempts'])) {
-
-    $_SESSION['login_attempts'] = 0;
-
-    $_SESSION['last_attempt_time'] = 0;
-
+	$_SESSION['login_attempts'] = 0;
+	$_SESSION['last_attempt_time'] = 0;
 }
 
 // Check if user needs to wait before trying again
-
 if ($_SESSION['login_attempts'] >= 3) {
-
-    $delay = min(5 * $_SESSION['login_attempts'], 30); // 5s, 10s, 15s, capped at 30s
-
-    $time_since_last = time() - $_SESSION['last_attempt_time'];
-
-    if ($time_since_last < $delay) {
-
-        $wait = $delay - $time_since_last;
-
-        $_SESSION['login_error'] = "Too many failed attempts. Please wait {$wait} seconds before trying again.";
-
-        $conn->close();
-
-        header("Location: login.php");
-        exit();
-    }
+	$delay = min(5 * $_SESSION['login_attempts'], 30); // 5s, 10s, 15s, capped at 30s
+	$time_since_last = time() - $_SESSION['last_attempt_time'];
+	if ($time_since_last < $delay) {
+		$wait = $delay - $time_since_last;
+		$_SESSION['login_error'] = "Too many failed attempts. Please wait {$wait} seconds before trying again.";
+		$conn->close();
+		header("Location: login.php");
+		exit();
+	}
 }
 ```
 #### B. Login check:
@@ -95,33 +74,20 @@ if ($_SESSION['login_attempts'] >= 3) {
 2. The password is checked with accounts in the database:
 ```php
 $stmt = $conn->prepare("SELECT username, email, password FROM managers WHERE username = ?");
-
 $stmt->bind_param("s", $name);
-
 $stmt->execute();
-
 $result = $stmt->get_result();
-
-
 
 if ($result->num_rows === 1) {
 	$user = $result->fetch_assoc();
 
-
-if (password_verify($password, $user['password'])) {
-
-	$success = true;
-
-	$_SESSION['login_attempts'] = 0;
-
-	$_SESSION['last_attempt_time'] = time();
-
-	$_SESSION['username'] = $user['username'];
-
-	$_SESSION['email'] = $user['email'];
-
-}
-
+	if (password_verify($password, $user['password'])) {
+		$success = true;
+		$_SESSION['login_attempts'] = 0;
+		$_SESSION['last_attempt_time'] = time();
+		$_SESSION['username'] = $user['username'];
+		$_SESSION['email'] = $user['email'];
+	}
 }
 ```
 
@@ -141,42 +107,27 @@ if (password_verify($password, $user['password'])) {
 #### A. Old input stored and Form validation:
 ```php
 //if error exist, save input and error and go back to apply
-
 if (!empty($errors)) {
-
-    // *** FIX: Save the entire submitted data for re-population ***
-
-    $_SESSION['apply_form_data'] = $_POST;
-
-    $_SESSION['apply_errors'] = $errors;
-
-    $conn->close();
-
-    header("Location: apply.php");
-
-    exit;
-
+    //Save the entire submitted data for re-generation
+    $_SESSION['apply_form_data'] = $_POST;
+    
+    $_SESSION['apply_errors'] = $errors;
+    $conn->close();
+    header("Location: apply.php");
+    exit;
 }
 ```
 
 Retrieving errors and old inputs in apply.php:
 ```php
 $general_error = $_SESSION['apply_error'] ?? '';
-
 unset($_SESSION['apply_error']);
 
-  
-
-// Retrieve validation errors (list of field-specific errors)
-
+// Retrieve validation errors
 $validation_errors = $_SESSION['apply_errors'] ?? [];
-
 unset($_SESSION['apply_errors']);
-
-// Retrieve old form data to re-populate the form
-
+// Retrieve old form data to re-genarate the form
 $old_input = $_SESSION['apply_form_data'] ?? [];
-
 unset($_SESSION['apply_form_data']);
 ```
 
@@ -185,46 +136,29 @@ unset($_SESSION['apply_form_data']);
 1. If the form submitted is correct, we remember the current time to later check the refresh time frame (in process_eoi.php): `$_SESSION['eoi_confirm_time'] = time();`
 2. Then, each time the confirm page is refreshed, we check the time:
 ```php
-// Define the maximum viewing time (seconds)
+// Define the maximum viewing time (seconds) 
 // After the time expire, if refresh the page or change the url then the page cant be accessed
-
-$MAX_VIEW_TIME = 60;
+$MAX_VIEW_TIME = 60; 
 
 //Check for explicit finish
-
 if (isset($_POST['finish'])) {
-
-    unset($_SESSION['eoi_confirm']);
-
-    unset($_SESSION['eoi_confirm_time']);
-
-    header("Location: apply.php");
-
-    exit;
-
+    unset($_SESSION['eoi_confirm']);
+    unset($_SESSION['eoi_confirm_time']); 
+    header("Location: apply.php");
+    exit;
 }
 
 //Check remaining time left
-
 $is_expired = false;
-
 if (isset($_SESSION['eoi_confirm_time']) && (time() - $_SESSION['eoi_confirm_time']) > $MAX_VIEW_TIME) {
-
-    $is_expired = true;
-
+    $is_expired = true;
 }
-
 // If access is denied or time out -> clear any lingering session keys
-
 if (!isset($_SESSION['eoi_confirm']) || $is_expired) {
-
-    unset($_SESSION['eoi_confirm']);
-
-    unset($_SESSION['eoi_confirm_time']);
-
-    header("Location: apply.php");
-
-    exit;
-
+    unset($_SESSION['eoi_confirm']);
+    unset($_SESSION['eoi_confirm_time']); 
+    header("Location: apply.php");
+    exit;
 }
+
 ```

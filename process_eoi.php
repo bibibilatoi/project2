@@ -1,22 +1,22 @@
 <?php
 session_start();
-require_once "settings.php";  //just to check if the file is included or not
+require_once "settings.php";
 
-
-$conn = new mysqli($host, $user, $pwd, $sql_db);      //creates database based on settings.php
-if ($conn->connect_error) {                    //if connection failed, store error mssg, redirect to apply.php(the form) then stop
+$conn = new mysqli($host, $user, $pwd, $sql_db);
+if ($conn->connect_error) {
     // Critical error: Connection failed
     $_SESSION['apply_error'] = "Connection failed: Please try again later or contact support.";
     header("Location: apply.php");
     exit;
 }
 
-//-Security Protocol
+//Security check
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||           
     !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||  //CSRF, to check if it is sent by the website not others
     $_POST['form_token'] !== $_SESSION['apply_form_token']
 ) {
-    unset($_SESSION['apply_form_token']);        //active if validation process fails, stop and show error mssg
+    //if validation process fails, stop and show error mssg
+    unset($_SESSION['apply_form_token']);
     $conn->close();
     die("<div class='error-msg'>Access denied. Please submit the form from the Apply page.</div>");
 }
@@ -49,8 +49,8 @@ $other_skills = cleanStuff($_POST['other_skills'] ?? '');
 
 //Error Validation
 $errors = [];
-
-$required = [                     //to check if there are missing inputs 
+//Required fields
+$required = [
     'Reference Number' => $reference_number,
     'First Name' => $first_name,
     'Last Name' => $last_name,
@@ -65,17 +65,17 @@ $required = [                     //to check if there are missing inputs
 ];
 
 foreach ($required as $field => $value) {
-    //Check if value is empty, if it is then send an error mssg
+    //Check if a field's value is empty, if it is then send an error mssg
     if (empty($value)) $errors[] = "$field is required.";
 }
 
 //Validate email
-if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {  // filters and check whether format is correct or not
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = "Invalid email format.";
 }
 
 //Validate date of birth (YYYY-MM-DD)
-if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   //to check whether there is input and if it matches the pattern
+if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   
     $errors[] = "Date of Birth must be in YYYY-MM-DD format.";
 }
 
@@ -114,16 +114,17 @@ if (!empty($errors)) {
     exit;
 }
 
-//Insert eoi
+
+//preparing the statement to later fill value in by bind_param
 $stmt = $conn->prepare("INSERT INTO eoi 
     (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");   //preparing the statement to later fill value in by bind_param
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-//Check if the preparation is successfull
+//Check if the preparation is successfull, if not then close and redirect user back to apply.php
 if (!$stmt) {
     $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";
     $conn->close();
-    header("Location: apply.php");      //if not then close and redirect user back to apply.php
+    header("Location: apply.php"); 
     exit;
 }
 $stmt->bind_param(
@@ -132,7 +133,7 @@ $stmt->bind_param(
     $street, $suburb, $state, $postcode, $email, $phone, $other_skills
 );
 
-if (!$stmt->execute()) {            //run the sql query in the data base
+if (!$stmt->execute()) {
     // Critical error: Execution failed
     $_SESSION['apply_error'] = "Error submitting EOI: " . $stmt->error;   
     $stmt->close();
@@ -141,20 +142,22 @@ if (!$stmt->execute()) {            //run the sql query in the data base
     exit;
 }
 
-$eoi_number = $stmt->insert_id;     //getting inserted record id
+$eoi_number = $stmt->insert_id;
 $stmt->close();
 
 //Insert skills
 if (!empty($_POST['skills'])) {
-    $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)"); //prepare the query first to bind values after 
-                                                                                                  // used to prevent sql injection attacks
+    $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)");
+    //prepare the query first to bind values after -> prevent sql injection attacks
     if (!$stmt_skill) {
         error_log("Prepare failed for skills: " . $conn->error); 
     } else {
         foreach ($_POST['skills'] as $skill_id) {
-            if (is_numeric($skill_id) && (int)$skill_id > 0) {        //to ensure that skillid is a number and is a positive number
+            //to ensure that skillid is a number and is a positive number
+            if (is_numeric($skill_id) && (int)$skill_id > 0) {        
                 $validated_skill_id = (int)$skill_id;
-                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);   //to ensure the inputs are intergers and to replace ? with  the following inputs
+                //to ensure the inputs are intergers and to replace ? with  the following inputs
+                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);   
                 if (!$stmt_skill->execute()) {
                     error_log("Skill insert failed for EOI #$eoi_number: " . $stmt_skill->error); 
                 }
