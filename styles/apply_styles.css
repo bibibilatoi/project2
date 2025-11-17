@@ -219,28 +219,27 @@ select option {
   display: none;
 }
 
-/* Compact label style */
 #gender-field label {
   padding: 1rem 2rem;
-  width: auto;                 /* shrink to fit content */
-  min-width: 90px;             /* optional: ensure consistent width */
+  width: auto;
+  min-width: 90px;
   background-color: var(--bg-third);
   color: var(--text-primary);
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
   transition: 0.3s ease;
-  var(--text-primary)-space: nowrap;         /* prevent text wrap */
+  white-space: nowrap;
 }
 
-/* Hover */
+
 #gender-field input:not(:checked) + label:hover {
   background-color: var(--accent-secondary);
   transform: translateY(-2px);
   box-shadow: 0 0 10px var(--accent-secondary);
 }
 
-/* Checked */
+
 #gender-field input:checked + label {
   background-color: var(--accent-primary);
   color: var(--text-primary);

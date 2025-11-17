@@ -296,9 +296,9 @@ Index PAGE CSS - MAIN AND SECTIONS
 }
 #workplace-img-container {
     display: flex;
-    flex-direction: column;     /* stack image and caption vertically */
-    align-items: center;        /* center horizontally */
-    justify-content: center;    /* center vertically, if container has height */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: auto;    
 }
 #workplace-img-container img {
@@ -312,4 +312,33 @@ Index PAGE CSS - MAIN AND SECTIONS
 }
 #workplace-img-container:hover img {
     transform: scale(1.05);
+}
+/* Responsive styles for smaller screens */
+@media only screen and (max-width: 1100px) {
+
+    .engineer-row {
+        display: block;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .engineer-profile {
+        margin-bottom: 10px;
+    }
+
+    .engineer-figure {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+
+    .engineer-figure img {
+        width: 100%;
+        height: auto;
+    }
+
+    #index-our-people p {
+        margin-bottom: 10px;
+    }
+
+   
 }

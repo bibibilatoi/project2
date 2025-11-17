@@ -278,7 +278,6 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 
 
-/* cancle the hovering animation for department lables after it is clicked */
 .job-positions input:checked ~ label {
   color: var(--accent-primary);
   margin-left:0.5rem;
@@ -342,12 +341,4 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
   }
 
 
-}
-
-
-.background{
-  background: url("./images/universe_background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }

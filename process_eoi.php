@@ -2,7 +2,6 @@
 session_start();
 require_once "settings.php";
 
-
 $conn = new mysqli($host, $user, $pwd, $sql_db);
 if ($conn->connect_error) {
     // Critical error: Connection failed
@@ -11,10 +10,12 @@ if ($conn->connect_error) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
-    !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||
+//Security check
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||           
+    !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||  //CSRF, to check if it is sent by the website not others
     $_POST['form_token'] !== $_SESSION['apply_form_token']
 ) {
+    //if validation process fails, stop and show error mssg
     unset($_SESSION['apply_form_token']);
     $conn->close();
     die("<div class='error-msg'>Access denied. Please submit the form from the Apply page.</div>");
@@ -26,12 +27,13 @@ unset($_SESSION['apply_form_token']);
 
 
 
-// --- Collect and clean input ---
-// -- Input cleanup function --
+
+//Input cleanup function
 function cleanStuff($stuff) {
     return trim($stuff);
 }
-$reference_number = cleanStuff($_POST['reference_number'] ?? '');     //cleans the input, if the value on the left is good then use, otherwise use '' (empty)       //code cleaned
+//cleans the input, if the value on the left is good then use, otherwise use '' (empty)
+$reference_number = cleanStuff($_POST['reference_number'] ?? '');     
 $first_name = cleanStuff($_POST['first_name'] ?? '');
 $last_name = cleanStuff($_POST['last_name'] ?? '');
 $date_of_birth = cleanStuff($_POST['date_of_birth'] ?? '');
@@ -45,9 +47,9 @@ $phone = cleanStuff($_POST['phone'] ?? '');
 $other_skills = cleanStuff($_POST['other_skills'] ?? '');
 
 
-//-- Error Validation --
+//Error Validation
 $errors = [];
-
+//Required fields
 $required = [
     'Reference Number' => $reference_number,
     'First Name' => $first_name,
@@ -63,36 +65,37 @@ $required = [
 ];
 
 foreach ($required as $field => $value) {
-    if (empty($value)) $errors[] = "$field is required.";  //to check if value is empty, if it is then send an error mssg
+    //Check if a field's value is empty, if it is then send an error mssg
+    if (empty($value)) $errors[] = "$field is required.";
 }
 
-//-Validate email
-if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {  // filters and check whether format is correct or not
+//Validate email
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = "Invalid email format.";
 }
 
-//-Validate date of birth (YYYY-MM-DD)
-if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   //to check whether there is input and if it matches the pattern
+//Validate date of birth (YYYY-MM-DD)
+if (!empty($date_of_birth) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date_of_birth)) {   
     $errors[] = "Date of Birth must be in YYYY-MM-DD format.";
 }
 
-//-Validate postcode (numbers only, 4-6 digits)
+//Validate postcode (numbers only, 4-6 digits)
 if (!empty($postcode) && !preg_match('/^\d{4,6}$/', $postcode)) {
     $errors[] = "Postcode must be 4-6 digits.";
 }
 
-//-Validate phone (numbers, spaces, +, -)
+//Validate phone (numbers, spaces, +, -)
 if (!empty($phone) && !preg_match('/^[\d\+\-\s]{8,20}$/', $phone)) {
     $errors[] = "Phone number contains invalid characters.";
 }
 
-//-Validate gender
+//Validate gender
 $valid_genders = ['Male', 'Female', 'Other'];
 if (!empty($gender) && !in_array($gender, $valid_genders)) {
     $errors[] = "Invalid gender selected.";
 }
 
-//-Validate skills
+//Validate skills
 $skills_selected = !empty($_POST['skills']) && is_array($_POST['skills']) && count($_POST['skills']) > 0;
 $other_skills_filled = !empty(trim($_POST['other_skills'] ?? ''));
 
@@ -102,7 +105,7 @@ if (!$skills_selected && !$other_skills_filled) {
 
 //if error exist, save input and error and go back to apply
 if (!empty($errors)) {
-    // *** FIX: Save the entire submitted data for re-population ***
+    //Save the entire submitted data for re-generation
     $_SESSION['apply_form_data'] = $_POST;
     
     $_SESSION['apply_errors'] = $errors;
@@ -111,25 +114,26 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- Insert eoi ---
+
+//preparing the statement to later fill value in by bind_param
 $stmt = $conn->prepare("INSERT INTO eoi 
     (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
+//Check if the preparation is successfull, if not then close and redirect user back to apply.php
 if (!$stmt) {
-    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";   //to check if the preparation is successfull
+    $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";
     $conn->close();
-    header("Location: apply.php");
+    header("Location: apply.php"); 
     exit;
 }
-
-$stmt->bind_param(      //bind php variables to the placeholders '?' in the sql statement
+$stmt->bind_param(
     "ssssssssssss", 
     $reference_number, $first_name, $last_name, $date_of_birth, $gender, 
     $street, $suburb, $state, $postcode, $email, $phone, $other_skills
 );
 
-if (!$stmt->execute()) {            //run the sql query in the data base
+if (!$stmt->execute()) {
     // Critical error: Execution failed
     $_SESSION['apply_error'] = "Error submitting EOI: " . $stmt->error;   
     $stmt->close();
@@ -138,25 +142,27 @@ if (!$stmt->execute()) {            //run the sql query in the data base
     exit;
 }
 
-$eoi_number = $stmt->insert_id;     //getting inserted record id
+$eoi_number = $stmt->insert_id;
 $stmt->close();
 
-// --- Insert skills ---
+//Insert skills
 if (!empty($_POST['skills'])) {
     $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)");
-    
+    //prepare the query first to bind values after -> prevent sql injection attacks
     if (!$stmt_skill) {
         error_log("Prepare failed for skills: " . $conn->error); 
     } else {
         foreach ($_POST['skills'] as $skill_id) {
-            if (is_numeric($skill_id) && (int)$skill_id > 0) {
+            //to ensure that skillid is a number and is a positive number
+            if (is_numeric($skill_id) && (int)$skill_id > 0) {        
                 $validated_skill_id = (int)$skill_id;
-                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);
+                //to ensure the inputs are intergers and to replace ? with  the following inputs
+                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);   
                 if (!$stmt_skill->execute()) {
-                    error_log("Skill insert failed for EOI #$eoi_number: " . $stmt_skill->error);
+                    error_log("Skill insert failed for EOI #$eoi_number: " . $stmt_skill->error); 
                 }
             } else {
-                 error_log("Invalid skill ID submitted: $skill_id");
+                 error_log("Invalid skill ID submitted: $skill_id");  //to prevent broken inputs or attacks
             }
         }
         $stmt_skill->close();
@@ -165,14 +171,14 @@ if (!empty($_POST['skills'])) {
 
 
 
-//-Clean up
+//Clean up
 $conn->close();
 $_SESSION['eoi_confirm'] = $eoi_number;
-//-Add a timestamp to limit viewing duration
+//Add a timestamp to limit viewing duration
 $_SESSION['eoi_confirm_time'] = time(); 
 header("Location: confirm_eoi.php");
 exit;
 
 //-- ACKNOWLEDGEMENTS: Usage of AI to generate patterns and to make code cleaner than the original //
-// AI mainly used to reformat the code and also cleaning the incomming form data
+ // -- The code is inspired by the following video: https://www.youtube.com/watch?v=mgP_7_051DM //
 ?>

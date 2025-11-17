@@ -3,14 +3,23 @@ session_start();
 
 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
+// Allow access if it's a POST request with the token (from login.php's "link"),
+// OR if there is an error set in the session (indicating a redirect from manage_process_register.php)
+if (
+    ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
     !isset($_POST['access_via_login'], $_SESSION['reg_token']) ||
-    $_POST['access_via_login'] !== $_SESSION['reg_token']
+    $_POST['access_via_login'] !== $_SESSION['reg_token']) &&
+    !isset($_SESSION['register_error'])
 ){
     unset($_SESSION['reg_token']);
     die("Access Denied!");
 }
 
+// Add a new token for CSRF protection on the form submission
+// This is different from 'reg_token', which is just for page access
+if (empty($_SESSION['error_check_token'])) {
+    $_SESSION['error_check_token'] = bin2hex(random_bytes(16));
+}
 
 $errors = [
     'register' => $_SESSION['register_error'] ?? '',
@@ -64,7 +73,8 @@ function showError($error){
             <div class="register_container">
                 <div class ="register_form_box" id="register_form">
                     <form action="manage_process_register.php" method="post" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false">
-                        <h2>Register</h2>
+                    <input type="hidden" name="error_token" value="<?php echo $_SESSION['error_check_token']; ?>">    
+                    <h2>Register</h2>
                         <div class="input_box">
                             <span class="icon"><i class='bx  bx-user'></i> </span>
                             <input class="register_input" type ="text" name="username" required>
