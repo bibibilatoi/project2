@@ -11,8 +11,11 @@
     z-index: -1; /* keep behind content */
 }
 .container{
-    position: relative;
+    position: absolute;
     text-align: center;
+    left: 12.5%;
+    width: 75%;
+    height: 550px;
     animation: pageSlideIn 1.5s ease-out;
 }
 

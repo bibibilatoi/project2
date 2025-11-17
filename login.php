@@ -12,6 +12,7 @@ function showError($error){
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
 }
 
+$_SESSION['reg_token'] = bin2hex(random_bytes(16)); 
 
 ?>
 
@@ -70,7 +71,12 @@ function showError($error){
                             <a class="back_button" href="index.php"><i class='bx  bx-home'    ></i> </a>
                             <button class="login_button" type="submit" name="login">Login</button>
                         </div>
-                        <p class="Tranfer_to_register">Don't have account? <a href="register.php">Click here</a></p>
+                    </form>
+
+                    <form class="Tranfer_to_register" action="register.php" method="POST">
+                        <input type="hidden" name="access_via_login" value="<?php echo $_SESSION['reg_token']; ?>">
+                        <label>Don't have an account?</label>
+                        <button type="submit">Click here</button>
                     </form>
                 </div>
             </div>
