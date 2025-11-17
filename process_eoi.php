@@ -1,21 +1,22 @@
 <?php
 session_start();
-require_once "settings.php";
+require_once "settings.php";  //just to check if the file is included or not
 
 
-$conn = new mysqli($host, $user, $pwd, $sql_db);
-if ($conn->connect_error) {
+$conn = new mysqli($host, $user, $pwd, $sql_db);      //creates database based on settings.php
+if ($conn->connect_error) {                    //if connection failed, store error mssg, redirect to apply.php(the form) then stop
     // Critical error: Connection failed
     $_SESSION['apply_error'] = "Connection failed: Please try again later or contact support.";
     header("Location: apply.php");
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
-    !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||
+//-Security Protocol
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||           
+    !isset($_POST['form_token'], $_SESSION['apply_form_token']) ||  //CSRF, to check if it is sent by the website not others
     $_POST['form_token'] !== $_SESSION['apply_form_token']
 ) {
-    unset($_SESSION['apply_form_token']);
+    unset($_SESSION['apply_form_token']);        //active if validation process fails, stop and show error mssg
     $conn->close();
     die("<div class='error-msg'>Access denied. Please submit the form from the Apply page.</div>");
 }
@@ -48,7 +49,7 @@ $other_skills = cleanStuff($_POST['other_skills'] ?? '');
 //-- Error Validation --
 $errors = [];
 
-$required = [
+$required = [                     //to check if there are missing inputs 
     'Reference Number' => $reference_number,
     'First Name' => $first_name,
     'Last Name' => $last_name,
@@ -112,14 +113,14 @@ if (!empty($errors)) {
 }
 
 // --- Insert eoi ---
-$stmt = $conn->prepare("INSERT INTO eoi 
+$stmt = $conn->prepare("INSERT INTO eoi        
     (reference_number, first_name, last_name, date_of_birth, gender, street, suburb, `state`, postcode, email, phone, other_skills)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");   //preparing the statement to later fill value in by bind_param
 
 if (!$stmt) {
     $_SESSION['apply_error'] = "Database error (EOI): Failed to prepare statement.";   //to check if the preparation is successfull
     $conn->close();
-    header("Location: apply.php");
+    header("Location: apply.php");      //if not then close and redirect user back to apply.php
     exit;
 }
 
@@ -143,20 +144,20 @@ $stmt->close();
 
 // --- Insert skills ---
 if (!empty($_POST['skills'])) {
-    $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)");
-    
+    $stmt_skill = $conn->prepare("INSERT INTO user_skills (eoi_number, skill_id) VALUES (?, ?)"); //prepare the query first to bind values after 
+                                                                                                  // used to prevent sql injection attacks
     if (!$stmt_skill) {
         error_log("Prepare failed for skills: " . $conn->error); 
     } else {
         foreach ($_POST['skills'] as $skill_id) {
-            if (is_numeric($skill_id) && (int)$skill_id > 0) {
+            if (is_numeric($skill_id) && (int)$skill_id > 0) {        //to ensure that skillid is a number and is a positive number
                 $validated_skill_id = (int)$skill_id;
-                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);
+                $stmt_skill->bind_param("ii", $eoi_number, $validated_skill_id);   //to ensure the inputs are intergers and to replace ? with  the following inputs
                 if (!$stmt_skill->execute()) {
-                    error_log("Skill insert failed for EOI #$eoi_number: " . $stmt_skill->error);
+                    error_log("Skill insert failed for EOI #$eoi_number: " . $stmt_skill->error); 
                 }
             } else {
-                 error_log("Invalid skill ID submitted: $skill_id");
+                 error_log("Invalid skill ID submitted: $skill_id");  //to prevent broken inputs or attacks
             }
         }
         $stmt_skill->close();
@@ -165,13 +166,14 @@ if (!empty($_POST['skills'])) {
 
 
 
-//-Clean up
+// --- Clean up ---
 $conn->close();
 $_SESSION['eoi_confirm'] = $eoi_number;
-//-Add a timestamp to limit viewing duration
+// Adding a timestamp to limit viewing duration
 $_SESSION['eoi_confirm_time'] = time(); 
 header("Location: confirm_eoi.php");
 exit;
 
 //-- ACKNOWLEDGEMENTS: Usage of AI to generate patterns and to make code cleaner than the original //
+ // -- The code is inspired by the following video: https://www.youtube.com/watch?v=mgP_7_051DM //
 ?>
