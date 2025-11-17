@@ -1,10 +1,20 @@
 <?php
 session_start();
 
+
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' ||
+    !isset($_POST['access_via_login'], $_SESSION['reg_token']) ||
+    $_POST['access_via_login'] !== $_SESSION['reg_token']
+){
+    unset($_SESSION['reg_token']);
+    die("Access Denied!");
+}
+
+
 $errors = [
     'register' => $_SESSION['register_error'] ?? '',
 ];
-
 
 unset($_SESSION['register_error']);
 

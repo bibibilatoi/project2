@@ -179,6 +179,7 @@ input[name="department-select"]:checked ~ .department-content {
 
 }
 
+
 /* some basic styling of the job positions */
 /* some basic styling of the job positions */
 
@@ -319,7 +320,9 @@ input[name="department-select"]:checked ~ .department-content label:first-child 
 }
 
 
-
+.department-content .dept-hiring {
+    animation: hiring-pulse 3s infinite;
+}
 
 
 /* 
